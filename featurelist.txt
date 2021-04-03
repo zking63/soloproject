@@ -1,0 +1,21 @@
+Project description: I want to create a website that helps people email fundraise and strategize based on the success of emails, or target specific donors. I want to visualize how emails have performed based on various metrics. Similarly, I want to see how often certain donors give and their average donation. 
+
+Must-haves:
+1. login/registration page that redirects to homepage if successful
+2. b.crypt password
+3. homepage that shows money raised 
+4. email page that shows every fundraising email, their relevant statistics, and has the option to sort by various metrics
+5. log out option on every page
+6. ability to click a certain email and see the language used in the email, the sender, and the subject
+7. a donors page that shows every donor, the most recent fundraising email they gave to, the date they gave, how much their last donation was, and any recurring donations they've signed up for
+8. on the donors page, the ability to sort by relevant statistics
+9. an individual donor page that shows every fundraising email they've given to, the date they gave to it, how much they gave, if they gave a recurring donation
+10. emails are connected to donors by refcode (like an id but used specifically for email fundraising)
+
+
+Nice-to-haves:
+1. the ability to put a start and end date to the homepage fundraising tracker, the donors page, and  email page to show only donations/emails that were made in a specific range
+2. the average donation to a specific email
+3. date picker functionality on any date ranges
+4. a graph of fundraising stats on the homepage with timestamps (months or days) on the bottom
+5. if the date range on the homepage goes under a month, it shows fundraising stats per day, if it goes down to a day, it shows stats per hour
