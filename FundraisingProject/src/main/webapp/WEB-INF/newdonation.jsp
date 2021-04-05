@@ -24,15 +24,15 @@
 	            <form:errors path="date"></form:errors>
 	            <form:input type="date" value="${dateFormat}" path="date"/>
 	        </p>
-			<form action="/donors/{donor.id}" method ="POST">
+	        <p>
 		        <label for="donor">Assign a donor:</label>
 				<select id="donor" name="donor">
 				  	<c:forEach items="${ donor }" var="p">
 			        	<option value="${ p.id }">${ p.donorEmail }</option>
 			        </c:forEach>
 				</select>
-			</form>
 	        <input type="submit" value="Submit"/>
+	        </p>
 	    </form:form>
 	</div> 
 </body>

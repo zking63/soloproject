@@ -18,6 +18,7 @@
 	            <th>First Name</th>
 	            <th>Last Name</th>
 	            <th>Email address</th>
+	            <th>Donation</th>
 	        </tr>
 	    </thead>
 		<tbody>
@@ -26,6 +27,7 @@
 					<td>${ d.donorFirstName }</td>
 					<td>${d.donorLastName}</td>
 					<td>${d.donorEmail}</td>
+					<td>${d.contributions.amount}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -2,6 +2,7 @@ package com.codingdojo.FundraisingProject.Controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -11,17 +12,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Donor;
 import com.codingdojo.FundraisingProject.Models.User;
+import com.codingdojo.FundraisingProject.Services.DonationService;
 import com.codingdojo.FundraisingProject.Services.DonorService;
 import com.codingdojo.FundraisingProject.Services.UserService;
 import com.codingdojo.FundraisingProject.Validation.UserValidation;
+
 
 @Controller
 public class FPController {
@@ -33,6 +38,9 @@ public class FPController {
 	
 	@Autowired
 	private DonorService dservice;
+	
+	@Autowired
+	private DonationService donservice;
 	
 	@RequestMapping("/")
 	public String index(@ModelAttribute("user")User user) {
@@ -101,10 +109,33 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("donor", this.dservice.allDonors());
+		 model.addAttribute("donation", this.donservice.findByUser(donor.getId()));
 		 return "donors.jsp";
 	 }
 	private String dateFormat() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		return df.format(new Date());
 	}
+	 @RequestMapping("/newdonation")
+	 public String donationsPage(@ModelAttribute("donation") Donation donation, Model model, HttpSession session) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (user_id == null) {
+			 return "redirect:/";
+		 }
+		 User user = uservice.findUserbyId(user_id);
+		 model.addAttribute("user", user);
+		 model.addAttribute("donor", this.dservice.allDonors());
+		 return "newdonation.jsp";
+	 }
+	 @PostMapping(value="/newdonation")
+	 public String CreateDonation(@Valid @ModelAttribute("donation") Donation donation, BindingResult result, Model model, HttpSession session) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (result.hasErrors()) {
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 return "newdonation.jsp";
+		 }
+		 donservice.createDonation(donation);
+		 return "redirect:/home";
+	 }
 }

@@ -10,4 +10,5 @@ import com.codingdojo.FundraisingProject.Models.Donation;
 @Repository
 public interface DonationRepo extends CrudRepository<Donation, Long>{
 	List<Donation> findAll();
+	List<Donation> findBydonor(Long donor_id);
 }
