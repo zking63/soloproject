@@ -1,12 +1,15 @@
 package com.codingdojo.FundraisingProject.Models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -14,6 +17,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
 
 @Entity
 @Table (name="users")
@@ -37,6 +41,11 @@ public class User {
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="uploader")
+    private List<Donor> donorsUploaded;
+    
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="donation_uploader")
+    private List<Donation> donationsUploaded;
 	
 	public User() {
 		
@@ -105,6 +114,24 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	public List<Donor> getDonorsUploaded() {
+		return donorsUploaded;
+	}
+
+	public void setDonorsUploaded(List<Donor> donorsUploaded) {
+		this.donorsUploaded = donorsUploaded;
+	}
+	
+
+	public List<Donation> getDonationsUploaded() {
+		return donationsUploaded;
+	}
+
+	public void setDonationsUploaded(List<Donation> donationsUploaded) {
+		this.donationsUploaded = donationsUploaded;
+	}
+
 	@PrePersist
 	protected void onCreate(){
 		this.createdAt = new Date();
