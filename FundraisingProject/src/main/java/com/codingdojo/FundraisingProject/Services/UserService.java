@@ -28,4 +28,18 @@ public class UserService {
 	public User findUserbyId(Long id) {
 		return urepo.findById(id).orElse(null);
 	}
+	
+	//authenticate user
+	public boolean authenticateUser(String email, String password) {
+		User user = urepo.findByEmail(email);
+		if (user == null){
+			return false;
+		}
+		else {
+			if(BCrypt.checkpw(password, user.getPassword())) {
+				return true;
+			}
+			return false;
+		}
+	}
 }
