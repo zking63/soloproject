@@ -29,7 +29,7 @@ public class User {
 	@Email(message="Must be a valid email.")
 	private String email;
 	@NotEmpty
-	@Size(min=8, message="Password must be at least 8 characters.")
+	@Size(min=5, message="Password must be at least 5 characters.")
 	private String password;
 	@NotEmpty
 	@Transient
