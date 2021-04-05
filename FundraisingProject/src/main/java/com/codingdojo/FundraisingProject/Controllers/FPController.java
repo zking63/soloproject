@@ -36,7 +36,7 @@ public class FPController {
 		}
 		User newUser = uservice.registerUser(user);
 		session.setAttribute("user_id", newUser.getId());
-		return "redirect:/ideas";
+		return "redirect:/home";
 	}
 	 @RequestMapping(value="/login", method=RequestMethod.POST)
 	 public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session, RedirectAttributes redirs) {
@@ -45,7 +45,7 @@ public class FPController {
 		 if(isAuthenticated) {
 			 User u = uservice.findUserbyEmail(email);
 			 session.setAttribute("user_id", u.getId());
-			 return "redirect:/ideas";
+			 return "redirect:/home";
 		 }
 	     // else, add error messages and return the login page
 		 else {
