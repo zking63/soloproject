@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,7 +78,7 @@ public class FPController {
 		 model.addAttribute("user", user);
 		 return "createDonor.jsp";
 	 }
-	 @RequestMapping(value="/newdonor", method=RequestMethod.POST)
+	 @PostMapping(value="/newdonor")
 	 public String CreateDonor(@Valid @ModelAttribute("donor") Donor donor, BindingResult result, Model model, HttpSession session) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (result.hasErrors()) {
@@ -96,7 +97,7 @@ public class FPController {
 		 }
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
-		 model.addAttribute("donor", donor);
+		 model.addAttribute("donor", this.dservice.allDonors());
 		 return "donors.jsp";
 	 }
 }

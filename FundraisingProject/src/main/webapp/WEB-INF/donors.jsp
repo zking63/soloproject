@@ -17,13 +17,15 @@
 	        <tr>
 	            <th>First Name</th>
 	            <th>Last Name</th>
+	            <th>Email address</th>
 	        </tr>
 	    </thead>
 		<tbody>
-			<c:forEach items="${ donor }" var="q">
+			<c:forEach items="${ donor }" var="d">
 				<tr>
-					<td>${ q.donorFirstName }</td>
-					<td>${q.donorLastName}></td>
+					<td>${ d.donorFirstName }</td>
+					<td>${d.donorLastName}</td>
+					<td>${d.donorEmail}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

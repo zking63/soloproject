@@ -18,7 +18,7 @@
 	   	    <h1>Register!</h1>
 	    	<p>
 	            <form:label path="firstName">First Name:</form:label>
-	            <form:input type="lastName" path="firstName"/>
+	            <form:input type="firstName" path="firstName"/>
 	        </p>
 	        <p>
 	            <form:label path="lastName">Last Name:</form:label>

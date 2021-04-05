@@ -20,7 +20,7 @@
 	</div>
 	<div class="user-form">
 		<h1>Upload a donor</h1>
-	    <form:form method="POST" action="/donors" modelAttribute="donor">
+	    <form:form method="POST" action="/newdonor" modelAttribute="donor">
 	    	<form:hidden value="${ user.id }" path="uploader"/>
 	    	<p>
 	            <form:label path="donorFirstName">First Name:</form:label>
