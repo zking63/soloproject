@@ -53,4 +53,12 @@ public class FPController {
 			 return "redirect:/";
 		 }
 	 }
+	 
+	 @RequestMapping("/logout")
+	 public String logout(HttpSession session) {
+	     // invalidate session
+		 session.invalidate();
+	     // redirect to login page
+		 return "redirect:/";
+	 }
 }
