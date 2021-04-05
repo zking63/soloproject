@@ -1,5 +1,8 @@
 package com.codingdojo.FundraisingProject.Controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -100,4 +103,8 @@ public class FPController {
 		 model.addAttribute("donor", this.dservice.allDonors());
 		 return "donors.jsp";
 	 }
+	private String dateFormat() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return df.format(new Date());
+	}
 }
