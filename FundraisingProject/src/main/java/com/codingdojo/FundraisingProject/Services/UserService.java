@@ -18,4 +18,9 @@ public class UserService {
 		user.setPassword(hashed);
 		return urepo.save(user);
 	}
+	
+	//find user by email
+	public User findUserbyEmail(String email) {
+		return urepo.findByEmail(email);
+	}
 }
