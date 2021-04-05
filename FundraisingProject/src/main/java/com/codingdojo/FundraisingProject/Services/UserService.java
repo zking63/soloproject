@@ -23,4 +23,9 @@ public class UserService {
 	public User findUserbyEmail(String email) {
 		return urepo.findByEmail(email);
 	}
+	
+	//find user by id
+	public User findUserbyId(Long id) {
+		return urepo.findById(id).orElse(null);
+	}
 }
