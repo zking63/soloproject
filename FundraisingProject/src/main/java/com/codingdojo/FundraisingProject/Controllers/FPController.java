@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.FundraisingProject.Models.User;
 import com.codingdojo.FundraisingProject.Services.UserService;
@@ -31,4 +33,19 @@ public class FPController {
 		session.setAttribute("user_id", newUser.getId());
 		return "redirect:/ideas";
 	}
+	 @RequestMapping(value="/login", method=RequestMethod.POST)
+	 public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, HttpSession session, RedirectAttributes redirs) {
+	     // if the user is authenticated, save their user id in session
+		 boolean isAuthenticated = uservice.authenticateUser(email, password);
+		 if(isAuthenticated) {
+			 User u = uservice.findUserbyEmail(email);
+			 session.setAttribute("user_id", u.getId());
+			 return "redirect:/ideas";
+		 }
+	     // else, add error messages and return the login page
+		 else {
+			 redirs.addFlashAttribute("error", "Invalid Email/Password");
+			 return "redirect:/";
+		 }
+	 }
 }
