@@ -23,17 +23,17 @@
 	    <form:form method="POST" action="/donors" modelAttribute="donor">
 	    	<form:hidden value="${ user.id }" path="uploader"/>
 	    	<p>
-	            <form:label path="donorFirstName">Name:</form:label>
+	            <form:label path="donorFirstName">First Name:</form:label>
 	            <form:errors path="donorFirstName"></form:errors>
 	            <form:input type="donorFirstName" path="donorFirstName"/>
 	        </p>
 	        <p>
-	            <form:label path="donorLastName">State:</form:label>
+	            <form:label path="donorLastName">Last Name:</form:label>
 	            <form:errors path="donorLastName"></form:errors>
 	            <form:input type="donorLastName" path="donorLastName"/>
 	        </p>
 	        <p>
-	            <form:label path="donorEmail">Date:</form:label>
+	            <form:label path="donorEmail">Email:</form:label>
 	            <form:errors path="donorEmail"></form:errors>
 	            <form:input type="donorEmail" path="donorEmail"/>
 	        </p>
