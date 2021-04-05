@@ -1,5 +1,6 @@
 package com.codingdojo.FundraisingProject.Models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -97,6 +98,10 @@ public class Donation {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+    public String getEventDateFormatted() {
+    	SimpleDateFormat df = new SimpleDateFormat("MMMM, dd, YYYY");
+    	return df.format(this.date);
+    }
 	
 	@PrePersist
 	protected void onCreate(){
