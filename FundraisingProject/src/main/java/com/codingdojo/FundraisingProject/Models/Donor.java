@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table (name="donors")
@@ -26,6 +28,9 @@ public class Donor {
 	private long id;
 	private String donorFirstName;
 	private String donorLastName;
+	@NotEmpty
+	@Email(message="Must be a valid email.")
+	private String donorEmail;
 	
     @OneToMany(fetch=FetchType.LAZY, mappedBy="donor")
     private List<Donation> contributions;
@@ -105,6 +110,15 @@ public class Donor {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	public String getDonorEmail() {
+		return donorEmail;
+	}
+
+	public void setDonorEmail(String email) {
+		this.donorEmail = email;
+	}
+
 	@PrePersist
 	protected void onCreate(){
 		this.createdAt = new Date();
