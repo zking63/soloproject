@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.codingdojo.FundraisingProject.Models.Donor;
 import com.codingdojo.FundraisingProject.Models.User;
+import com.codingdojo.FundraisingProject.Services.DonorService;
 import com.codingdojo.FundraisingProject.Services.UserService;
 import com.codingdojo.FundraisingProject.Validation.UserValidation;
 
@@ -23,6 +26,9 @@ public class FPController {
 	
 	@Autowired
 	private UserValidation uvalidation;
+	
+	@Autowired
+	private DonorService dservice;
 	
 	@RequestMapping("/")
 	public String index(@ModelAttribute("user")User user) {
@@ -60,5 +66,26 @@ public class FPController {
 		 session.invalidate();
 	     // redirect to login page
 		 return "redirect:/";
+	 }
+	 @RequestMapping("/newdonor")
+	 public String newDonorPage(@ModelAttribute("donor") Donor donor, Model model, HttpSession session) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (user_id == null) {
+			 return "redirect:/";
+		 }
+		 User user = uservice.findUserbyId(user_id);
+		 model.addAttribute("user", user);
+		 return "createDonor.jsp";
+	 }
+	 @RequestMapping(value="/newdonor", method=RequestMethod.POST)
+	 public String CreateEvent(@Valid @ModelAttribute("donor") Donor donor, BindingResult result, Model model, HttpSession session) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (result.hasErrors()) {
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 return "createDonor.jsp";
+		 }
+		 dservice.createDonor(donor);
+		 return "redirect:/donors";
 	 }
 }
