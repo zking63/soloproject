@@ -78,7 +78,7 @@ public class FPController {
 		 return "createDonor.jsp";
 	 }
 	 @RequestMapping(value="/newdonor", method=RequestMethod.POST)
-	 public String CreateEvent(@Valid @ModelAttribute("donor") Donor donor, BindingResult result, Model model, HttpSession session) {
+	 public String CreateDonor(@Valid @ModelAttribute("donor") Donor donor, BindingResult result, Model model, HttpSession session) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (result.hasErrors()) {
 			 User user = uservice.findUserbyId(user_id);
@@ -87,5 +87,16 @@ public class FPController {
 		 }
 		 dservice.createDonor(donor);
 		 return "redirect:/donors";
+	 }
+	 @RequestMapping("/donors")
+	 public String donorsPage(@ModelAttribute("donor") Donor donor, Model model, HttpSession session) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (user_id == null) {
+			 return "redirect:/";
+		 }
+		 User user = uservice.findUserbyId(user_id);
+		 model.addAttribute("user", user);
+		 model.addAttribute("donor", donor);
+		 return "donors.jsp";
 	 }
 }
