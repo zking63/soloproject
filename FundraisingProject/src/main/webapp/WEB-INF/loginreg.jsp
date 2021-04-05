@@ -25,14 +25,6 @@
 	            <form:input type="lastName" path="lastName"/>
 	        </p>
 	        <p>
-	            <form:label path="city">City:</form:label>
-	            <form:input type="city" path="city"/>
-	        </p>
-	        <p>
-	            <form:label path="state">State:</form:label>
-	            <form:input type="state" path="state"/>
-			</p>
-	        <p>
 	            <form:label path="email">Email:</form:label>
 	            <form:input type="email" path="email"/>
 	        </p>
