@@ -14,18 +14,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.FundraisingProject.Models.User;
 import com.codingdojo.FundraisingProject.Services.UserService;
+import com.codingdojo.FundraisingProject.Validation.UserValidation;
 
 @Controller
 public class FPController {
 	@Autowired
 	private UserService uservice;
+	
+	@Autowired
+	private UserValidation uvalidation;
+	
 	@RequestMapping("/")
 	public String index(@ModelAttribute("user")User user) {
 		return "loginreg.jsp";
 	}
 	@RequestMapping(value="/", method=RequestMethod.POST)
 	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
-		//uvalidation.validate(user, result);
+		uvalidation.validate(user, result);
 		if (result.hasErrors()) {
 			return "loginreg.jsp";
 		}
