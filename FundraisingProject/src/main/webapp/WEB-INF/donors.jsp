@@ -24,7 +24,7 @@
 	            <th>First Name</th>
 	            <th>Last Name</th>
 	            <th>Email address</th>
-	            <th>Donation</th>
+	            <th>Donations</th>
 	        </tr>
 	    </thead>
 		<tbody>

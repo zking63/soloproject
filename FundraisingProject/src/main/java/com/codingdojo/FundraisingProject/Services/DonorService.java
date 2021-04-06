@@ -24,7 +24,4 @@ public class DonorService {
 	public Donor findbyId(Long id) {
 		return drepo.findById(id).orElse(null);
 	}
-	public List<Donation> getDonations(Donor donor) {
-		return donor.getContributions();
-	}
 }

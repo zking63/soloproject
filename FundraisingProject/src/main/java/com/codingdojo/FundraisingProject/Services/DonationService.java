@@ -28,7 +28,14 @@ public class DonationService {
 	public List<Donation> findByUser(Long user_id) {
 		return donrepo.findBydonor(user_id);
 	}
-	public Donor getDonorbyDonation(Donation donation) {
-		return donation.getDonor();
+	public Donation mostRecentDonation(Donor donor, Donation donation) {
+		List<Donation> contributions = donor.getContributions();
+		Donation mostRecent;
+		for (int i = 0; i < contributions.size(); i++) {
+			if (contributions.indexOf(i).getId() > contributions.indexOf(i - 1).getId()) {
+				mostRecent = contributions.indexOf(i);
+			}
+		}
+		return mostRecent;
 	}
 }
