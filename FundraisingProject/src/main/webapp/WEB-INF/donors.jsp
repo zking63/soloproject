@@ -24,7 +24,8 @@
 	            <th>First Name</th>
 	            <th>Last Name</th>
 	            <th>Email address</th>
-	            <th>Donations</th>
+	            <th>Most recent donation amount</th>
+	            <th>Most recent donation date</th>
 	        </tr>
 	    </thead>
 		<tbody>
@@ -33,9 +34,8 @@
 					<td>${ d.donorFirstName }</td>
 					<td>${d.donorLastName}</td>
 					<td>${d.donorEmail}</td>
-					<td><c:forEach items="${ d.contributions }" var="e">
-					<p>${e.getAmount()}</p>
-					</c:forEach></td>
+					<td>${d.getMostRecentdonation().getAmount()}</td>
+					<td>${d.getMostRecentdonation().getDate()}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

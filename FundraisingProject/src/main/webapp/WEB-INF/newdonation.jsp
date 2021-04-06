@@ -15,14 +15,14 @@
 	    <form:form method="POST" action="/newdonation" modelAttribute="donation">
 	    	<form:hidden value="${ user.id }" path="donation_uploader"/>
 	    	<p>
-	            <form:label path="amount">Amount</form:label>
+	            <form:label path="amount">Amount:</form:label>
 	            <form:errors path="amount"></form:errors>
 	            <form:input type="long" path="amount"/>
 	        </p>
 	        <p>
-	            <form:label path="date">Amount</form:label>
-	            <form:errors path="date"></form:errors>
-	            <form:input type="date" value="${dateFormat}" path="date"/>
+	            <form:label path="Dondate">Date:</form:label>
+	            <form:errors path="Dondate"></form:errors>
+	            <form:input type="Dondate" path="Dondate"/>
 	        </p>
 	        <p>
 		        <label for="donor">Assign a donor:</label>

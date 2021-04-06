@@ -2,7 +2,9 @@ package com.codingdojo.FundraisingProject.Models;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -25,7 +28,7 @@ public class Donation {
 	private long id;
 	private Double amount;
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
-	private long date;
+	private Date Dondate;
 	
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="donor_id")
@@ -59,12 +62,12 @@ public class Donation {
 		this.amount = amount;
 	}
 
-	public long getDate() {
-		return date;
+	public Date getDate() {
+		return Dondate;
 	}
 
-	public void setDate(long date) {
-		this.date = date;
+	public void setDate(Date Dondate) {
+		this.Dondate = Dondate;
 	}
 
 	public Donor getDonor() {
@@ -98,11 +101,21 @@ public class Donation {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-    public String getEventDateFormatted() {
-    	SimpleDateFormat df = new SimpleDateFormat("MMMM, dd, YYYY");
-    	return df.format(this.date);
+    public String getDonationDateFormatted() {
+    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    	return df.format(this.Dondate);
     }
-	
+	/*public Donation mostRecentDonation(Donor donor) {
+		List<Donation> contributions = donor.getContributions();
+		Donation mostRecent = contributions.get(0);
+		//for (int i = 0; i < contributions.size(); i++) {
+			//if (contributions.get(i).getId() > mostRecent.getId()) {
+				//mostRecent = contributions.get(i);
+			//}
+		//}
+		return mostRecent;
+	}*/
+
 	@PrePersist
 	protected void onCreate(){
 		this.createdAt = new Date();

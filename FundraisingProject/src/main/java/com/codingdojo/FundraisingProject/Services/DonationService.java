@@ -1,6 +1,7 @@
 package com.codingdojo.FundraisingProject.Services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,14 +29,14 @@ public class DonationService {
 	public List<Donation> findByUser(Long user_id) {
 		return donrepo.findBydonor(user_id);
 	}
-	public Donation mostRecentDonation(Donor donor, Donation donation) {
-		List<Donation> contributions = donor.getContributions();
-		Donation mostRecent;
-		for (int i = 0; i < contributions.size(); i++) {
-			if (contributions.indexOf(i).getId() > contributions.indexOf(i - 1).getId()) {
-				mostRecent = contributions.indexOf(i);
-			}
-		}
-		return mostRecent;
-	}
+	/*public Donation mostRecentDonation(Donor donor) {
+		Donation contribution = donor.mostRecentDonation(donor);
+		//Donation mostRecent = contributions.get(0);
+		//for (int i = 0; i < contributions.size(); i++) {
+			//if (contributions.get(i).getId() > mostRecent.getId()) {
+				//mostRecent = contributions.get(i);
+			//}
+		//}
+		return contribution;
+	}*/
 }

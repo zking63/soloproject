@@ -3,6 +3,7 @@ package com.codingdojo.FundraisingProject.Models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,10 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -42,6 +42,9 @@ public class Donor {
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
+	
+	//private Double mostRecentdonation;
+	private String MostRecentdonationDATE;
 	
 	/*@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
@@ -119,6 +122,45 @@ public class Donor {
 		this.donorEmail = email;
 	}
 
+	/*public Double getMostRecentdonation() {
+		contributions.get(0).getAmount();
+		Donation mostRecent = contributions.get(0);
+		for (int i = 0; i < contributions.size(); i++) {
+		if (contributions.get(i).getDate() > mostRecent.getDate()) {
+				mostRecent = contributions.get(i);
+			}
+		}
+		return mostRecent.getAmount();
+	}*/
+	
+	public Donation getMostRecentdonation() {
+		Donation mostRecent = null;
+		if (contributions.size() > 0) {
+			for (int i = 0; i < contributions.size(); i++) {
+				if (contributions.get(i).getId() < mostRecent.getId()) {
+						mostRecent = contributions.get(i);
+					}
+				}
+		}
+		return mostRecent;
+	}
+	
+	/*public String getMostRecentdonationDATE() {
+		String MostRecentdonationDATE = contributions.get(0).getDonationDateFormatted();
+		Donation mostRecent = contributions.get(0);
+		for (int i = 0; i < contributions.size(); i++) {
+		if (contributions.get(i).getId() > mostRecent.getId()) {
+				mostRecent = contributions.get(i);
+			}
+		}
+		MostRecentdonationDATE = mostRecent.getDonationDateFormatted();
+		return MostRecentdonationDATE;
+	}
+
+	/*public void setMostRecentdonation(Double mostRecentdonation) {
+		this.mostRecentdonation = mostRecentdonation;
+	}*/
+
 	@PrePersist
 	protected void onCreate(){
 		this.createdAt = new Date();
@@ -126,5 +168,9 @@ public class Donor {
 	@PreUpdate
 	protected void onUpdate(){
 	    this.updatedAt = new Date();
+	}
+
+	public void setMostRecentdonationDATE(String mostRecentdonationDATE) {
+		MostRecentdonationDATE = mostRecentdonationDATE;
 	}
 }

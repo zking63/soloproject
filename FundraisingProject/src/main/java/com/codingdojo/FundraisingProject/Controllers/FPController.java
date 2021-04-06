@@ -109,6 +109,7 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("donor", this.dservice.allDonors());
+		 model.addAttribute("dateFormat", dateFormat());
 		 return "donors.jsp";
 	 }
 	private String dateFormat() {
@@ -124,6 +125,7 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("donor", this.dservice.allDonors());
+		 model.addAttribute("dateFormat", dateFormat());
 		 return "newdonation.jsp";
 	 }
 	 @PostMapping(value="/newdonation")
