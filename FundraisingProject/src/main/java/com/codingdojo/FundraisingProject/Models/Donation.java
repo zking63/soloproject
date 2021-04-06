@@ -23,7 +23,7 @@ public class Donation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	private long amount;
+	private Double amount;
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	private long date;
 	
@@ -51,11 +51,11 @@ public class Donation {
 		this.id = id;
 	}
 
-	public long getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(long amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
+import com.codingdojo.FundraisingProject.Models.Donor;
 import com.codingdojo.FundraisingProject.Repositories.DonationRepo;
 
 @Service
@@ -26,5 +27,8 @@ public class DonationService {
 	}
 	public List<Donation> findByUser(Long user_id) {
 		return donrepo.findBydonor(user_id);
+	}
+	public Donor getDonorbyDonation(Donation donation) {
+		return donation.getDonor();
 	}
 }

@@ -27,7 +27,9 @@
 					<td>${ d.donorFirstName }</td>
 					<td>${d.donorLastName}</td>
 					<td>${d.donorEmail}</td>
-					<td>${d.contributions.amount}</td>
+					<td><c:forEach items="${ d.contributions }" var="e">
+					<p>${e.getAmount()}</p>
+					</c:forEach></td>
 				</tr>
 			</c:forEach>
 		</tbody>

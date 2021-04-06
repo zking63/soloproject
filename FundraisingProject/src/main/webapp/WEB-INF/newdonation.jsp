@@ -17,7 +17,7 @@
 	    	<p>
 	            <form:label path="amount">Amount</form:label>
 	            <form:errors path="amount"></form:errors>
-	            <form:input type="amount" path="amount"/>
+	            <form:input type="long" path="amount"/>
 	        </p>
 	        <p>
 	            <form:label path="date">Amount</form:label>

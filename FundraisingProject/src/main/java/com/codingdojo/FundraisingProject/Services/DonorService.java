@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Donor;
 import com.codingdojo.FundraisingProject.Repositories.DonorRepo;
 
@@ -22,5 +23,8 @@ public class DonorService {
 	}
 	public Donor findbyId(Long id) {
 		return drepo.findById(id).orElse(null);
+	}
+	public List<Donation> getDonations(Donor donor) {
+		return donor.getContributions();
 	}
 }
