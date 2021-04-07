@@ -44,7 +44,7 @@ public class Donor {
 	private Date updatedAt;
 	
 	//private Double mostRecentdonation;
-	private String MostRecentdonationDATE;
+	//private String MostRecentdonationDATE;
 	
 	/*@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
@@ -53,6 +53,7 @@ public class Donor {
 		inverseJoinColumns = @JoinColumn(name="donation_id")
 	)
 	private List<Donation> donations;*/
+	
 	
 	public Donor() {
 		
@@ -133,8 +134,34 @@ public class Donor {
 		return mostRecent.getAmount();
 	}*/
 	
-	public Donation getMostRecentdonation() {
-		Donation mostRecent = null;
+	public Double getMostRecentdonation() {
+	Donation mostRecent = new Donation();
+	Double mostRecentAmount = contributions.get(0).getAmount();
+	if (contributions.size() > 0) {
+		for (int i = 0; i < contributions.size(); i++) {
+			if (contributions.get(i).getId() > mostRecent.getId()) {
+					mostRecentAmount = contributions.get(i).getAmount();
+				}
+			}
+	}
+	return mostRecentAmount;
+   }
+	
+	public String getMostRecentdonationDate() {
+	Donation mostRecent = new Donation();
+	String mostRecentDate = contributions.get(0).getDonationDateFormatted();
+	if (contributions.size() > 0) {
+		for (int i = 0; i < contributions.size(); i++) {
+			if (contributions.get(i).getId() > mostRecent.getId()) {
+					mostRecentDate = contributions.get(i).getDonationDateFormatted();
+				}
+			}
+	}
+	return mostRecentDate;
+   }
+	
+	/*public Donation getMostRecentdonation() {
+		Donation mostRecent = new Donation();
 		if (contributions.size() > 0) {
 			for (int i = 0; i < contributions.size(); i++) {
 				if (contributions.get(i).getId() < mostRecent.getId()) {
@@ -170,7 +197,7 @@ public class Donor {
 	    this.updatedAt = new Date();
 	}
 
-	public void setMostRecentdonationDATE(String mostRecentdonationDATE) {
+	/*public void setMostRecentdonationDATE(String mostRecentdonationDATE) {
 		MostRecentdonationDATE = mostRecentdonationDATE;
-	}
+	}*/
 }

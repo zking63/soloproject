@@ -109,7 +109,8 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("donor", this.dservice.allDonors());
-		 model.addAttribute("dateFormat", dateFormat());
+		 //model.addAttribute("mostRecent", this.dservice.getMostRecentdonation(donor.getId()));
+		 //model.addAttribute("mostRecent", donor.getMostRecentdonation().getAmount());
 		 return "donors.jsp";
 	 }
 	private String dateFormat() {

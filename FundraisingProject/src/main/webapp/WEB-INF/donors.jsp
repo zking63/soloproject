@@ -34,8 +34,8 @@
 					<td>${ d.donorFirstName }</td>
 					<td>${d.donorLastName}</td>
 					<td>${d.donorEmail}</td>
-					<td>${d.getMostRecentdonation().getAmount()}</td>
-					<td>${d.getMostRecentdonation().getDate()}</td>
+					<td>$${d.getMostRecentdonation()}</td>
+					<td>${d.getMostRecentdonationDate()}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

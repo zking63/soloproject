@@ -4,7 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,11 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,6 +30,8 @@ public class Donation {
 	private Double amount;
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	private Date Dondate;
+	@NotNull
+	private String refcode;
 	
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="donor_id")
@@ -37,6 +40,14 @@ public class Donation {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User donation_uploader;
+    
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(
+		name="donations_emails",
+		joinColumns = @JoinColumn(name="donation_refcode"),
+		inverseJoinColumns = @JoinColumn(name="email_refcode")
+	)
+	private List<Email> donationsEmails;
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -62,12 +73,13 @@ public class Donation {
 		this.amount = amount;
 	}
 
-	public Date getDate() {
+
+	public Date getDondate() {
 		return Dondate;
 	}
 
-	public void setDate(Date Dondate) {
-		this.Dondate = Dondate;
+	public void setDondate(Date dondate) {
+		Dondate = dondate;
 	}
 
 	public Donor getDonor() {
@@ -105,6 +117,7 @@ public class Donation {
     	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     	return df.format(this.Dondate);
     }
+    
 	/*public Donation mostRecentDonation(Donor donor) {
 		List<Donation> contributions = donor.getContributions();
 		Donation mostRecent = contributions.get(0);
@@ -115,6 +128,22 @@ public class Donation {
 		//}
 		return mostRecent;
 	}*/
+
+	public String getRefcode() {
+		return refcode;
+	}
+
+	public void setRefcode(String refcode) {
+		this.refcode = refcode;
+	}
+
+	public List<Email> getDonationsEmails() {
+		return donationsEmails;
+	}
+
+	public void setDonationsEmails(List<Email> donationsEmails) {
+		this.donationsEmails = donationsEmails;
+	}
 
 	@PrePersist
 	protected void onCreate(){

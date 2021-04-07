@@ -22,7 +22,7 @@
 	        <p>
 	            <form:label path="Dondate">Date:</form:label>
 	            <form:errors path="Dondate"></form:errors>
-	            <form:input type="Dondate" path="Dondate"/>
+	            <form:input type="Dondate" value="${dateFormat}" path="Dondate"/>
 	        </p>
 	        <p>
 		        <label for="donor">Assign a donor:</label>
