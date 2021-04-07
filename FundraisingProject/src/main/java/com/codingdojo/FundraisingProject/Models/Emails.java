@@ -103,14 +103,16 @@ public class Emails {
 		this.updatedAt = updatedAt;
 	}
 
-	public List<Donation> getEmaildonations() {
+
+    public List<Donation> getEmaildonations() {
 		return Emaildonations;
 	}
 
-	public void setEmaildonations(List<Donation> emaildonations) {
-		Emaildonations = emaildonations;
+	public void setEmaildonations(List<Donation> Emaildonations) {
+		this.Emaildonations = Emaildonations;
 	}
-    public String getEmailDateFormatted() {
+
+	public String getEmailDateFormatted() {
     	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
     	return df.format(this.Emaildate);
     }

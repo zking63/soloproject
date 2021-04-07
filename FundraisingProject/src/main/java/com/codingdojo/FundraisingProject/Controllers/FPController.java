@@ -221,7 +221,7 @@ public class FPController {
 		return "/donors/editdonor.jsp";
 	}
 	 @RequestMapping(value="/donors/edit/{id}", method=RequestMethod.POST)
-	 public String Update(@Valid @ModelAttribute("donor") Donor donor, BindingResult result, Model model, HttpSession session) {
+	 public String UpdateDonor(@Valid @ModelAttribute("donor") Donor donor, BindingResult result, Model model, HttpSession session) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (result.hasErrors()) {
 			 return "redirect:/";
@@ -230,5 +230,16 @@ public class FPController {
 		 model.addAttribute("user", user);
 		 dservice.createDonor(donor);
 		 return "redirect:/donors";
+	 }
+	 @RequestMapping("/emails/{id}")
+	 public String showEmail(@PathVariable("id") long id, Model model, HttpSession session, @ModelAttribute("email")Emails email) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (user_id == null) {
+			 return "redirect:/";
+		 }
+		 User user = uservice.findUserbyId(user_id);
+		 model.addAttribute("user", user);
+		 model.addAttribute("emails", this.eservice.findEmailbyId(id));
+		 return "/emails/showemail.jsp";
 	 }
 }

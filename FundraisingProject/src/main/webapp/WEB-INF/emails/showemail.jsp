@@ -23,7 +23,7 @@
 			<button><a href="/donors">Donors</a></button>
 			<button><a href="/emails">Emails</a></button>
 			<button><a href="/logout">Logout</a></button>
-			<h1>Hello, ${ user.firstName }. Welcome to ${ email.emailName }}.</h1>
+			<h1>Hello, ${ user.firstName }. Welcome to ${ emails.emailName }.</h1>
 		</div>
 		<div class="event-details-side">
 			<h2>Donations</h2>
@@ -37,14 +37,14 @@
 			        </tr>
 			    </thead>
 				<tbody>
-				<c:forEach items="${ email.Emaildonations }" var="d">
-					<tr>
-						<td><a href="/donors/${d.id}">${ d.donorFirstName } ${d.donorLastName}</a></td>
-						<td>${ d.getDonationTimeFormatted() }</td>
-						<td>${ d.getDonationDateFormatted() }</td>
-						<td>${ d.amount }</td>
-					</tr>
-				</c:forEach>
+					<c:forEach items="${emails.getEmaildonations()}" var="c">
+						<tr>
+						<td><a href="/donors/${c.id}">${ c.donor.donorFirstName } ${c.donor.donorLastName}</a></td>
+						<td>${ c.getDonationDateFormatted() }</td>
+						<td>${ c.getDonationTimeFormatted() }</td>
+						<td>${ c.amount }</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
