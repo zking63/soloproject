@@ -29,7 +29,7 @@ public class EmailService {
 	public Emails findEmailbyRefcode(String emailRefcode) {
 		return erepo.findByemailRefcode(emailRefcode);
 	}
-	public Double getEmailSum(Emails email) {
+	/*public Double getEmailSum(Emails email) {
 		List<Donation> contributions = email.getEmaildonations();
 		Double sum = 0.0;
 		if (contributions.size() > 0) {
@@ -50,5 +50,5 @@ public class EmailService {
 			average = sum/contributions.size();
 		}
 		return average;
-	}
+	}*/
 }

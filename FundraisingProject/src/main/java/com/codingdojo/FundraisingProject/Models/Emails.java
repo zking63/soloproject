@@ -110,8 +110,12 @@ public class Emails {
 	public void setEmaildonations(List<Donation> emaildonations) {
 		Emaildonations = emaildonations;
 	}
-    public String getDonationDateFormatted() {
-    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd, kk:mm");
+    public String getEmailDateFormatted() {
+    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    	return df.format(this.Emaildate);
+    }
+    public String getEmailTimeFormatted() {
+    	SimpleDateFormat df = new SimpleDateFormat("kk:mm");
     	return df.format(this.Emaildate);
     }
     
@@ -121,6 +125,28 @@ public class Emails {
 
 	public void setEmail_uploader(User email_uploader) {
 		this.email_uploader = email_uploader;
+	}
+	public Double getEmailSum() {
+		List<Donation> contributions = this.getEmaildonations();
+		Double sum = 0.0;
+		if (contributions.size() > 0) {
+			for (int i = 0; i < contributions.size(); i++) {
+				sum += contributions.get(i).getAmount();
+			}
+		}
+		return sum;
+	}
+	public Double getEmailAverage() {
+		List<Donation> contributions = this.getEmaildonations();
+		Double sum = 0.0;
+		Double average = 0.0;
+		if (contributions.size() > 0) {
+			for (int i = 0; i < contributions.size(); i++) {
+				sum += contributions.get(i).getAmount();
+			}
+			average = sum/contributions.size();
+		}
+		return average;
 	}
 
 	@PrePersist

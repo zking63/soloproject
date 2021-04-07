@@ -11,31 +11,33 @@
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
 		crossorigin="anonymous">
 	<link rel="stylesheet" href="/css/main.css"/>
-	<title>Donors</title>
+	<title>Emails</title>
 </head>
 <body style="padding:15px">
 	<button><a href="/newdonor">Upload a new donor</a></button>
 	<button><a href="/newdonation">Upload a new donation</a></button>
 	<button><a href="/logout">Logout</a></button>
-	<h1>Donors</h1>
+	<h1>Emails</h1>
 	<table class="table table-hover">
 	    <thead>
 	        <tr>
-	            <th>First Name</th>
-	            <th>Last Name</th>
-	            <th>Email address</th>
-	            <th>Most recent donation amount</th>
-	            <th>Most recent donation date</th>
+	            <th>Name</th>
+	            <th>Send time</th>
+	            <th>Send date</th>
+	            <th>Refcode</th>
+	            <th>Total revenue</th>
+	            <th>Average donation</th>
 	        </tr>
 	    </thead>
 		<tbody>
-			<c:forEach items="${ donor }" var="d">
+			<c:forEach items="${ email }" var="e">
 				<tr>
-					<td>${ d.donorFirstName }</td>
-					<td>${d.donorLastName}</td>
-					<td>${d.donorEmail}</td>
-					<td>$${d.getMostRecentdonation()}</td>
-					<td>${d.getMostRecentdonationDate()}</td>
+					<td>${ e.emailName }</td>
+					<td>${e.getEmailTimeFormatted()}</td>
+					<td>${e.getEmailDateFormatted()}</td>
+					<td>${e.emailRefcode}</td>
+					<td>${e.getEmailSum()}</td>
+					<td>${e.getEmailAverage()}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

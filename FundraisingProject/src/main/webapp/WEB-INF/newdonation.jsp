@@ -33,8 +33,8 @@
 				</select>
 	        </p>
 	        <p>
-		        <label for="email">Assign an email:</label>
-				<select id="email" name="email">
+		        <label for="emailDonation">Assign an email:</label>
+				<select id="emailDonation" name="emailDonation">
 				  	<c:forEach items="${ email }" var="e">
 			        	<option value="${ e.id }">${ e.emailRefcode }</option>
 			        </c:forEach>

@@ -122,6 +122,10 @@ public class FPController {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		return df.format(new Date());
 	}
+	private String timeFormat() {
+		SimpleDateFormat df = new SimpleDateFormat("kk:mm");
+		return df.format(new Date());
+	}
 	private String dateFormat2() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd, kk:mm");
 		return df.format(new Date());
@@ -183,10 +187,9 @@ public class FPController {
 		 }
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
-		 model.addAttribute("dateFormat", dateFormat2());
 		 model.addAttribute("email", this.eservice.allEmails());
-		 model.addAttribute("sum", this.eservice.getEmailSum(email));
-		 model.addAttribute("average", this.eservice.getEmailAverage(email));
-		 return "newemail.jsp";
+		 //model.addAttribute("sum", this.eservice.getEmailSum(email));
+		 //model.addAttribute("average", this.eservice.getEmailAverage(email));
+		 return "emails.jsp";
 	 }
 }
