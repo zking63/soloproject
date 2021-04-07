@@ -21,9 +21,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Donor;
+import com.codingdojo.FundraisingProject.Models.Emails;
 import com.codingdojo.FundraisingProject.Models.User;
 import com.codingdojo.FundraisingProject.Services.DonationService;
 import com.codingdojo.FundraisingProject.Services.DonorService;
+import com.codingdojo.FundraisingProject.Services.EmailService;
 import com.codingdojo.FundraisingProject.Services.UserService;
 import com.codingdojo.FundraisingProject.Validation.UserValidation;
 
@@ -41,6 +43,9 @@ public class FPController {
 	
 	@Autowired
 	private DonationService donservice;
+	
+	@Autowired
+	private EmailService eservice;
 	
 	@RequestMapping("/")
 	public String index(@ModelAttribute("user")User user) {
@@ -117,6 +122,10 @@ public class FPController {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		return df.format(new Date());
 	}
+	private String dateFormat2() {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd, kk:mm");
+		return df.format(new Date());
+	}
 	 @RequestMapping("/newdonation")
 	 public String donationsPage(@ModelAttribute("donation") Donation donation, Model model, HttpSession session) {
 		 Long user_id = (Long)session.getAttribute("user_id");
@@ -138,6 +147,28 @@ public class FPController {
 			 return "newdonation.jsp";
 		 }
 		 donservice.createDonation(donation);
+		 return "redirect:/home";
+	 }
+	 @RequestMapping("/newemail")
+	 public String newEmailpage(@ModelAttribute("email") Emails email, Model model, HttpSession session) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (user_id == null) {
+			 return "redirect:/";
+		 }
+		 User user = uservice.findUserbyId(user_id);
+		 model.addAttribute("user", user);
+		 model.addAttribute("dateFormat", dateFormat2());
+		 return "newemail.jsp";
+	 }
+	 @PostMapping(value="/newemail")
+	 public String CreateDonation(@Valid @ModelAttribute("email") Emails email, BindingResult result, Model model, HttpSession session) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (result.hasErrors()) {
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 return "newemail.jsp";
+		 }
+		 eservice.createEmail(email);
 		 return "redirect:/home";
 	 }
 }
