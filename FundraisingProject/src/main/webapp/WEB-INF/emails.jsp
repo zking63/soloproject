@@ -14,9 +14,17 @@
 	<title>Emails</title>
 </head>
 <body style="padding:15px">
+     <div class="navbar">
+        <ul class="navbarmenu">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/donors">Donors</a></li>
+            <li><a href="/emails">Emails</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
 	<button><a href="/newdonor">Upload a new donor</a></button>
 	<button><a href="/newdonation">Upload a new donation</a></button>
-	<button><a href="/logout">Logout</a></button>
+	<button><a href="/newemail">Upload a new email</a></button>
 	<h1>Emails</h1>
 	<table class="table table-hover">
 	    <thead>

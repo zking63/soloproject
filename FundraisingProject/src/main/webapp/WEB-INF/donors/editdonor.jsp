@@ -14,9 +14,19 @@
     <title>Event page</title>
 </head>
 <body>
+	<div class="navbar">
+        <ul class="navbarmenu">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/donors">Donors</a></li>
+            <li><a href="/emails">Emails</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <button><a href="/newdonor">Upload a new donor</a></button>
+	<button><a href="/newdonation">Upload a new donation</a></button>
+	<button><a href="/newemail">Upload a new email</a></button>
 	<div class="titles">
 		<h1>Hello, ${ user.firstName }</h1>
-		<button><a href="/logout">Logout</a></button>
 	</div>
 	<div class="user-form">
 		<h1>Edit donor</h1>

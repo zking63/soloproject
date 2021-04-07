@@ -13,10 +13,18 @@
 	<link rel="stylesheet" href="/css/main.css"/>
 	<title>Donors</title>
 </head>
-<body style="padding:15px">
-	<button><a href="/newdonor">Upload a new donor</a></button>
+<body>
+     <div class="navbar">
+        <ul class="navbarmenu">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/donors">Donors</a></li>
+            <li><a href="/emails">Emails</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <button><a href="/newdonor">Upload a new donor</a></button>
 	<button><a href="/newdonation">Upload a new donation</a></button>
-	<button><a href="/logout">Logout</a></button>
+	<button><a href="/newemail">Upload a new email</a></button>
 	<h1>Donors</h1>
 	<table class="table table-hover">
 	    <thead>
@@ -25,6 +33,7 @@
 	            <th>Email address</th>
 	            <th>Most recent donation amount</th>
 	            <th>Most recent donation date</th>
+	            <th>Times given</th>
 	            <th>Action</th>
 	        </tr>
 	    </thead>
@@ -35,6 +44,7 @@
 					<td>${d.donorEmail}</td>
 					<td>$${d.getMostRecentdonation()}</td>
 					<td>${d.getMostRecentdonationDate()}</td>
+					<td>${d.contributions.size()}</td>
 					<td>
 					<p><a href="/donors/edit/${d.id}">Edit</a></p>
 					<p><a href="/donors/delete/${d.id}">Delete</a></p>

@@ -7,26 +7,29 @@
 <html>
 <head>
     <meta charset="UTF-8">
-   	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-		rel="stylesheet" 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" 
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
 		crossorigin="anonymous">
-	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="/css/main.css"/>
     <title>Donor page</title>
 </head>
 <body>
+	<div class="navbar">
+        <ul class="navbarmenu">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/donors">Donors</a></li>
+            <li><a href="/emails">Emails</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <button><a href="/newdonor">Upload a new donor</a></button>
+	<button><a href="/newdonation">Upload a new donation</a></button>
+	<button><a href="/newemail">Upload a new email</a></button>
 	<div class="container2">
 		<div class="titles">
-			<h1>Hello, ${ user.firstName }. Welcome to ${ donor.donorFirstName } ${ donor.donorLastName }.</h1>
-			<button><a href="/newdonor">Upload a new donor</a></button>
-			<button><a href="/newdonation">Upload a new donation</a></button>
-			<button><a href="/newemail">Upload a new email</a></button>
-			<button><a href="/donors">Donors</a></button>
-			<button><a href="/emails">Emails</a></button>
-			<button><a href="/logout">Logout</a></button>
+			<h1><b>Donor history:</b> ${ donor.donorFirstName } ${ donor.donorLastName }</h1>
 		</div>
-		<div class="event-details-side">
-			<h2>Donations</h2>
+		<h2>Donations</h2>
 			<table class="table table-hover">
 			    <thead>
 			        <tr>
@@ -48,6 +51,5 @@
 				</tbody>
 			</table>
 		</div>
-	</div> 
 </body>
 </html>
