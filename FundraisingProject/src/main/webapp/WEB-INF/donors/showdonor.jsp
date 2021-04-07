@@ -37,6 +37,7 @@
 			            <th>Time</th>
 			            <th>Amount</th>
 			            <th>Email</th>
+			            <th>Action</th>
 			        </tr>
 			    </thead>
 				<tbody>
@@ -46,6 +47,10 @@
 						<td>${ d.getDonationTimeFormatted() }</td>
 						<td>${ d.amount }</td>
 						<td><a href="/emails/${ d.emailDonation.id }">${ d.emailDonation.emailName }</a></td>
+						<td>
+							<p><a href="/donations/edit/${d.id}">Edit</a></p>
+							<p><a href="/donations/delete/${d.id}">Delete</a></p>
+						</td>
 					</tr>
 				</c:forEach>
 				</tbody>

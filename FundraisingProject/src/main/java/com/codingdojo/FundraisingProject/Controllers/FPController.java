@@ -300,17 +300,23 @@ public class FPController {
 				User user = uservice.findUserbyId(user_id);
 				model.addAttribute("donation", donservice.findDonationbyId(id));
 				model.addAttribute("user", user);
+				model.addAttribute("donor", this.dservice.allDonors());
+				model.addAttribute("email", this.eservice.allEmails());
+				model.addAttribute("dateFormat", dateFormat2());
 				return "/donations/editdonation.jsp";
 			}
-			 @RequestMapping(value="/emails/edit/{id}", method=RequestMethod.POST)
-			 public String UpdateEmail(@Valid @ModelAttribute("email") Emails email, BindingResult result, Model model, HttpSession session) {
+			 @RequestMapping(value="/donations/edit/{id}", method=RequestMethod.POST)
+			 public String UpdateDonation(@Valid @ModelAttribute("donation") Donation donation, BindingResult result, Model model, HttpSession session) {
 				 Long user_id = (Long)session.getAttribute("user_id");
 				 if (result.hasErrors()) {
 					 return "redirect:/";
 				 }
 				 User user = uservice.findUserbyId(user_id);
 				 model.addAttribute("user", user);
-				 eservice.createEmail(email);
-				 return "redirect:/emails";
+				 model.addAttribute("donor", this.dservice.allDonors());
+				 model.addAttribute("email", this.eservice.allEmails());
+				 model.addAttribute("dateFormat", dateFormat2());
+				 donservice.createDonation(donation);
+				 return "redirect:/home";
 			 }
 }

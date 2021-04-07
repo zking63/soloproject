@@ -33,6 +33,7 @@
 	            <th>Amount <a href="/sortup">^</a></th>
 	            <th>Email given to</th>
 	            <th>Date/time</th>
+	            <th>Action</th>
 	        </tr>
 	    </thead>
 		<tbody>
@@ -42,6 +43,10 @@
 					<td>$${d.amount}</td>
 					<td><a href="/emails/${d.emailDonation.id}">${d.emailDonation.emailName}</a></td>
 					<td>${d.getDonationDateFormatted()} | ${d.getDonationTimeFormatted()}</td>
+					<td>
+						<p><a href="/donations/edit/${d.id}">Edit</a></p>
+						<p><a href="/donations/delete/${d.id}">Delete</a></p>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
