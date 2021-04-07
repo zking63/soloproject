@@ -175,5 +175,18 @@ public class FPController {
 		 eservice.createEmail(email);
 		 return "redirect:/home";
 	 }
-
+	 @RequestMapping("/emails")
+	 public String Emailpage(@ModelAttribute("email") Emails email, Model model, HttpSession session) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (user_id == null) {
+			 return "redirect:/";
+		 }
+		 User user = uservice.findUserbyId(user_id);
+		 model.addAttribute("user", user);
+		 model.addAttribute("dateFormat", dateFormat2());
+		 model.addAttribute("email", this.eservice.allEmails());
+		 model.addAttribute("sum", this.eservice.getEmailSum(email));
+		 model.addAttribute("average", this.eservice.getEmailAverage(email));
+		 return "newemail.jsp";
+	 }
 }
