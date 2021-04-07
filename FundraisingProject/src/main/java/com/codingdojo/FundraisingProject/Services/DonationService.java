@@ -23,13 +23,13 @@ public class DonationService {
 		return donrepo.findAll();
 	}
 	
-	public Donation findDonationbyId(Long id) {
+	public Donation findDonationbyId(long id) {
 		return donrepo.findById(id).orElse(null);
 	}
-	public List<Donation> findByDonor(Long donor_id) {
+	public List<Donation> findByDonor(long donor_id) {
 		return donrepo.findBydonor(donor_id);
 	}
-	public List<Donation> findByEmail(Long email_id) {
+	public List<Donation> findByEmail(long email_id) {
 		return donrepo.findByemailDonation(email_id);
 	}
 	/*public Donation mostRecentDonation(Donor donor) {

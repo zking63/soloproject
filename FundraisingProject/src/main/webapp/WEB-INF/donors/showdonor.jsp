@@ -45,7 +45,7 @@
 						<td>${ d.getDonationDateFormatted() }</td>
 						<td>${ d.getDonationTimeFormatted() }</td>
 						<td>${ d.amount }</td>
-						<td>${ d.emailDonation.emailName }</td>
+						<td><a href="/emails/${ d.emailDonation.id }">${ d.emailDonation.emailName }</a></td>
 					</tr>
 				</c:forEach>
 				</tbody>

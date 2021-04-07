@@ -242,4 +242,15 @@ public class FPController {
 		 model.addAttribute("emails", this.eservice.findEmailbyId(id));
 		 return "/emails/showemail.jsp";
 	 }
+	 @RequestMapping("/home")
+	 public String homePage(Model model, HttpSession session, @ModelAttribute("donations")Donation donation) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (user_id == null) {
+			 return "redirect:/";
+		 }
+		 User user = uservice.findUserbyId(user_id);
+		 model.addAttribute("user", user);
+		 model.addAttribute("donations", this.donservice.findDonations());
+		 return "home.jsp";
+	 }
 }
