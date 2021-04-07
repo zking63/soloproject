@@ -43,7 +43,7 @@ public class Donation {
     
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="email_id")
-    private Emails emailRefcode;
+    private Emails emailDonation;
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -133,12 +133,12 @@ public class Donation {
 		this.refcode = refcode;
 	}*/
 
-	public Emails getEmailRefcode() {
-		return emailRefcode;
+	public Emails getEmailDonation() {
+		return emailDonation;
 	}
 
-	public void setEmailRefcode(Emails emailRefcode) {
-		this.emailRefcode = emailRefcode;
+	public void setEmailDonation(Emails emailDonation) {
+		this.emailDonation = emailDonation;
 	}
 
 	@PrePersist

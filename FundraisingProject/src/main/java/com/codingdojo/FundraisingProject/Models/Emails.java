@@ -30,8 +30,8 @@ public class Emails {
 	private String emailName;
 	@DateTimeFormat(pattern ="yyyy-MM-dd, kk:mm")
 	private Date Emaildate;
-	/*@NotNull
-	private String emailRefcode;*/
+	@NotNull
+	private String emailRefcode;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -48,7 +48,7 @@ public class Emails {
 	)
 	private List<Donor> Emaildonors;*/
 	
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="emailRefcode")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="emailDonation")
 	private List<Donation> Emaildonations;
 	
 	public Emails() {
@@ -79,13 +79,13 @@ public class Emails {
 		Emaildate = emaildate;
 	}
 
-	/*public String getEmailRefcode() {
+	public String getEmailRefcode() {
 		return emailRefcode;
 	}
 
 	public void setEmailRefcode(String emailRefcode) {
 		this.emailRefcode = emailRefcode;
-	}*/
+	}
 
 	public Date getCreatedAt() {
 		return createdAt;
