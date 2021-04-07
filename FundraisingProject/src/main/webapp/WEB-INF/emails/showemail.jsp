@@ -39,7 +39,7 @@
 				<tbody>
 					<c:forEach items="${emails.getEmaildonations()}" var="c">
 						<tr>
-						<td><a href="/donors/${c.id}">${ c.donor.donorFirstName } ${c.donor.donorLastName}</a></td>
+						<td><a href="/donors/${c.donor.id}">${ c.donor.donorFirstName } ${c.donor.donorLastName}</a></td>
 						<td>${ c.getDonationDateFormatted() }</td>
 						<td>${ c.getDonationTimeFormatted() }</td>
 						<td>${ c.amount }</td>

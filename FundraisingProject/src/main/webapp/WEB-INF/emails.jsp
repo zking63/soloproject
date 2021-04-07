@@ -32,7 +32,7 @@
 		<tbody>
 			<c:forEach items="${ email }" var="e">
 				<tr>
-					<td>${ e.emailName }</td>
+					<td><a href="/emails/${e.id}">${ e.emailName }</a></td>
 					<td>${e.getEmailTimeFormatted()}</td>
 					<td>${e.getEmailDateFormatted()}</td>
 					<td>${e.emailRefcode}</td>
