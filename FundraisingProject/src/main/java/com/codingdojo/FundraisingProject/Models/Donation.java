@@ -30,8 +30,8 @@ public class Donation {
 	private Double amount;
 	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	private Date Dondate;
-	@NotNull
-	private String refcode;
+	/*@NotNull
+	private String refcode;*/
 	
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="donor_id")
@@ -41,13 +41,9 @@ public class Donation {
     @JoinColumn(name="user_id")
     private User donation_uploader;
     
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(
-		name="donations_emails",
-		joinColumns = @JoinColumn(name="donation_refcode"),
-		inverseJoinColumns = @JoinColumn(name="email_refcode")
-	)
-	private List<Email> donationsEmails;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="email_id")
+    private Emails emailRefcode;
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -129,20 +125,20 @@ public class Donation {
 		return mostRecent;
 	}*/
 
-	public String getRefcode() {
+	/*public String getRefcode() {
 		return refcode;
 	}
 
 	public void setRefcode(String refcode) {
 		this.refcode = refcode;
+	}*/
+
+	public Emails getEmailRefcode() {
+		return emailRefcode;
 	}
 
-	public List<Email> getDonationsEmails() {
-		return donationsEmails;
-	}
-
-	public void setDonationsEmails(List<Email> donationsEmails) {
-		this.donationsEmails = donationsEmails;
+	public void setEmailRefcode(Emails emailRefcode) {
+		this.emailRefcode = emailRefcode;
 	}
 
 	@PrePersist

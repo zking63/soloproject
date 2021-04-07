@@ -46,6 +46,9 @@ public class User {
     
     @OneToMany(fetch=FetchType.LAZY, mappedBy="donation_uploader")
     private List<Donation> donationsUploaded;
+    
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="email_uploader")
+    private List<Emails> emailsUploaded;
 	
 	public User() {
 		
@@ -130,6 +133,14 @@ public class User {
 
 	public void setDonationsUploaded(List<Donation> donationsUploaded) {
 		this.donationsUploaded = donationsUploaded;
+	}
+	
+	public List<Emails> getEmailsUploaded() {
+		return emailsUploaded;
+	}
+
+	public void setEmailsUploaded(List<Emails> emailsUploaded) {
+		this.emailsUploaded = emailsUploaded;
 	}
 
 	@PrePersist

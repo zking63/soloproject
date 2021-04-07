@@ -1,18 +1,19 @@
 package com.codingdojo.FundraisingProject.Models;
 
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -22,18 +23,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table (name="emails")
-public class Email {
+public class Emails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private String emailName;
 	@DateTimeFormat(pattern ="yyyy-MM-dd, kk:mm")
 	private Date Emaildate;
-	@NotNull
-	private String refcode;
+	/*@NotNull
+	private String emailRefcode;*/
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="user_id")
+    private User email_uploader;
+    
 	/*@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 		name="donors_emails",
@@ -42,15 +48,10 @@ public class Email {
 	)
 	private List<Donor> Emaildonors;*/
 	
-	@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(
-		name="donations_emails",
-		joinColumns = @JoinColumn(name="email_refcode"),
-		inverseJoinColumns = @JoinColumn(name="donation_refcode")
-	)
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="emailRefcode")
 	private List<Donation> Emaildonations;
 	
-	public Email() {
+	public Emails() {
 		
 	}
 
@@ -78,13 +79,13 @@ public class Email {
 		Emaildate = emaildate;
 	}
 
-	public String getRefcode() {
-		return refcode;
+	/*public String getEmailRefcode() {
+		return emailRefcode;
 	}
 
-	public void setRefcode(String refcode) {
-		this.refcode = refcode;
-	}
+	public void setEmailRefcode(String emailRefcode) {
+		this.emailRefcode = emailRefcode;
+	}*/
 
 	public Date getCreatedAt() {
 		return createdAt;
@@ -113,6 +114,15 @@ public class Email {
     	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd, kk:mm");
     	return df.format(this.Emaildate);
     }
+    
+	public User getEmail_uploader() {
+		return email_uploader;
+	}
+
+	public void setEmail_uploader(User email_uploader) {
+		this.email_uploader = email_uploader;
+	}
+
 	@PrePersist
 	protected void onCreate(){
 		this.createdAt = new Date();
