@@ -110,7 +110,11 @@ public class Donation {
 		this.updatedAt = updatedAt;
 	}
     public String getDonationDateFormatted() {
-    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd, kk:mm");
+    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    	return df.format(this.Dondate);
+    }
+    public String getDonationTimeFormatted() {
+    	SimpleDateFormat df = new SimpleDateFormat("kk:mm");
     	return df.format(this.Dondate);
     }
     

@@ -25,8 +25,11 @@ public class DonorService {
 	public List<Donor> allDonors() {
 		return drepo.findAll();
 	}
-	public Donor findbyId(Long id) {
+	public Donor findbyId(long id) {
 		return drepo.findById(id).orElse(null);
+	}
+	public void delete(long id) {
+		drepo.deleteById(id);
 	}
 	public Date getMostRecentdonation(Long id) {
 	Donor donor = drepo.findById(id).orElse(null);

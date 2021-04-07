@@ -21,8 +21,7 @@
 	<table class="table table-hover">
 	    <thead>
 	        <tr>
-	            <th>First Name</th>
-	            <th>Last Name</th>
+	            <th>Name</th>
 	            <th>Email address</th>
 	            <th>Most recent donation amount</th>
 	            <th>Most recent donation date</th>
@@ -31,8 +30,7 @@
 		<tbody>
 			<c:forEach items="${ donor }" var="d">
 				<tr>
-					<td>${ d.donorFirstName }</td>
-					<td>${d.donorLastName}</td>
+					<td><a href="/donors/${d.id}">${ d.donorFirstName } ${d.donorLastName}</a></td>
 					<td>${d.donorEmail}</td>
 					<td>$${d.getMostRecentdonation()}</td>
 					<td>${d.getMostRecentdonationDate()}</td>

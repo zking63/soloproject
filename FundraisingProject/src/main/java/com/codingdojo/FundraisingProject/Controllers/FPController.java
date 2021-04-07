@@ -192,4 +192,32 @@ public class FPController {
 		 //model.addAttribute("average", this.eservice.getEmailAverage(email));
 		 return "emails.jsp";
 	 }
+	 @RequestMapping("/donors/{id}")
+	 public String showDonor(@PathVariable("id") long id, Model model, HttpSession session, @ModelAttribute("donor")Donor donor) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (user_id == null) {
+			 return "redirect:/";
+		 }
+		 User user = uservice.findUserbyId(user_id);
+		 model.addAttribute("user", user);
+		 model.addAttribute("donor", this.dservice.findbyId(id));
+		 return "/donors/showdonor.jsp";
+	 }
+	@RequestMapping("/donors/delete/{id}")
+	public String DeleteDonor(@PathVariable("id") Long id, HttpSession session, Model model) {
+		this.dservice.delete(id);
+		return "redirect:/donors";
+	}
+	@RequestMapping(value="/donors/edit/{id}")
+	public String EditDonor(@PathVariable("id") long id, HttpSession session, Model model) {
+		Long user_id = (Long)session.getAttribute("user_id");
+		if (user_id == null) {
+			return "redirect:/";
+		}
+		User user = uservice.findUserbyId(user_id);
+		model.addAttribute("donor", dservice.findbyId(id));
+		model.addAttribute("user", user);
+		dservice.createDonor(dservice.findbyId(id));
+		return "editdonor.jsp";
+	}
 }
