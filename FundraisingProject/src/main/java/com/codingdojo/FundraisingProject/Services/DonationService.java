@@ -42,9 +42,12 @@ public class DonationService {
 		//}
 		return contribution;
 	}*/
-	/*public List<Donation> orderAmounts(List<Donation> donations){
-		return donrepo.findAllByOrderByAmountAsc(donations);
-	}*/
+	public List<Donation> orderAmounts(){
+		return donrepo.findAllByOrderByAmountAsc();
+	}
+	public List<Donation> orderAmounts2(){
+		return donrepo.findAllByOrderByAmountDesc();
+	}
 	public void delete(long id) {
 		donrepo.deleteById(id);
 	}

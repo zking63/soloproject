@@ -25,7 +25,6 @@
 	<button><a href="/newdonation">Upload a new donation</a></button>
 	<button><a href="/newemail">Upload a new email</a></button>
 	<div class="titles">
-		<h1>Hello, ${ user.firstName }</h1>
 	</div>
 	<div class="user-form">
 		<h1>Upload a donor</h1>

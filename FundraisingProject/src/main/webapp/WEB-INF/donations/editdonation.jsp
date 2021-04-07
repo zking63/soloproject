@@ -24,8 +24,8 @@
     </div>
     <button><a href="/newdonor">Upload a new donor</a></button>
 	<button><a href="/newemail">Upload a new email</a></button>
-	<h1>Edit donation</h1>
 	<div class="user-form">
+	<h1>Edit donation</h1>
 	    <form:form method="POST" action="/donations/edit/${donation.id}" modelAttribute="donation">
 	    	<form:hidden value="${ user.id }" path="donation_uploader"/>
 	    	<p>

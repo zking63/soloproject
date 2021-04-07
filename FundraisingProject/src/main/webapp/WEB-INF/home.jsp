@@ -16,7 +16,8 @@
 <body>
      <div class="navbar">
         <ul class="navbarmenu">
-            <li><a href="/home">Home</a></li>
+            <li class="main"><a href="/home">Home</a>
+            </li>
             <li><a href="/donors">Donors</a></li>
             <li><a href="/emails">Emails</a></li>
             <li><a href="/logout">Logout</a></li>
@@ -25,12 +26,12 @@
     <button><a href="/newdonor">Upload a new donor</a></button>
 	<button><a href="/newdonation">Upload a new donation</a></button>
 	<button><a href="/newemail">Upload a new email</a></button>
-	<h1>Donors</h1>
+	<h1>Recent Donations</h1>
 	<table class="table table-hover">
 	    <thead>
 	        <tr>
 	            <th>Donor</th>
-	            <th>Amount <a href="/sortup">^</a></th>
+	            <th>Amount <a href="/sortdown">^</a><a href="/sortup">v</a></th>
 	            <th>Email given to</th>
 	            <th>Date/time</th>
 	            <th>Action</th>

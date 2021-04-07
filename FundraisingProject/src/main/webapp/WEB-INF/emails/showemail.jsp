@@ -59,6 +59,7 @@
 			            <th>Date</th>
 			            <th>Time</th>
 			            <th>Amount</th>
+			            <th>Action</th>
 			        </tr>
 			    </thead>
 				<tbody>
@@ -68,6 +69,10 @@
 						<td>${ c.getDonationDateFormatted() }</td>
 						<td>${ c.getDonationTimeFormatted() }</td>
 						<td>$${ c.amount }</td>
+						<td>
+							<p><a href="/donations/edit/${c.id}">Edit</a></p>
+							<p><a href="/donations/delete/${c.id}">Delete</a></p>
+						</td>
 						</tr>
 					</c:forEach>
 				</tbody>

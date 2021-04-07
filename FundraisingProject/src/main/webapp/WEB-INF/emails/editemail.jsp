@@ -28,7 +28,7 @@
 		<h1>Hello, ${ user.firstName }</h1>
 	</div>
 	<div class="user-form">
-		<h1>Upload a new email</h1>
+	<h1>UEdit an email</h1>
 	    <form:form method="POST" action="/emails/edit/${email.id}" modelAttribute="email">
 	    	<form:hidden value="${ user.id }" path="email_uploader"/>
 	    	<p>

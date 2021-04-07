@@ -1,6 +1,20 @@
 body{
-	background-color: grey;
+	background-color: #90a4ae;
 	padding: 15px;
+	color: #263238;
+}
+body button{
+	border: 0px;
+	background-color: #455a64;
+	opacity: 50%;
+    border-radius: 10px;
+}
+body button:hover{
+	background-color: white;
+	color: #455a64;
+}
+body button a{
+	color: white;
 }
 .container {
 	margin-left: 94px;
@@ -22,15 +36,19 @@ body{
 
 .table-hover a{
 	color: white;
+	font-style: bold;
+	font-size: 17px;
 }
 .navbar {
-    background-color: black;
+    background-color: #455a64;
     margin: 15px;
     padding: 0px;
     height: 40px;
     display: flex;
     justify-content: space-between;
     width: 30%;
+    opacity: 50%;
+    border-radius: 10px;
 }
 
 .navbarmenu {
@@ -47,4 +65,11 @@ body{
 }
 .navbarmenu li a {
 	color: white;
+	font-style: bold;
+}
+.main .subset{
+	opacity: 0%;
+}
+.main:hover{
+	opacity: 100%;
 }
