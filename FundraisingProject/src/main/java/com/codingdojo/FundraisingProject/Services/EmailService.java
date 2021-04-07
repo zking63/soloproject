@@ -29,6 +29,9 @@ public class EmailService {
 	public Emails findEmailbyRefcode(String emailRefcode) {
 		return erepo.findByemailRefcode(emailRefcode);
 	}
+	public void delete(long id) {
+		erepo.deleteById(id);
+	}
 	/*public Double getEmailSum(Emails email) {
 		List<Donation> contributions = email.getEmaildonations();
 		Double sum = 0.0;

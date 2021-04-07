@@ -35,6 +35,7 @@
 	            <th>Refcode</th>
 	            <th>Total revenue</th>
 	            <th>Average donation</th>
+	            <th>Action</th>
 	        </tr>
 	    </thead>
 		<tbody>
@@ -46,6 +47,10 @@
 					<td>${e.emailRefcode}</td>
 					<td>${e.getEmailSum()}</td>
 					<td>${e.getEmailAverage()}</td>
+					<td>
+						<p><a href="/emails/edit/${e.id}">Edit</a></p>
+						<p><a href="/emails/delete/${e.id}">Delete</a></p>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

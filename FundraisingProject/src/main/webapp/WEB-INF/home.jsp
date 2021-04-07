@@ -30,7 +30,7 @@
 	    <thead>
 	        <tr>
 	            <th>Donor</th>
-	            <th>Amount</th>
+	            <th>Amount <a href="/sortup">^</a></th>
 	            <th>Email given to</th>
 	            <th>Date/time</th>
 	        </tr>

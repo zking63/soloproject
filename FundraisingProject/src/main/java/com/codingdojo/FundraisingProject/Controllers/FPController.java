@@ -177,7 +177,7 @@ public class FPController {
 			 return "newemail.jsp";
 		 }
 		 eservice.createEmail(email);
-		 return "redirect:/home";
+		 return "redirect:/emails";
 	 }
 	 @RequestMapping("/emails")
 	 public String Emailpage(@ModelAttribute("email") Emails email, Model model, HttpSession session) {
@@ -253,4 +253,64 @@ public class FPController {
 		 model.addAttribute("donations", this.donservice.findDonations());
 		 return "home.jsp";
 	 }
+	 /*@RequestMapping(value="/sortup")
+	 public String SortUp() {
+		 List<Donation> donations = this.donservice.findDonations();
+		 this.donservice.orderAmounts(donations);
+		 return "redirect:/home";
+	 }*/
+		@RequestMapping("/emails/delete/{id}")
+		public String DeleteEmail(@PathVariable("id") Long id, HttpSession session, Model model) {
+			this.eservice.delete(id);
+			return "redirect:/emails";
+		}
+		@RequestMapping(value="/emails/edit/{id}")
+		public String EditEmail(@PathVariable("id") long id, HttpSession session, Model model) {
+			Long user_id = (Long)session.getAttribute("user_id");
+			if (user_id == null) {
+				return "redirect:/";
+			}
+			User user = uservice.findUserbyId(user_id);
+			model.addAttribute("email", eservice.findEmailbyId(id));
+			model.addAttribute("user", user);
+			return "/emails/editemail.jsp";
+		}
+		 @RequestMapping(value="/emails/edit/{id}", method=RequestMethod.POST)
+		 public String UpdateEmail(@Valid @ModelAttribute("email") Emails email, BindingResult result, Model model, HttpSession session) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (result.hasErrors()) {
+				 return "redirect:/";
+			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 eservice.createEmail(email);
+			 return "redirect:/emails";
+		 }
+			@RequestMapping("/donations/delete/{id}")
+			public String DeleteDonation(@PathVariable("id") Long id, HttpSession session, Model model) {
+				this.donservice.delete(id);
+				return "redirect:/home";
+			}
+			@RequestMapping(value="/donations/edit/{id}")
+			public String EditDonation(@PathVariable("id") long id, HttpSession session, Model model) {
+				Long user_id = (Long)session.getAttribute("user_id");
+				if (user_id == null) {
+					return "redirect:/";
+				}
+				User user = uservice.findUserbyId(user_id);
+				model.addAttribute("donation", donservice.findDonationbyId(id));
+				model.addAttribute("user", user);
+				return "/donations/editdonation.jsp";
+			}
+			 @RequestMapping(value="/emails/edit/{id}", method=RequestMethod.POST)
+			 public String UpdateEmail(@Valid @ModelAttribute("email") Emails email, BindingResult result, Model model, HttpSession session) {
+				 Long user_id = (Long)session.getAttribute("user_id");
+				 if (result.hasErrors()) {
+					 return "redirect:/";
+				 }
+				 User user = uservice.findUserbyId(user_id);
+				 model.addAttribute("user", user);
+				 eservice.createEmail(email);
+				 return "redirect:/emails";
+			 }
 }
