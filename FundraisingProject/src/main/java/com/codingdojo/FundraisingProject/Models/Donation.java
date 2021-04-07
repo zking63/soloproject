@@ -28,7 +28,7 @@ public class Donation {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private Double amount;
-	@DateTimeFormat(pattern ="yyyy-MM-dd")
+	@DateTimeFormat(pattern ="yyyy-MM-dd, kk:mm")
 	private Date Dondate;
 	/*@NotNull
 	private String refcode;*/
@@ -110,7 +110,7 @@ public class Donation {
 		this.updatedAt = updatedAt;
 	}
     public String getDonationDateFormatted() {
-    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd, kk:mm");
     	return df.format(this.Dondate);
     }
     
