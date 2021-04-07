@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Emails;
 import com.codingdojo.FundraisingProject.Repositories.EmailRepo;
 
@@ -27,5 +28,15 @@ public class EmailService {
 	
 	public Emails findEmailbyRefcode(String emailRefcode) {
 		return erepo.findByemailRefcode(emailRefcode);
+	}
+	public Double getEmailSum(Emails email) {
+		List<Donation> contributions = email.getEmaildonations();
+		Double sum = 0.0;
+		if (contributions.size() > 0) {
+			for (int i = 0; i < contributions.size(); i++) {
+				sum += contributions.get(i).getAmount();
+			}
+		}
+		return sum;
 	}
 }

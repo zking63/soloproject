@@ -36,6 +36,7 @@
 					<td>${d.donorEmail}</td>
 					<td>$${d.getMostRecentdonation()}</td>
 					<td>${d.getMostRecentdonationDate()}</td>
+					<td>${d.getMostRecentdonationDate()}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
