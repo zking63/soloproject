@@ -25,6 +25,7 @@
 	            <th>Email address</th>
 	            <th>Most recent donation amount</th>
 	            <th>Most recent donation date</th>
+	            <th>Action</th>
 	        </tr>
 	    </thead>
 		<tbody>
@@ -34,6 +35,10 @@
 					<td>${d.donorEmail}</td>
 					<td>$${d.getMostRecentdonation()}</td>
 					<td>${d.getMostRecentdonationDate()}</td>
+					<td>
+					<p><a href="/donors/edit/${d.id}">Edit</a></p>
+					<p><a href="/donors/delete/${d.id}">Delete</a></p>
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -136,7 +136,7 @@ public class Donor {
 	
 	public Double getMostRecentdonation() {
 	Donation mostRecent = new Donation();
-	Double mostRecentAmount = contributions.get(0).getAmount();
+	Double mostRecentAmount = 0.0;
 	if (contributions.size() > 0) {
 		for (int i = 0; i < contributions.size(); i++) {
 			if (contributions.get(i).getId() > mostRecent.getId()) {
@@ -149,7 +149,7 @@ public class Donor {
 	
 	public String getMostRecentdonationDate() {
 	Donation mostRecent = new Donation();
-	String mostRecentDate = contributions.get(0).getDonationDateFormatted();
+	String mostRecentDate = null;
 	if (contributions.size() > 0) {
 		for (int i = 0; i < contributions.size(); i++) {
 			if (contributions.get(i).getId() > mostRecent.getId()) {

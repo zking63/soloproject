@@ -217,7 +217,18 @@ public class FPController {
 		User user = uservice.findUserbyId(user_id);
 		model.addAttribute("donor", dservice.findbyId(id));
 		model.addAttribute("user", user);
-		dservice.createDonor(dservice.findbyId(id));
-		return "editdonor.jsp";
+		//dservice.createDonor(dservice.findbyId(id));
+		return "/donors/editdonor.jsp";
 	}
+	 @RequestMapping(value="/donors/edit/{id}", method=RequestMethod.POST)
+	 public String Update(@Valid @ModelAttribute("donor") Donor donor, BindingResult result, Model model, HttpSession session) {
+		 Long user_id = (Long)session.getAttribute("user_id");
+		 if (result.hasErrors()) {
+			 return "redirect:/";
+		 }
+		 User user = uservice.findUserbyId(user_id);
+		 model.addAttribute("user", user);
+		 dservice.createDonor(donor);
+		 return "redirect:/donors";
+	 }
 }
