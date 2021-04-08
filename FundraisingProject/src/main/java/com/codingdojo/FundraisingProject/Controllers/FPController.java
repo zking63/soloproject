@@ -256,18 +256,6 @@ public class FPController {
 		 model.addAttribute("donations", this.donservice.findDonations());
 		 return "home.jsp";
 	 }
-	 @RequestMapping(value="/sortup")
-	 public String SortUp(Model model) {
-		 List<Donation> donations = this.donservice.orderAmounts();
-		 model.addAttribute("donations", donations);
-		 return "home.jsp";
-	 }
-	 @RequestMapping(value="/sortdown")
-	 public String SortDown(Model model) {
-		 List<Donation> donations = this.donservice.orderAmounts2();
-		 model.addAttribute("donations", donations);
-		 return "home.jsp";
-	 }
 		@RequestMapping("/emails/delete/{id}")
 		public String DeleteEmail(@PathVariable("id") Long id, HttpSession session, Model model) {
 			this.eservice.delete(id);
@@ -335,5 +323,17 @@ public class FPController {
 			 model.addAttribute("donations", donservice.DonTest(startdate));
 			 return "test.jsp";
 		 }
-			 
+		 //sorting
+		 @RequestMapping(value="/sortup")
+		 public String SortUp(Model model) {
+			 List<Donation> donations = this.donservice.orderAmounts();
+			 model.addAttribute("donations", donations);
+			 return "home.jsp";
+		 }
+		 @RequestMapping(value="/sortdown")
+		 public String SortDown(Model model) {
+			 List<Donation> donations = this.donservice.orderAmounts2();
+			 model.addAttribute("donations", donations);
+			 return "home.jsp";
+		 }
 }
