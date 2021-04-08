@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Donor;
@@ -55,7 +56,7 @@ public class DonationService {
 	public void delete(long id) {
 		donrepo.deleteById(id);
 	}
-	public List<Donation> DonTest(){
-		return donrepo.findAllWithDondateAfter();
+	public List<Donation> DonTest(@RequestParam("startdate") Date startdate){
+		return donrepo.findAllWithDondateAfter(startdate);
 	}
 }

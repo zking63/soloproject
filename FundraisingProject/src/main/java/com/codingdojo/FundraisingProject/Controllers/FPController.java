@@ -330,8 +330,9 @@ public class FPController {
 		 }
 		 @RequestMapping("/test")
 		 public String Test( Model model) {
-			 //Date datetime1 = donor.getContributions().get(0).getDondate();
-			 model.addAttribute("donations", donservice.DonTest());
+			 Date startdate = this.donservice.findDonationbyId(12).getDondate();
+			 java.sql.Date dateDB = new java.sql.Date(startdate.getTime());
+			 model.addAttribute("donations", donservice.DonTest(startdate));
 			 return "test.jsp";
 		 }
 			 

@@ -1,6 +1,7 @@
 body{
 	background-color: #90a4ae;
 	padding: 15px;
+	padding-top: 0px;
 	color: #263238;
 }
 body button{
@@ -41,21 +42,21 @@ body button a{
 }
 .navbar {
     background-color: #455a64;
-    margin: 15px;
+    margin-bottom: 15px;
     padding: 0px;
-    height: 40px;
+    height: 60px;
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 100%;
     opacity: 50%;
-    border-radius: 10px;
 }
 
 .navbarmenu {
     width: 70%;
+    margin-left: 55%;
     display: flex;
-    justify-content: right;
     align-items: center;
+    vertical-align: middle;
 }
 .navbarmenu li {
 	padding: 10px;
@@ -66,6 +67,7 @@ body button a{
 .navbarmenu li a {
 	color: white;
 	font-style: bold;
+	font-size: 24px;
 }
 .main .subset{
 	opacity: 0%;
