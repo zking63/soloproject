@@ -14,20 +14,23 @@
     <title>Event page</title>
 </head>
 <body>
-	 <div class="navbar">
+     <div class="navbar">
+     	<h1 class="titles"><a href="/home">LoJo Fundraising</a></h1>
         <ul class="navbarmenu">
-            <li><a href="/home">Home</a></li>
+            <li class="main"><a href="/home">Home</a>
+            </li>
             <li><a href="/donors">Donors</a></li>
             <li><a href="/emails">Emails</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
+    <div class="buttons1">
+    <button><a href="/newdonor">Upload a new donor</a></button>
 	<button><a href="/newdonation">Upload a new donation</a></button>
 	<button><a href="/newemail">Upload a new email</a></button>
-	<div class="titles">
 	</div>
 	<div class="user-form">
-		<h1>Upload a donor</h1>
+		<h2>Upload a donor</h2>
 	    <form:form method="POST" action="/newdonor" modelAttribute="donor">
 	    	<form:hidden value="${ user.id }" path="uploader"/>
 	    	<p>

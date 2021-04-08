@@ -15,20 +15,22 @@
 </head>
 <body>
      <div class="navbar">
+     	<h1 class="titles"><a href="/home">LoJo Fundraising</a></h1>
         <ul class="navbarmenu">
-            <li><a href="/home">Home</a></li>
+            <li class="main"><a href="/home">Home</a>
+            </li>
             <li><a href="/donors">Donors</a></li>
             <li><a href="/emails">Emails</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
+    <div class="buttons1">
     <button><a href="/newdonor">Upload a new donor</a></button>
 	<button><a href="/newdonation">Upload a new donation</a></button>
-	<div class="titles">
-		<h1>Hello, ${ user.firstName }</h1>
+	<button><a href="/newemail">Upload a new email</a></button>
 	</div>
 	<div class="user-form">
-	<h1>UEdit an email</h1>
+	<h1>Edit an email</h1>
 	    <form:form method="POST" action="/emails/edit/${email.id}" modelAttribute="email">
 	    	<form:hidden value="${ user.id }" path="email_uploader"/>
 	    	<p>
@@ -48,6 +50,6 @@
 	        </p>
 	        <input type="submit" value="Upload!"/>
 	    </form:form>
-	</div>  
+	</div> 
 </body>
 </html>

@@ -15,17 +15,22 @@
 </head>
 <body>
      <div class="navbar">
+     	<h1 class="titles"><a href="/home">LoJo Fundraising</a></h1>
         <ul class="navbarmenu">
-            <li><a href="/home">Home</a></li>
+            <li class="main"><a href="/home">Home</a>
+            </li>
             <li><a href="/donors">Donors</a></li>
             <li><a href="/emails">Emails</a></li>
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
+    <div class="buttons1">
     <button><a href="/newdonor">Upload a new donor</a></button>
+	<button><a href="/newdonation">Upload a new donation</a></button>
 	<button><a href="/newemail">Upload a new email</a></button>
+	</div>
 	<div class="user-form">
-	<h1>Edit donation</h1>
+	<h2>Edit donation</h2>
 	    <form:form method="POST" action="/donations/edit/${donation.id}" modelAttribute="donation">
 	    	<form:hidden value="${ user.id }" path="donation_uploader"/>
 	    	<p>
