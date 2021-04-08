@@ -8,6 +8,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -311,18 +314,25 @@ public class FPController {
 				model.addAttribute("dateFormat", dateFormat2());
 				return "/donations/editdonation.jsp";
 			}
-			 @RequestMapping(value="/donations/edit/{id}", method=RequestMethod.POST)
-			 public String UpdateDonation(@Valid @ModelAttribute("donation") Donation donation, BindingResult result, Model model, HttpSession session) {
-				 Long user_id = (Long)session.getAttribute("user_id");
-				 if (result.hasErrors()) {
-					 return "redirect:/";
-				 }
-				 User user = uservice.findUserbyId(user_id);
-				 model.addAttribute("user", user);
-				 model.addAttribute("donor", this.dservice.allDonors());
-				 model.addAttribute("email", this.eservice.allEmails());
-				 model.addAttribute("dateFormat", dateFormat2());
-				 donservice.createDonation(donation);
-				 return "redirect:/home";
+		 @RequestMapping(value="/donations/edit/{id}", method=RequestMethod.POST)
+		 public String UpdateDonation(@Valid @ModelAttribute("donation") Donation donation, BindingResult result, Model model, HttpSession session) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (result.hasErrors()) {
+				 return "redirect:/";
 			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 model.addAttribute("donor", this.dservice.allDonors());
+			 model.addAttribute("email", this.eservice.allEmails());
+			 model.addAttribute("dateFormat", dateFormat2());
+			 donservice.createDonation(donation);
+			 return "redirect:/home";
+		 }
+		 @RequestMapping("/test")
+		 public String Test( Model model) {
+			 //Date datetime1 = donor.getContributions().get(0).getDondate();
+			 model.addAttribute("donations", donservice.DonTest());
+			 return "test.jsp";
+		 }
+			 
 }

@@ -1,9 +1,13 @@
 package com.codingdojo.FundraisingProject.Services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
@@ -50,5 +54,8 @@ public class DonationService {
 	}
 	public void delete(long id) {
 		donrepo.deleteById(id);
+	}
+	public List<Donation> DonTest(){
+		return donrepo.findAllWithDondateAfter();
 	}
 }
