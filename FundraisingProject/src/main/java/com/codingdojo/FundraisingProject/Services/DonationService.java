@@ -56,7 +56,10 @@ public class DonationService {
 	public void delete(long id) {
 		donrepo.deleteById(id);
 	}
-	public List<Donation> DonTest(@RequestParam("startdate") Date startdate){
-		return donrepo.findAllWithDondateAfter(startdate);
+	public List<Donation> DonTest(@Param("startdate") Date startdate, @Param("enddate") Date enddate){
+		/*java.sql.Date dateDB = new java.sql.Date(startdate.getTime());
+		java.sql.Date dateE = new java.sql.Date(enddate.getTime());*/
+		return donrepo.findAllWithDondateAfter(startdate, enddate);
+		//return donrepo.findAllWithDondateAfter(dateDB, dateE);
 	}
 }

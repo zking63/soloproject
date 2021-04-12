@@ -21,12 +21,10 @@ public interface DonationRepo extends CrudRepository<Donation, Long>{
 	//@Query(value = "SELECT donations ")
 	List<Donation> findAllByOrderByAmountAsc();
 	List<Donation> findAllByOrderByAmountDesc();
-	//@Query(value ="select * from table donations where donations.Dondate >= 2020-04-07 16:09:00.000000", nativeQuery = true)
-    //List<Donation> findAllByDonDate(@Param("Dondate") Date Dondate);
-	//List findAllByDatetimeBetween(
-			//Date dateTimeStart,
-			//Date dateTimeEnd);
-
-	@Query(value = "SELECT * FROM donations where donations.Dondate >= 'startdate'", nativeQuery = true)
-	List <Donation> findAllWithDondateAfter(@RequestParam("startdate") Date startdate);
+	@Query(value = "SELECT * FROM donations where donations.Dondate >= :startdate and donations.Dondate < :enddate", nativeQuery = true)
+	List <Donation> findAllWithDondateAfter(@Param("startdate") @DateTimeFormat(pattern = "yyyy-MM-dd")Date startdate, 
+			@Param("enddate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date enddate);
+	/*@Query(value = "SELECT * FROM donations where donations.Dondate >= :dateDB and donations.Dondate < :dateE", nativeQuery = true)
+	List <Donation> findAllWithDondateAfter(@Param("dateDB") Date dateDB, 
+			@Param("dateE") Date dateE);*/
 }

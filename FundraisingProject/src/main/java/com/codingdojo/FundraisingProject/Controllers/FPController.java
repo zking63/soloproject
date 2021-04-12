@@ -316,11 +316,18 @@ public class FPController {
 			 donservice.createDonation(donation);
 			 return "redirect:/home";
 		 }
+		/*private String dateFormat3() {
+			long df;
+			java.sql.Date dateDB = new java.sql.Date(df);
+			return df.format(new Date());
+		}*/
 		 @RequestMapping("/test")
-		 public String Test( Model model) {
-			 Date startdate = this.donservice.findDonationbyId(12).getDondate();
-			 java.sql.Date dateDB = new java.sql.Date(startdate.getTime());
-			 model.addAttribute("donations", donservice.DonTest(startdate));
+		 public String Test( Model model, @Param("startdate") Date startdate, @Param("enddate") Date enddate) {
+			 //Date startdate = this.donservice.findDonationbyId(12).getDondate();
+			 //Date enddate = this.donservice.findDonationbyId(6).getDondate();
+			 model.addAttribute("dateFormat", dateFormat());
+			 //java.sql.Date dateDB = new java.sql.Date(startdate.getTime());
+			model.addAttribute("donations", donservice.DonTest(startdate, enddate));
 			 return "test.jsp";
 		 }
 		 //sorting

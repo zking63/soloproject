@@ -27,6 +27,11 @@
 	<button><a href="/newdonation">Upload a new donation</a></button>
 	<button><a href="/newemail">Upload a new email</a></button>
 	<h1>Recent Donations</h1>
+			<form action="/test">
+				<input type="Date" value="${dateFormat}" name="startdate"/>
+				<input type="Date" value="${dateFormat}" name="enddate"/>
+				<button class="btn btn-primary">Set</button>
+			</form>
 	<table class="table table-hover">
 	    <thead>
 	        <tr>
