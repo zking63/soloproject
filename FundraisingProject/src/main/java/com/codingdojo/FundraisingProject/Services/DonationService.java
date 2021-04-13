@@ -50,14 +50,14 @@ public class DonationService {
 	public List<Donation> orderAmounts(){
 		return donrepo.findAllByOrderByAmountAsc();
 	}
-	public List<Donation> orderAmounts2(@Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
-			@Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate){
+	public List<Donation> orderAmounts2(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return donrepo.findByOrderByAmountDesc(startdate, enddate);
 	}
 	public void delete(long id) {
 		donrepo.deleteById(id);
 	}
-	public List<Donation> DonTest(@RequestParam("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, @RequestParam("enddate") 
+	public List<Donation> DonTest(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, @Param("enddate") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return donrepo.findAllWithDondateAfter(startdate, enddate);
 	}

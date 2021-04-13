@@ -264,8 +264,16 @@ public class FPController {
 		 }
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
+		 if (startdate == null) {
+			 startdate = dateFormat();
+		 }
+		 if (enddate == null) {
+			 enddate = dateFormat();
+		 }
 		 //model.addAttribute("donations", this.donservice.findDonations());
 		 model.addAttribute("dateFormat", dateFormat());
+		 model.addAttribute("startdate", startdate);
+		 model.addAttribute("enddate", enddate);
 		 model.addAttribute("donations", donservice.DonTest(startdate, enddate));
 		 //model.addAttribute("donationsOrder", this.donservice.orderAmounts2(startdate, enddate));
 		 return "home.jsp";
@@ -392,20 +400,35 @@ public class FPController {
 			 model.addAttribute("donations", donations);
 			 return "home.jsp";
 		 }
-		 @RequestMapping(value="/sortdown")
-		 public String SortDown(Model model, HttpSession session, @ModelAttribute("donations")Donation donation,
-				 @RequestParam("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
-				 @RequestParam("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate) {
+		 @RequestMapping(value="/home/sortdown/?startdate={startdate}&enddate={enddate}")
+		 public String SortDown(Model model, HttpSession session, @PathVariable("startdate") String startdate,
+				 @PathVariable("enddate") String enddate) {
 			 Long user_id = (Long)session.getAttribute("user_id");
 			 if (user_id == null) {
 				 return "redirect:/";
 			 }
 			 User user = uservice.findUserbyId(user_id);
 			 model.addAttribute("user", user);
-			 //model.addAttribute("donations", this.donservice.findDonations());
 			 model.addAttribute("dateFormat", dateFormat());
 			 List<Donation> donations = this.donservice.orderAmounts2(startdate, enddate);
 			 model.addAttribute("donations", donations);
 			 return "home.jsp";
 		 }
+		 @RequestMapping("/home/sortdown")
+		 public String sortdownPost(Model model, HttpSession session, @ModelAttribute("donations")Donation donation,
+				 @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
+				 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (user_id == null) {
+				 return "redirect:/";
+			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 model.addAttribute("dateFormat", dateFormat());
+			 model.addAttribute("startdate", startdate);
+			 model.addAttribute("enddate", enddate);
+			 model.addAttribute("donations", this.donservice.orderAmounts2(startdate, enddate));
+			 return "home.jsp";
+		 }
+		 
 }

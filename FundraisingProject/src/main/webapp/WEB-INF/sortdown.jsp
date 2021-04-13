@@ -31,8 +31,8 @@
 	</div>
 	<div class="wrapper">
 	<h1>Recent Donations</h1>
-		<form class="date-form" action="/home">
-			<input type="date" value="${startdate}" name="startdate"/>
+		<form class="date-form" action="/sortdown/?startdate=${startdate}&enddate=${enddate}">
+			<input type="date" value="${dateFormat}" name="startdate"/>
 			<input type="date" value="${dateFormat}" name="enddate"/>
 			<button>Set</button>
 		</form>
@@ -40,7 +40,7 @@
 	    <thead>
 	        <tr>
 	            <th>Donor</th>
-	            <th>Amount <a href="/home/sortdown/?startdate=${startdate}&enddate=${enddate}">^</a><a href="/sortup">v</a></th>
+	            <th>Amount <a href="/sortdown">^</a><a href="/sortup">v</a></th>
 	            <th>Email given to</th>
 	            <th>Date/Time</th>
 	            <th>Action</th>
