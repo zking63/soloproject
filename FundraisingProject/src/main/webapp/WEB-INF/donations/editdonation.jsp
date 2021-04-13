@@ -41,12 +41,12 @@
 	        <p>
 	            <form:label path="Dondate">Date:</form:label>
 	            <form:errors path="Dondate"></form:errors>
-	            <form:input type="Dondate" value="${dateFormat}" path="Dondate"/>
+	            <form:input type="Dondate" path="Dondate"/>
 	        </p>
 	        <p>
 	            <form:label path="Dontime">Time:</form:label>
 	            <form:errors path="Dontime"></form:errors>
-	            <form:input type="Dontime" value="${timeFormat}" path="Dontime"/>
+	            <form:input type="Dontime"  path="Dontime"/>
 	        </p>
 	        <p>
 		        <label for="donor">Assign a donor:</label>
