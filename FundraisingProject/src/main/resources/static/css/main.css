@@ -7,9 +7,11 @@ body button{
 	border: 0px;
 	background-color: #455a64;
 	opacity: 50%;
+	color: white;
 }
 body button:hover{
 	background-color: white;
+	color: #455a64;
 }
 body button a{
 	color: white;
@@ -102,5 +104,10 @@ body button a:hover{
 }
 .user-form{
 	margin-left: 25%;
+	width: 50%;
+}
+.date-form{
+	margin-left: 30%;
+	margin-bottom: 10px;
 	width: 50%;
 }
