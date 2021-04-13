@@ -111,3 +111,7 @@ body button a:hover{
 	margin-bottom: 10px;
 	width: 50%;
 }
+.pointer{
+	width: 20px;
+	display: inline-block;
+}

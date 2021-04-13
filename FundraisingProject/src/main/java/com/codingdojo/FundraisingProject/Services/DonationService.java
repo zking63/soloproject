@@ -62,4 +62,8 @@ public class DonationService {
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return donrepo.findAllWithDondateAfter(startdate, enddate);
 	}
+	public List<Donation> DonTestAsc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, @Param("enddate") 
+	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		return donrepo.findAllWithDondateAfterAsc(startdate, enddate);
+	}
 }
