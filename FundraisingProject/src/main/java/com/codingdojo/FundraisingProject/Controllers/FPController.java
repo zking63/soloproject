@@ -148,7 +148,8 @@ public class FPController {
 		 model.addAttribute("user", user);
 		 model.addAttribute("donor", this.dservice.allDonors());
 		 model.addAttribute("email", this.eservice.allEmails());
-		 model.addAttribute("dateFormat", dateFormat2());
+		 model.addAttribute("dateFormat", dateFormat());
+		 model.addAttribute("timeFormat", timeFormat());
 		 return "newdonation.jsp";
 	 }
 	 @PostMapping(value="/newdonation")
@@ -173,7 +174,8 @@ public class FPController {
 		 }
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
-		 model.addAttribute("dateFormat", dateFormat2());
+		 model.addAttribute("dateFormat", dateFormat());
+		 model.addAttribute("timeFormat", timeFormat());
 		 return "newemail.jsp";
 	 }
 	 @PostMapping(value="/newemail")
@@ -309,7 +311,8 @@ public class FPController {
 				model.addAttribute("user", user);
 				model.addAttribute("donor", this.dservice.allDonors());
 				model.addAttribute("email", this.eservice.allEmails());
-				model.addAttribute("dateFormat", dateFormat2());
+				model.addAttribute("dateFormat", dateFormat());
+				model.addAttribute("timeFormat", timeFormat());
 				return "/donations/editdonation.jsp";
 			}
 		 @RequestMapping(value="/donations/edit/{id}", method=RequestMethod.POST)
@@ -322,7 +325,8 @@ public class FPController {
 			 model.addAttribute("user", user);
 			 model.addAttribute("donor", this.dservice.allDonors());
 			 model.addAttribute("email", this.eservice.allEmails());
-			 model.addAttribute("dateFormat", dateFormat2());
+			 model.addAttribute("dateFormat", dateFormat());
+			 model.addAttribute("timeFormat", timeFormat());
 			 donservice.createDonation(donation);
 			 return "redirect:/home";
 		 }

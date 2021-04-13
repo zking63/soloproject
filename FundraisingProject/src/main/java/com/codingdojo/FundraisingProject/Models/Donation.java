@@ -28,8 +28,10 @@ public class Donation {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private Double amount;
-	@DateTimeFormat(pattern ="yyyy-MM-dd, kk:mm")
+	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	private Date Dondate;
+	@DateTimeFormat(pattern ="kk:mm")
+	private Date Dontime;
 	/*@NotNull
 	private String refcode;*/
 	
@@ -77,6 +79,15 @@ public class Donation {
 	public void setDondate(Date dondate) {
 		Dondate = dondate;
 	}
+	
+
+	public Date getDontime() {
+		return Dontime;
+	}
+
+	public void setDontime(Date dontime) {
+		Dontime = dontime;
+	}
 
 	public Donor getDonor() {
 		return donor;
@@ -115,7 +126,7 @@ public class Donation {
     }
     public String getDonationTimeFormatted() {
     	SimpleDateFormat df = new SimpleDateFormat("kk:mm");
-    	return df.format(this.Dondate);
+    	return df.format(this.Dontime);
     }
     
 	/*public Donation mostRecentDonation(Donor donor) {

@@ -44,9 +44,14 @@
 	            <form:input type="emailRefcode" path="emailRefcode"/>
 	        </p>
 	        <p>
-	            <form:label path="Emaildate">Date and time:</form:label>
+	            <form:label path="Emaildate">Date:</form:label>
 	            <form:errors path="Emaildate"></form:errors>
 	            <form:input type="Emaildate" value="${dateFormat}" path="Emaildate"/>
+	        </p>
+	        <p>
+	            <form:label path="Emailtime">Time:</form:label>
+	            <form:errors path="Emailtime"></form:errors>
+	            <form:input type="Emailtime" value="${timeFormat}" path="Emailtime"/>
 	        </p>
 	        <input type="submit" value="Upload!"/>
 	    </form:form>

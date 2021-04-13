@@ -28,8 +28,10 @@ public class Emails {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private String emailName;
-	@DateTimeFormat(pattern ="yyyy-MM-dd, kk:mm")
+	@DateTimeFormat(pattern ="yyyy-MM-dd")
 	private Date Emaildate;
+	@DateTimeFormat(pattern ="kk:mm")
+	private Date Emailtime;
 	@NotNull
 	private String emailRefcode;
 	@Column(updatable=false)
@@ -78,6 +80,16 @@ public class Emails {
 	public void setEmaildate(Date emaildate) {
 		Emaildate = emaildate;
 	}
+	
+	
+
+	public Date getEmailtime() {
+		return Emailtime;
+	}
+
+	public void setEmailtime(Date emailtime) {
+		Emailtime = emailtime;
+	}
 
 	public String getEmailRefcode() {
 		return emailRefcode;
@@ -118,7 +130,7 @@ public class Emails {
     }
     public String getEmailTimeFormatted() {
     	SimpleDateFormat df = new SimpleDateFormat("kk:mm");
-    	return df.format(this.Emaildate);
+    	return df.format(this.Emailtime);
     }
     
 	public User getEmail_uploader() {
