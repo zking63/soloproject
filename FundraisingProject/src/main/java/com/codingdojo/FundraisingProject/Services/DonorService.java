@@ -22,6 +22,9 @@ public class DonorService {
 	public Donor createDonor(Donor donor) {
 		return drepo.save(donor);
 	}
+	public Donor findDonorbyEmail(String email) {
+		return drepo.findBydonorEmail(email);
+	}
 	public List<Donor> allDonors() {
 		return drepo.findAll();
 	}

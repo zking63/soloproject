@@ -11,4 +11,5 @@ import com.codingdojo.FundraisingProject.Models.Donor;
 @Repository
 public interface DonorRepo extends CrudRepository<Donor, Long>{
 	List<Donor> findAll();
+	Donor findBydonorEmail(String email);
 }

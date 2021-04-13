@@ -30,6 +30,7 @@ import com.codingdojo.FundraisingProject.Services.DonationService;
 import com.codingdojo.FundraisingProject.Services.DonorService;
 import com.codingdojo.FundraisingProject.Services.EmailService;
 import com.codingdojo.FundraisingProject.Services.UserService;
+import com.codingdojo.FundraisingProject.Validation.DonorValidation;
 import com.codingdojo.FundraisingProject.Validation.UserValidation;
 
 
@@ -40,6 +41,9 @@ public class FPController {
 	
 	@Autowired
 	private UserValidation uvalidation;
+	
+	@Autowired
+	private DonorValidation dvalidation;
 	
 	@Autowired
 	private DonorService dservice;
@@ -100,6 +104,7 @@ public class FPController {
 	 @PostMapping(value="/newdonor")
 	 public String CreateDonor(@Valid @ModelAttribute("donor") Donor donor, BindingResult result, Model model, HttpSession session) {
 		 Long user_id = (Long)session.getAttribute("user_id");
+		 dvalidation.validate(donor, result);
 		 if (result.hasErrors()) {
 			 User user = uservice.findUserbyId(user_id);
 			 model.addAttribute("user", user);
