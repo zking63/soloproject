@@ -42,7 +42,7 @@
 	            <th>Donor</th>
 	            <th>Amount <a href="/sortdown">^</a><a href="/sortup">v</a></th>
 	            <th>Email given to</th>
-	            <th>Date/time</th>
+	            <th>Date/Time</th>
 	            <th>Action</th>
 	        </tr>
 	    </thead>

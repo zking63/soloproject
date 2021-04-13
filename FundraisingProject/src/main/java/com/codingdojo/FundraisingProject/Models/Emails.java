@@ -4,6 +4,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -150,17 +151,18 @@ public class Emails {
 		}
 		return sum;
 	}
-	public Double getEmailAverage() {
+	public String getEmailAverage() {
 		List<Donation> contributions = this.getEmaildonations();
 		Double sum = 0.0;
 		Double average = 0.0;
+		DecimalFormat df = new DecimalFormat("0.00");
 		if (contributions.size() > 0) {
 			for (int i = 0; i < contributions.size(); i++) {
 				sum += contributions.get(i).getAmount();
 			}
 			average = sum/contributions.size();
 		}
-		return average;
+		return df.format(average);
 	}
 
 	@PrePersist

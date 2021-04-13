@@ -186,6 +186,8 @@ public class FPController {
 			 model.addAttribute("user", user);
 			 return "newemail.jsp";
 		 }
+		 model.addAttribute("dateFormat", dateFormat());
+		 model.addAttribute("timeFormat", timeFormat());
 		 eservice.createEmail(email);
 		 return "redirect:/emails";
 	 }
@@ -265,6 +267,7 @@ public class FPController {
 		 //model.addAttribute("donations", this.donservice.findDonations());
 		 model.addAttribute("dateFormat", dateFormat());
 		 model.addAttribute("donations", donservice.DonTest(startdate, enddate));
+		 //model.addAttribute("donationsOrder", this.donservice.orderAmounts2(startdate, enddate));
 		 return "home.jsp";
 	 }
 		@RequestMapping("/emails/delete/{id}")
@@ -279,6 +282,8 @@ public class FPController {
 				return "redirect:/";
 			}
 			User user = uservice.findUserbyId(user_id);
+			model.addAttribute("dateFormat", dateFormat());
+			model.addAttribute("timeFormat", timeFormat());
 			model.addAttribute("email", eservice.findEmailbyId(id));
 			model.addAttribute("user", user);
 			return "/emails/editemail.jsp";
@@ -290,6 +295,8 @@ public class FPController {
 				 return "redirect:/";
 			 }
 			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("dateFormat", dateFormat());
+			 model.addAttribute("timeFormat", timeFormat());
 			 model.addAttribute("user", user);
 			 eservice.createEmail(email);
 			 return "redirect:/emails";
@@ -386,12 +393,19 @@ public class FPController {
 			 return "home.jsp";
 		 }
 		 @RequestMapping(value="/sortdown")
-		 public String SortDown(Model model, @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
-					@Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
+		 public String SortDown(Model model, HttpSession session, @ModelAttribute("donations")Donation donation,
+				 @RequestParam("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+				 @RequestParam("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (user_id == null) {
+				 return "redirect:/";
+			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 //model.addAttribute("donations", this.donservice.findDonations());
+			 model.addAttribute("dateFormat", dateFormat());
 			 List<Donation> donations = this.donservice.orderAmounts2(startdate, enddate);
 			 model.addAttribute("donations", donations);
-			 model.addAttribute("dateFormat", dateFormat());
 			 return "home.jsp";
 		 }
-		 //all sorting
 }
