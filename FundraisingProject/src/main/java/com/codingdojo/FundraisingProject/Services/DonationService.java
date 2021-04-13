@@ -37,16 +37,6 @@ public class DonationService {
 	public List<Donation> findByEmail(long email_id) {
 		return donrepo.findByemailDonation(email_id);
 	}
-	/*public Donation mostRecentDonation(Donor donor) {
-		Donation contribution = donor.mostRecentDonation(donor);
-		//Donation mostRecent = contributions.get(0);
-		//for (int i = 0; i < contributions.size(); i++) {
-			//if (contributions.get(i).getId() > mostRecent.getId()) {
-				//mostRecent = contributions.get(i);
-			//}
-		//}
-		return contribution;
-	}*/
 	public List<Donation> orderAmounts2(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return donrepo.findByOrderByAmountDesc(startdate, enddate);

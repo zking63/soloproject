@@ -122,8 +122,6 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("donor", this.dservice.allDonors());
-		 //model.addAttribute("mostRecent", this.dservice.getMostRecentdonation(donor.getId()));
-		 //model.addAttribute("mostRecent", donor.getMostRecentdonation().getAmount());
 		 return "donors.jsp";
 	 }
 	private String dateFormat() {
@@ -200,8 +198,6 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("email", this.eservice.allEmails());
-		 //model.addAttribute("sum", this.eservice.getEmailSum(email));
-		 //model.addAttribute("average", this.eservice.getEmailAverage(email));
 		 return "emails.jsp";
 	 }
 	 @RequestMapping("/donors/{id}")
@@ -229,7 +225,6 @@ public class FPController {
 		User user = uservice.findUserbyId(user_id);
 		model.addAttribute("donor", dservice.findbyId(id));
 		model.addAttribute("user", user);
-		//dservice.createDonor(dservice.findbyId(id));
 		return "/donors/editdonor.jsp";
 	}
 	 @RequestMapping(value="/donors/edit/{id}", method=RequestMethod.POST)
@@ -351,40 +346,6 @@ public class FPController {
 				this.donservice.delete(id);
 				return "redirect:/donors/" + donorid;
 			}
-			/*@RequestMapping(value="/donations/edit/{id}/donor")
-			public String EditDonationfromDonorPage(@PathVariable("id") long id, HttpSession session, Model model) {
-				Long user_id = (Long)session.getAttribute("user_id");
-				if (user_id == null) {
-					return "redirect:/";
-				}
-				User user = uservice.findUserbyId(user_id);
-				model.addAttribute("donation", donservice.findDonationbyId(id));
-				model.addAttribute("user", user);
-				model.addAttribute("donor", this.dservice.allDonors());
-				model.addAttribute("email", this.eservice.allEmails());
-				model.addAttribute("dateFormat", dateFormat2());
-				return "/donations/editdonation.jsp";
-			}
-			@RequestMapping(value="/donations/edit/{id}/{page}", method=RequestMethod.POST)
-		 public String UpdateDonationfromDonorPage(@Valid @PathVariable("page") String page, @ModelAttribute("donation") Donation donation, BindingResult result, Model model, HttpSession session) {
-			 Long user_id = (Long)session.getAttribute("user_id");
-			Donor donor = donation.getDonor();
-			long donorid = donor.getId();
-			page = "donor";
-			 if (result.hasErrors()) {
-				 return "redirect:/";
-			 }
-			 User user = uservice.findUserbyId(user_id);
-			 model.addAttribute("user", user);
-			 model.addAttribute("donor", this.dservice.allDonors());
-			 model.addAttribute("email", this.eservice.allEmails());
-			 model.addAttribute("dateFormat", dateFormat());
-			 model.addAttribute("timeFormat", timeFormat());
-			 model.addAttribute("page", page);
-			 donservice.createDonation(donation);
-			 return "redirect:/donors/" + donorid;
-		 }*/
-	
 		 //sorting homepage
 		 @RequestMapping(value="/home/sortdown")
 		 public String sortdownPost(Model model, HttpSession session, @ModelAttribute("donations")Donation donation,

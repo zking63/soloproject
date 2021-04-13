@@ -43,18 +43,6 @@ public class Donor {
 	private Date createdAt;
 	private Date updatedAt;
 	
-	//private Double mostRecentdonation;
-	//private String MostRecentdonationDATE;
-	
-	/*@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(
-		name="donors_donations",
-		joinColumns = @JoinColumn(name="donor_id"),
-		inverseJoinColumns = @JoinColumn(name="donation_id")
-	)
-	private List<Donation> donations;*/
-	
-	
 	public Donor() {
 		
 	}

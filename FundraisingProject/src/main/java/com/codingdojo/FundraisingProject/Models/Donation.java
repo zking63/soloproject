@@ -32,8 +32,6 @@ public class Donation {
 	private Date Dondate;
 	@DateTimeFormat(pattern ="kk:mm")
 	private Date Dontime;
-	/*@NotNull
-	private String refcode;*/
 	
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="donor_id")
@@ -128,25 +126,6 @@ public class Donation {
     	SimpleDateFormat df = new SimpleDateFormat("kk:mm");
     	return df.format(this.Dontime);
     }
-    
-	/*public Donation mostRecentDonation(Donor donor) {
-		List<Donation> contributions = donor.getContributions();
-		Donation mostRecent = contributions.get(0);
-		//for (int i = 0; i < contributions.size(); i++) {
-			//if (contributions.get(i).getId() > mostRecent.getId()) {
-				//mostRecent = contributions.get(i);
-			//}
-		//}
-		return mostRecent;
-	}*/
-
-	/*public String getRefcode() {
-		return refcode;
-	}
-
-	public void setRefcode(String refcode) {
-		this.refcode = refcode;
-	}*/
 
 	public Emails getEmailDonation() {
 		return emailDonation;

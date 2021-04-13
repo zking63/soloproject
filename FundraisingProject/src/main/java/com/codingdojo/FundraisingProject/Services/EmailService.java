@@ -32,26 +32,4 @@ public class EmailService {
 	public void delete(long id) {
 		erepo.deleteById(id);
 	}
-	/*public Double getEmailSum(Emails email) {
-		List<Donation> contributions = email.getEmaildonations();
-		Double sum = 0.0;
-		if (contributions.size() > 0) {
-			for (int i = 0; i < contributions.size(); i++) {
-				sum += contributions.get(i).getAmount();
-			}
-		}
-		return sum;
-	}
-	public Double getEmailAverage(Emails email) {
-		List<Donation> contributions = email.getEmaildonations();
-		Double sum = 0.0;
-		Double average = 0.0;
-		if (contributions.size() > 0) {
-			for (int i = 0; i < contributions.size(); i++) {
-				sum += contributions.get(i).getAmount();
-			}
-			average = sum/contributions.size();
-		}
-		return average;
-	}*/
 }

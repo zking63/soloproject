@@ -42,14 +42,6 @@ public class Emails {
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User email_uploader;
-    
-	/*@ManyToMany(fetch=FetchType.LAZY)
-	@JoinTable(
-		name="donors_emails",
-		joinColumns = @JoinColumn(name="email_id"),
-		inverseJoinColumns = @JoinColumn(name="donor_id")
-	)
-	private List<Donor> Emaildonors;*/
 	
     @OneToMany(fetch=FetchType.LAZY, mappedBy="emailDonation")
 	private List<Donation> Emaildonations;
