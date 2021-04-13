@@ -31,6 +31,11 @@
 	</div>
 	<div class="wrapper">
 	<h1>Recent Donations</h1>
+		<form action="/home">
+			<input type="date" value="${dateFormat}" name="startdate"/>
+			<input type="date" value="${dateFormat}" name="enddate"/>
+			<button class="btn btn-primary">Set</button>
+		</form>
 	<table class="table table-hover">
 	    <thead>
 	        <tr>

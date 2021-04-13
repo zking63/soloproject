@@ -246,14 +246,18 @@ public class FPController {
 		 return "/emails/showemail.jsp";
 	 }
 	 @RequestMapping("/home")
-	 public String homePage(Model model, HttpSession session, @ModelAttribute("donations")Donation donation) {
+	 public String homePage(Model model, HttpSession session, @ModelAttribute("donations")Donation donation,
+			 @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
+			 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (user_id == null) {
 			 return "redirect:/";
 		 }
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
-		 model.addAttribute("donations", this.donservice.findDonations());
+		 //model.addAttribute("donations", this.donservice.findDonations());
+		 model.addAttribute("dateFormat", dateFormat());
+		 model.addAttribute("donations", donservice.DonTest(startdate, enddate));
 		 return "home.jsp";
 	 }
 		@RequestMapping("/emails/delete/{id}")
@@ -321,15 +325,13 @@ public class FPController {
 			java.sql.Date dateDB = new java.sql.Date(df);
 			return df.format(new Date());
 		}*/
-		 @RequestMapping("/test")
-		 public String Test( Model model, @Param("startdate") Date startdate, @Param("enddate") Date enddate) {
-			 //Date startdate = this.donservice.findDonationbyId(12).getDondate();
-			 //Date enddate = this.donservice.findDonationbyId(6).getDondate();
+		 /*@RequestMapping("/test")
+		 public String Test( Model model, @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
+				 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
 			 model.addAttribute("dateFormat", dateFormat());
-			 //java.sql.Date dateDB = new java.sql.Date(startdate.getTime());
-			model.addAttribute("donations", donservice.DonTest(startdate, enddate));
+			 model.addAttribute("donations", donservice.DonTest(startdate, enddate));
 			 return "test.jsp";
-		 }
+		 }*/
 		 //sorting
 		 @RequestMapping(value="/sortup")
 		 public String SortUp(Model model) {
