@@ -50,7 +50,7 @@
 						<td><a href="/emails/${ d.emailDonation.id }">${ d.emailDonation.emailName }</a></td>
 						<td>
 							<p><a href="/donations/edit/${d.id}">Edit</a></p>
-							<p><a href="/donations/delete/${d.id}">Delete</a></p>
+							<p><a href="/donations/delete/${d.id}/donor">Delete</a></p>
 						</td>
 					</tr>
 				</c:forEach>

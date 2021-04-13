@@ -50,16 +50,15 @@ public class DonationService {
 	public List<Donation> orderAmounts(){
 		return donrepo.findAllByOrderByAmountAsc();
 	}
-	public List<Donation> orderAmounts2(){
-		return donrepo.findAllByOrderByAmountDesc();
+	public List<Donation> orderAmounts2(@Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
+			@Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate){
+		return donrepo.findByOrderByAmountDesc(startdate, enddate);
 	}
 	public void delete(long id) {
 		donrepo.deleteById(id);
 	}
-	public List<Donation> DonTest(@Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate){
-		/*java.sql.Date dateDB = new java.sql.Date(startdate.getTime());
-		java.sql.Date dateE = new java.sql.Date(enddate.getTime());*/
+	public List<Donation> DonTest(@Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, @Param("enddate") 
+	@DateTimeFormat(iso = ISO.DATE) String enddate){
 		return donrepo.findAllWithDondateAfter(startdate, enddate);
-		//return donrepo.findAllWithDondateAfter(dateDB, dateE);
 	}
 }

@@ -287,6 +287,7 @@ public class FPController {
 			 eservice.createEmail(email);
 			 return "redirect:/emails";
 		 }
+		 //edit and delete donations homepage
 			@RequestMapping("/donations/delete/{id}")
 			public String DeleteDonation(@PathVariable("id") Long id, HttpSession session, Model model) {
 				this.donservice.delete(id);
@@ -320,6 +321,42 @@ public class FPController {
 			 donservice.createDonation(donation);
 			 return "redirect:/home";
 		 }
+		 //edit and delete donations donor page
+			@RequestMapping("/donations/delete/{id}/donor")
+			public String DeleteDonationfromDonorPage(@PathVariable("id") Long id, HttpSession session, Model model) {
+				Donor donor = this.donservice.findDonationbyId(id).getDonor();
+				long donorid = donor.getId();
+				this.donservice.delete(id);
+				return "redirect:/donors/" + donorid;
+			}
+			/*@RequestMapping(value="/donations/edit/{id}")
+			public String EditDonation(@PathVariable("id") long id, HttpSession session, Model model) {
+				Long user_id = (Long)session.getAttribute("user_id");
+				if (user_id == null) {
+					return "redirect:/";
+				}
+				User user = uservice.findUserbyId(user_id);
+				model.addAttribute("donation", donservice.findDonationbyId(id));
+				model.addAttribute("user", user);
+				model.addAttribute("donor", this.dservice.allDonors());
+				model.addAttribute("email", this.eservice.allEmails());
+				model.addAttribute("dateFormat", dateFormat2());
+				return "/donations/editdonation.jsp";
+			}
+		 @RequestMapping(value="/donations/edit/{id}", method=RequestMethod.POST)
+		 public String UpdateDonation(@Valid @ModelAttribute("donation") Donation donation, BindingResult result, Model model, HttpSession session) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (result.hasErrors()) {
+				 return "redirect:/";
+			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 model.addAttribute("donor", this.dservice.allDonors());
+			 model.addAttribute("email", this.eservice.allEmails());
+			 model.addAttribute("dateFormat", dateFormat2());
+			 donservice.createDonation(donation);
+			 return "redirect:/home";
+		 }*/
 		/*private String dateFormat3() {
 			long df;
 			java.sql.Date dateDB = new java.sql.Date(df);
@@ -340,9 +377,12 @@ public class FPController {
 			 return "home.jsp";
 		 }
 		 @RequestMapping(value="/sortdown")
-		 public String SortDown(Model model) {
-			 List<Donation> donations = this.donservice.orderAmounts2();
+		 public String SortDown(Model model, @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
+					@Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
+			 List<Donation> donations = this.donservice.orderAmounts2(startdate, enddate);
 			 model.addAttribute("donations", donations);
+			 model.addAttribute("dateFormat", dateFormat());
 			 return "home.jsp";
 		 }
+		 //all sorting
 }

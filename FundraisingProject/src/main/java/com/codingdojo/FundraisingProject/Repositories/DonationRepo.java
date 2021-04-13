@@ -20,7 +20,10 @@ public interface DonationRepo extends CrudRepository<Donation, Long>{
 	List<Donation> findByemailDonation(Long email_id);
 	List<Donation> findAllByOrderByAmountAsc();
 	List<Donation> findAllByOrderByAmountDesc();
-	@Query(value = "SELECT * FROM donations where donations.Dondate >= :startdate and donations.Dondate <= :enddate", nativeQuery = true)
+	@Query(value = "SELECT * FROM donations where donations.Dondate >= :startdate and donations.Dondate <= :enddate order by donations.Dondate DESC", nativeQuery = true)
 	List <Donation> findAllWithDondateAfter(@Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
+			@Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate);
+	@Query(value = "SELECT * FROM donations where donations.Dondate >= :startdate and donations.Dondate <= :enddate order by donations.amount DESC", nativeQuery = true)
+	List<Donation> findByOrderByAmountDesc(@Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
 			@Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate);
 }
