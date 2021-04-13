@@ -329,8 +329,8 @@ public class FPController {
 				this.donservice.delete(id);
 				return "redirect:/donors/" + donorid;
 			}
-			/*@RequestMapping(value="/donations/edit/{id}")
-			public String EditDonation(@PathVariable("id") long id, HttpSession session, Model model) {
+			@RequestMapping(value="/donations/edit/{id}/donor")
+			public String EditDonationfromDonorPage(@PathVariable("id") long id, HttpSession session, Model model) {
 				Long user_id = (Long)session.getAttribute("user_id");
 				if (user_id == null) {
 					return "redirect:/";
@@ -343,7 +343,7 @@ public class FPController {
 				model.addAttribute("dateFormat", dateFormat2());
 				return "/donations/editdonation.jsp";
 			}
-		 @RequestMapping(value="/donations/edit/{id}", method=RequestMethod.POST)
+		 /*@RequestMapping(value="/donations/edit/{id}", method=RequestMethod.POST)
 		 public String UpdateDonation(@Valid @ModelAttribute("donation") Donation donation, BindingResult result, Model model, HttpSession session) {
 			 Long user_id = (Long)session.getAttribute("user_id");
 			 if (result.hasErrors()) {
@@ -355,7 +355,7 @@ public class FPController {
 			 model.addAttribute("email", this.eservice.allEmails());
 			 model.addAttribute("dateFormat", dateFormat2());
 			 donservice.createDonation(donation);
-			 return "redirect:/home";
+			 return "redirect:/donors/" + this.donservice.findDonationbyId(id).getDonor().getId();
 		 }*/
 		/*private String dateFormat3() {
 			long df;
