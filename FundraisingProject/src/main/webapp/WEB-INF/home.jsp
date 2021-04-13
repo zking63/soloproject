@@ -40,7 +40,7 @@
 	    <thead>
 	        <tr>
 	            <th>Donor</th>
-	            <th>Amount <a href="/home/sortdown/?startdate=${startdate}&enddate=${enddate}">^</a><a href="/sortup">v</a></th>
+	            <th>Amount <a href="/home/sortdown/?startdate=${startdate}&enddate=${enddate}">^</a><a href="/home/sortup/?startdate=${startdate}&enddate=${enddate}">v</a></th>
 	            <th>Email given to</th>
 	            <th>Date/Time</th>
 	            <th>Action</th>

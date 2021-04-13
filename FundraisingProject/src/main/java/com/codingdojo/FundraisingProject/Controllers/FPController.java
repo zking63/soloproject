@@ -353,7 +353,7 @@ public class FPController {
 				this.donservice.delete(id);
 				return "redirect:/donors/" + donorid;
 			}
-			/*@RequestMapping(value="/donations/edit/{id}/donor")
+			@RequestMapping(value="/donations/edit/{id}/donor")
 			public String EditDonationfromDonorPage(@PathVariable("id") long id, HttpSession session, Model model) {
 				Long user_id = (Long)session.getAttribute("user_id");
 				if (user_id == null) {
@@ -367,9 +367,11 @@ public class FPController {
 				model.addAttribute("dateFormat", dateFormat2());
 				return "/donations/editdonation.jsp";
 			}
-		 @PostMapping(value="/donations/edit/{id}/donor")
+			@RequestMapping(value="/donations/edit/{id}/donor", method=RequestMethod.POST)
 		 public String UpdateDonationfromDonorPage(@Valid @ModelAttribute("donation") Donation donation, BindingResult result, Model model, HttpSession session) {
 			 Long user_id = (Long)session.getAttribute("user_id");
+			Donor donor = this.donservice.findDonationbyId(id).getDonor();
+			long donorid = donor.getId();
 			 if (result.hasErrors()) {
 				 return "redirect:/";
 			 }
@@ -377,27 +379,42 @@ public class FPController {
 			 model.addAttribute("user", user);
 			 model.addAttribute("donor", this.dservice.allDonors());
 			 model.addAttribute("email", this.eservice.allEmails());
-			 model.addAttribute("dateFormat", dateFormat2());
-			 donservice.createDonation(donation);
-			 return "redirect:/donors/" + donation.getDonor().getId();
-		 }
-		/*private String dateFormat3() {
-			long df;
-			java.sql.Date dateDB = new java.sql.Date(df);
-			return df.format(new Date());
-		}*/
-		 /*@RequestMapping("/test")
-		 public String Test( Model model, @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
-				 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
 			 model.addAttribute("dateFormat", dateFormat());
-			 model.addAttribute("donations", donservice.DonTest(startdate, enddate));
-			 return "test.jsp";
-		 }*/
-		 //sorting
-		 @RequestMapping(value="/sortup")
-		 public String SortUp(Model model) {
-			 List<Donation> donations = this.donservice.orderAmounts();
+			 model.addAttribute("timeFormat", timeFormat());
+			 donservice.createDonation(donation);
+			 return "redirect:/donors/" + donorid;
+		 }
+	
+		 //sorting homepage
+			//amount
+		 @RequestMapping(value="/home/sortup/?startdate={startdate}&enddate={enddate}")
+		 public String SortUp(Model model, HttpSession session, @PathVariable("startdate") String startdate,
+				 @PathVariable("enddate") String enddate) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (user_id == null) {
+				 return "redirect:/";
+			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 model.addAttribute("dateFormat", dateFormat());
+			 List<Donation> donations = this.donservice.orderAmounts(startdate, enddate);
 			 model.addAttribute("donations", donations);
+			 return "home.jsp";
+		 }
+		 @RequestMapping("/home/sortup")
+		 public String sortupPost(Model model, HttpSession session, @ModelAttribute("donations")Donation donation,
+				 @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
+				 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (user_id == null) {
+				 return "redirect:/";
+			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 model.addAttribute("dateFormat", dateFormat());
+			 model.addAttribute("startdate", startdate);
+			 model.addAttribute("enddate", enddate);
+			 model.addAttribute("donations", this.donservice.orderAmounts(startdate, enddate));
 			 return "home.jsp";
 		 }
 		 @RequestMapping(value="/home/sortdown/?startdate={startdate}&enddate={enddate}")
@@ -414,7 +431,7 @@ public class FPController {
 			 model.addAttribute("donations", donations);
 			 return "home.jsp";
 		 }
-		 @RequestMapping("/home/sortdown")
+		 @RequestMapping(value="/home/sortdown")
 		 public String sortdownPost(Model model, HttpSession session, @ModelAttribute("donations")Donation donation,
 				 @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
 				 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
@@ -430,5 +447,4 @@ public class FPController {
 			 model.addAttribute("donations", this.donservice.orderAmounts2(startdate, enddate));
 			 return "home.jsp";
 		 }
-		 
 }

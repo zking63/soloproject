@@ -47,12 +47,13 @@ public class DonationService {
 		//}
 		return contribution;
 	}*/
-	public List<Donation> orderAmounts(){
-		return donrepo.findAllByOrderByAmountAsc();
-	}
 	public List<Donation> orderAmounts2(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return donrepo.findByOrderByAmountDesc(startdate, enddate);
+	}
+	public List<Donation> orderAmounts(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		return donrepo.findByOrderByAmountAsc(startdate, enddate);
 	}
 	public void delete(long id) {
 		donrepo.deleteById(id);
