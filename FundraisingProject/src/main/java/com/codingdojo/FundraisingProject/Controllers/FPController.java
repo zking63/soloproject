@@ -186,15 +186,25 @@ public class FPController {
 		 return "redirect:/emails";
 	 }
 	 @RequestMapping("/emails")
-	 public String Emailpage(@ModelAttribute("email") Emails email, Model model, HttpSession session) {
+	 public String Emailpage(@ModelAttribute("email") Emails email, Model model, HttpSession session,
+			 @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
+			 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (user_id == null) {
 			 return "redirect:/";
 		 }
+		 if (startdate == null) {
+			 startdate = dateFormat();
+		 }
+		 if (enddate == null) {
+			 enddate = dateFormat();
+		 }
+		 model.addAttribute("startdate", startdate);
+		 model.addAttribute("enddate", enddate);
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
-		 model.addAttribute("email", this.eservice.allEmails());
-		 //model.addAttribute("emailA", this.eservice.getEmailAverageFormatted(email.getEmailAverage()));
+		 model.addAttribute("email", this.eservice.EmailTest(startdate, enddate));
+		 //model.addAttribute("email", this.eservice.allEmails());
 		 return "emails.jsp";
 	 }
 	 @RequestMapping("/donors/{id}")

@@ -4,6 +4,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
@@ -32,5 +34,9 @@ public class EmailService {
 	}
 	public void delete(long id) {
 		erepo.deleteById(id);
+	}
+	public List<Emails> EmailTest(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, @Param("enddate") 
+	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		return erepo.findByOrderByDesc(startdate, enddate);
 	}
 }
