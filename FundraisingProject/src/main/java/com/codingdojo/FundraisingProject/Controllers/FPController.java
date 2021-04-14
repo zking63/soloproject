@@ -132,11 +132,7 @@ public class FPController {
 		SimpleDateFormat df = new SimpleDateFormat("kk:mm");
 		return df.format(new Date());
 	}
-	private String dateFormat2() {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd, kk:mm");
-		return df.format(new Date());
-	}
-	 @RequestMapping("/newdonation")
+	@RequestMapping("/newdonation")
 	 public String donationsPage(@ModelAttribute("donation") Donation donation, Model model, HttpSession session) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (user_id == null) {

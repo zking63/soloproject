@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
@@ -46,4 +48,9 @@ public class DonorService {
 	Date mostRecent = Collections.max(dates);
 	return mostRecent;
 }
+	public List<Donation> getDonationsbydonor(Long id){
+		Donor donor = drepo.findById(id).orElse(null);
+		List<Donation> contributions = donor.getContributions();
+		return contributions;
+	}
 }

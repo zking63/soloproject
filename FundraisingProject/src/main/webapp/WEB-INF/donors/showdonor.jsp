@@ -31,6 +31,7 @@
 	</div>
 	<div class="wrapper">
 		<h2><b>Donor history:</b> ${ donor.donorFirstName } ${ donor.donorLastName }</h2>
+
 			<table class="table table-hover">
 			    <thead>
 			        <tr>
@@ -42,7 +43,7 @@
 			        </tr>
 			    </thead>
 				<tbody>
-				<c:forEach items="${ donor.contributions }" var="d">
+				<c:forEach items="${ donor.getContributions() }" var="d">
 					<tr>
 						<td>${ d.getDonationDateFormatted() }</td>
 						<td>${ d.getDonationTimeFormatted() }</td>
