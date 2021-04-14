@@ -35,6 +35,7 @@ public class Emails {
 	private Date Emailtime;
 	@NotNull
 	private String emailRefcode;
+	private Double emailAverage;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -143,18 +144,27 @@ public class Emails {
 		}
 		return sum;
 	}
-	public String getEmailAverage() {
+	
+	public Double getEmailAverage() {
 		List<Donation> contributions = this.getEmaildonations();
 		Double sum = 0.0;
 		Double average = 0.0;
-		DecimalFormat df = new DecimalFormat("0.00");
 		if (contributions.size() > 0) {
 			for (int i = 0; i < contributions.size(); i++) {
 				sum += contributions.get(i).getAmount();
 			}
-			average = sum/contributions.size();
+			emailAverage = sum/contributions.size();
 		}
-		return df.format(average);
+		return emailAverage;
+	}
+
+	public void setEmailAverage(Double emailAverage) {
+		this.emailAverage = emailAverage;
+	}
+
+	public String getEmailAverageFormatted(Double emailAverage) {
+		DecimalFormat df = new DecimalFormat("0.00");
+		return df.format(emailAverage);
 	}
 
 	@PrePersist
