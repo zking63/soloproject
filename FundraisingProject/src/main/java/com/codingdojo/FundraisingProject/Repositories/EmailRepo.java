@@ -21,10 +21,10 @@ public interface EmailRepo extends CrudRepository<Emails, Long>{
 	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.Emaildate Asc, emails.Emailtime Asc", nativeQuery = true)
 	List<Emails> findByOrderByAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
 			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
-	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.emailAverage Desc, emails.emailAverage Desc", nativeQuery = true)
+	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.email_average Desc", nativeQuery = true)
 	List<Emails> findByAverageOrderByDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
 			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
-	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.emailAverage Asc, emails.emailAverage Asc", nativeQuery = true)
+	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.email_average Asc", nativeQuery = true)
 	List<Emails> findByAverageOrderByAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
 			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
 }

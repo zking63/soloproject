@@ -46,7 +46,7 @@ public class EmailService {
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByAverageOrderByDesc(startdateE, enddateE);
 	}
-	public List<Emails> AvAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
+	public List<Emails> AverageAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByAverageOrderByAsc(startdateE, enddateE);
 	}
