@@ -4,6 +4,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +22,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -148,7 +151,7 @@ public class Emails {
 	public Double getEmailAverage() {
 		List<Donation> contributions = this.getEmaildonations();
 		Double sum = 0.0;
-		Double average = 0.0;
+		Double emailAverage = 0.0;
 		if (contributions.size() > 0) {
 			for (int i = 0; i < contributions.size(); i++) {
 				sum += contributions.get(i).getAmount();
@@ -162,9 +165,13 @@ public class Emails {
 		this.emailAverage = emailAverage;
 	}
 
-	public String getEmailAverageFormatted(Double emailAverage) {
+	public String getEmailAverageFormatted() {
+		if (this.emailAverage == null) {
+			this.emailAverage = 0.0;
+		}
+		double emailAverage1 = (double) getEmailAverage();
 		DecimalFormat df = new DecimalFormat("0.00");
-		return df.format(emailAverage);
+		return df.format(emailAverage1);
 	}
 
 	@PrePersist

@@ -194,6 +194,7 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("email", this.eservice.allEmails());
+		 //model.addAttribute("emailA", this.eservice.getEmailAverageFormatted(email.getEmailAverage()));
 		 return "emails.jsp";
 	 }
 	 @RequestMapping("/donors/{id}")
