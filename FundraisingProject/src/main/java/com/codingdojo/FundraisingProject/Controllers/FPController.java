@@ -187,24 +187,23 @@ public class FPController {
 	 }
 	 @RequestMapping("/emails")
 	 public String Emailpage(@ModelAttribute("email") Emails email, Model model, HttpSession session,
-			 @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
-			 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
+			 @Param("startdateE") @DateTimeFormat(iso = ISO.DATE) String startdateE, 
+			 @Param("enddateE") @DateTimeFormat(iso = ISO.DATE) String enddateE) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (user_id == null) {
 			 return "redirect:/";
 		 }
-		 if (startdate == null) {
-			 startdate = dateFormat();
+		 if (startdateE == null) {
+			 startdateE = dateFormat();
 		 }
-		 if (enddate == null) {
-			 enddate = dateFormat();
+		 if (enddateE == null) {
+			 enddateE = dateFormat();
 		 }
-		 model.addAttribute("startdate", startdate);
-		 model.addAttribute("enddate", enddate);
+		 model.addAttribute("startdateE", startdateE);
+		 model.addAttribute("enddateE", enddateE);
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
-		 model.addAttribute("email", this.eservice.EmailTest(startdate, enddate));
-		 //model.addAttribute("email", this.eservice.allEmails());
+		 model.addAttribute("email", this.eservice.EmailTest(startdateE, enddateE));
 		 return "emails.jsp";
 	 }
 	 @RequestMapping("/donors/{id}")
@@ -401,5 +400,54 @@ public class FPController {
 			 }
 			 model.addAttribute("donations", donations);
 			 return "home.jsp";
+		 }
+		 //sorting emails page
+		 @RequestMapping(value="/emails/sortdown")
+		 public String sortdownEmail(Model model, HttpSession session,
+				 @RequestParam("startdateE") @DateTimeFormat(iso = ISO.DATE) String startdateE, 
+				 @RequestParam("enddateE") @DateTimeFormat(iso = ISO.DATE) String enddateE, @RequestParam("field") String field) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (user_id == null) {
+				 return "redirect:/";
+			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 model.addAttribute("dateFormat", dateFormat());
+			 model.addAttribute("startdateE", startdateE);
+			 model.addAttribute("enddateE", enddateE);
+			 model.addAttribute("field",field);
+			 List<Emails> email = null;
+			 if (field.equals("datetime")) {
+				 email = eservice.EmailTest(startdateE, enddateE);
+			 }
+			 if (field.equals("average")) {
+				 email = eservice.AvDesc(startdateE, enddateE);
+			 }
+			 model.addAttribute("email", email);
+			 return "emails.jsp";
+		 }
+		 @RequestMapping(value="/emails/sortup")
+		 public String sortUpEmail(Model model, HttpSession session,
+				 @Param("startdateE") @DateTimeFormat(iso = ISO.DATE) String startdateE, 
+				 @Param("enddateE") @DateTimeFormat(iso = ISO.DATE) String enddateE, @Param("field") String field) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (user_id == null) {
+				 return "redirect:/";
+			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 model.addAttribute("dateFormat", dateFormat());
+			 model.addAttribute("startdateE", startdateE);
+			 model.addAttribute("enddateE", enddateE);
+			 model.addAttribute("field",field);
+			 List<Emails> email = null;
+			 if (field.equals("datetime")) {
+				 email = this.eservice.EmailTestAsc(startdateE, enddateE);
+			 }
+			 if (field.equals("average")) {
+				 email = eservice.AvAsc(startdateE, enddateE);
+			 }
+			 model.addAttribute("email", email);
+			 return "emails.jsp";
 		 }
 }

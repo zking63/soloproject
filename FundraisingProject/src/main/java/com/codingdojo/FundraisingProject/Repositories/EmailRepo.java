@@ -15,7 +15,16 @@ import com.codingdojo.FundraisingProject.Models.Emails;
 public interface EmailRepo extends CrudRepository<Emails, Long>{
 	List<Emails> findAll();
 	Emails findByemailRefcode(String emailRefcode);
-	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdate and emails.Emaildate <= :enddate order by emails.Emaildate Desc, emails.Emailtime Desc", nativeQuery = true)
-	List<Emails> findByOrderByDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
-			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
+	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.Emaildate Desc, emails.Emailtime Desc", nativeQuery = true)
+	List<Emails> findByOrderByDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
+			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
+	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.Emaildate Asc, emails.Emailtime Asc", nativeQuery = true)
+	List<Emails> findByOrderByAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
+			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
+	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.emailAverage Desc, emails.emailAverage Desc", nativeQuery = true)
+	List<Emails> findByAverageOrderByDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
+			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
+	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.emailAverage Asc, emails.emailAverage Asc", nativeQuery = true)
+	List<Emails> findByAverageOrderByAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
+			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
 }

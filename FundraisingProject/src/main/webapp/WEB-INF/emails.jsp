@@ -32,8 +32,8 @@
 	<div class="wrapper">
 	<h2>Emails</h2>
 	<form method="post" class="date-form" action="/emails">
-		<input type="date" value="${startdate}" name="startdate"/>
-		<input type="date" value="${enddate}" name="enddate"/>
+		<input type="date" value="${startdateE}" name="startdateE"/>
+		<input type="date" value="${enddateE}" name="enddateE"/>
 		<button>Set</button>
 	</form>
 	<table class="table table-hover">
@@ -41,10 +41,36 @@
 	        <tr>
 	            <th>Name</th>
 	            <th>Send time</th>
-	            <th>Send date</th>
+	            <p><th>Send date 		
+		            <form class="pointer" method="post" action="/emails/sortdown">
+						<input type="hidden" name="field" value="datetime">
+						<input type="hidden" name="startdateE" value="${ startdateE}">
+						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<button>^</button>
+					</form>
+					<form class="pointer" method="post" action="/emails/sortup">
+						<input type="hidden" name="field" value="datetime">
+						<input type="hidden" name="startdateE" value="${ startdateE}">
+						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<button>v</button>
+					</form>
+				</th></p>
 	            <th>Refcode</th>
 	            <th>Total revenue</th>
-	            <th>Average donation</th>
+	            <p><th>Average Donation		
+		            <form class="pointer" method="post" action="/emails/sortdown">
+						<input type="hidden" name="field" value="average">
+						<input type="hidden" name="startdateE" value="${ startdateE}">
+						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<button>^</button>
+					</form>
+					<form class="pointer" method="post" action="/emails/sortup">
+						<input type="hidden" name="field" value="average">
+						<input type="hidden" name="startdateE" value="${ startdateE}">
+						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<button>v</button>
+					</form>
+				</th></p>
 	            <th>Action</th>
 	        </tr>
 	    </thead>

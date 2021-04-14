@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
-import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Emails;
 import com.codingdojo.FundraisingProject.Repositories.EmailRepo;
 
@@ -35,8 +34,20 @@ public class EmailService {
 	public void delete(long id) {
 		erepo.deleteById(id);
 	}
-	public List<Emails> EmailTest(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, @Param("enddate") 
-	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
-		return erepo.findByOrderByDesc(startdate, enddate);
+	public List<Emails> EmailTest(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
+	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
+		return erepo.findByOrderByDesc(startdateE, enddateE);
+	}
+	public List<Emails> EmailTestAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
+	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
+		return erepo.findByOrderByAsc(startdateE, enddateE);
+	}
+	public List<Emails> AvDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
+	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
+		return erepo.findByAverageOrderByDesc(startdateE, enddateE);
+	}
+	public List<Emails> AvAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
+	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
+		return erepo.findByAverageOrderByAsc(startdateE, enddateE);
 	}
 }
