@@ -50,4 +50,7 @@ public class EmailService {
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByAverageOrderByAsc(startdateE, enddateE);
 	}
+	public List<Emails> getAv(@Param("emailid") long id) {
+		return erepo.findByAverage(id);
+	}
 }

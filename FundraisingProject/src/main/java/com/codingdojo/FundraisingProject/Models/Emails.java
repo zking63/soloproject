@@ -23,6 +23,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -36,9 +37,9 @@ public class Emails {
 	private Date Emaildate;
 	@DateTimeFormat(pattern ="kk:mm")
 	private Date Emailtime;
+	private Double email_average;
 	@NotNull
 	private String emailRefcode;
-	private Double email_average;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -52,6 +53,11 @@ public class Emails {
 	
 	public Emails() {
 		
+	}
+
+	private String AVG(List<Donation> emaildonations2) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public long getId() {
@@ -152,17 +158,26 @@ public class Emails {
 		List<Donation> contributions = this.getEmaildonations();
 		Double sum = 0.0;
 		Double email_average = 0.0;
-		if (contributions.size() > 0) {
-			for (int i = 0; i < contributions.size(); i++) {
-				sum += contributions.get(i).getAmount();
+		if (Emaildonations.size() > 0) {
+			for (int i = 0; i < Emaildonations.size(); i++) {
+				sum += Emaildonations.get(i).getAmount();
 			}
-			email_average = sum/contributions.size();
+			email_average = sum/Emaildonations.size();
 		}
 		return email_average;
 	}
 
-	public void setEmailAverage(Double email_average) {
-		this.email_average = email_average;
+	public Double setEmailAverage() {
+		List<Donation> contributions = this.getEmaildonations();
+		Double sum = 0.0;
+		Double email_average = 0.0;
+		if (Emaildonations.size() > 0) {
+			for (int i = 0; i < Emaildonations.size(); i++) {
+				sum += Emaildonations.get(i).getAmount();
+			}
+			email_average = sum/Emaildonations.size();
+		}
+		return email_average;
 	}
 
 	public String getEmailAverageFormatted() {
