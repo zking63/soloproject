@@ -27,6 +27,8 @@ public interface EmailRepo extends CrudRepository<Emails, Long>{
 	@Query(value = "SELECT * FROM emails where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by emails.email_average Asc", nativeQuery = true)
 	List<Emails> findByAverageOrderByAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
 			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
-	@Query(value = "SET @email_average = (SELECT AVG(donations.amount) FROM emails LEFT JOIN donations ON (donations.email_id = emails.id)\n WHERE emails.id = emailid)", nativeQuery = true)
-	List<Emails> findByAverage(@Param("emailid") long id);
+	/*@Query(value = "SELECT AVG(donations.amount) FROM emails LEFT JOIN donations ON (donations.email_id = emails.id) GROUP BY emails.id ORDER BY AVG(donations.amount) ASC", nativeQuery = true)
+	List<Emails> averages();*/
+	//@Query(value="SELECT AVG(donations.amount) FROM emails LEFT JOIN donations ON (donations.email_id = emails.id) GROUP BY emails.id", nativeQuery = true)
+	//List<Emails[]> averages();
 }

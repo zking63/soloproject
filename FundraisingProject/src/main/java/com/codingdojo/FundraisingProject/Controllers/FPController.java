@@ -204,7 +204,7 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("email", this.eservice.EmailTest(startdateE, enddateE));
-		 model.addAttribute("average", this.eservice.getAv(email.getId()));
+		 //model.addAttribute("average", this.eservice.getAv());
 		 return "emails.jsp";
 	 }
 	 @RequestMapping("/donors/{id}")
@@ -403,7 +403,7 @@ public class FPController {
 			 return "home.jsp";
 		 }
 		 //sorting emails page
-		 @RequestMapping(value="/emails/sortdown")
+		 /*@RequestMapping(value="/emails/sortdown")
 		 public String sortdownEmail(Model model, HttpSession session,
 				 @RequestParam("startdateE") @DateTimeFormat(iso = ISO.DATE) String startdateE, 
 				 @RequestParam("enddateE") @DateTimeFormat(iso = ISO.DATE) String enddateE, @RequestParam("field") String field) {
@@ -450,5 +450,5 @@ public class FPController {
 			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
-		 }
+		 }*/
 }

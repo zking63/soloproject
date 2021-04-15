@@ -57,20 +57,7 @@
 				</th></p>
 	            <th>Refcode</th>
 	            <th>Total revenue</th>
-	            <p><th>Average Donation		
-		            <form class="pointer" method="post" action="/emails/sortdown">
-						<input type="hidden" name="field" value="average">
-						<input type="hidden" name="startdateE" value="${ startdateE}">
-						<input type="hidden" name="enddateE" value="${ enddateE}">
-						<button>^</button>
-					</form>
-					<form class="pointer" method="post" action="/emails/sortup">
-						<input type="hidden" name="field" value="average">
-						<input type="hidden" name="startdateE" value="${ startdateE}">
-						<input type="hidden" name="enddateE" value="${ enddateE}">
-						<button>v</button>
-					</form>
-				</th></p>
+	            <th>Average Donation</th>
 	            <th>Action</th>
 	        </tr>
 	    </thead>
@@ -82,7 +69,7 @@
 					<td>${e.getEmailDateFormatted()}</td>
 					<td>${e.emailRefcode}</td>
 					<td>$${e.getEmailSum()}</td>
-					<td>$${e.average}</td>
+					<td>$${e.getEmailAverageFormatted()}</td>
 					<td>
 						<p><a href="/emails/edit/${e.id}">Edit</a></p>
 						<p><a href="/emails/delete/${e.id}">Delete</a></p>
