@@ -9,8 +9,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.FundraisingProject.Models.Data;
+import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Emails;
 import com.codingdojo.FundraisingProject.Repositories.DataRepo;
+import com.codingdojo.FundraisingProject.Repositories.DonationRepo;
 import com.codingdojo.FundraisingProject.Repositories.EmailRepo;
 
 @Service
@@ -20,6 +22,9 @@ public class EmailService {
 	
 	@Autowired
 	private DataRepo datarepo;
+	
+	@Autowired
+	private DonationRepo drepo;
 	
 	public Emails createEmail(Emails email) {
 		return erepo.save(email);
@@ -38,6 +43,10 @@ public class EmailService {
 	}
 	public void delete(long id) {
 		erepo.deleteById(id);
+	}
+	public List<Donation> getEmailDonations(Emails email){
+		Long id = email.getId();
+		return drepo.findByemailDonation(id);
 	}
 	public List<Emails> EmailTest(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
