@@ -11,12 +11,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -37,7 +39,7 @@ public class Emails {
 	private Date Emaildate;
 	@DateTimeFormat(pattern ="kk:mm")
 	private Date Emailtime;
-	private Double email_average;
+	//private Double email_average;
 	@NotNull
 	private String emailRefcode;
 	@Column(updatable=false)
@@ -50,15 +52,18 @@ public class Emails {
 	
     @OneToMany(fetch=FetchType.LAZY, mappedBy="emailDonation")
 	private List<Donation> Emaildonations;
+    
+	@OneToOne(mappedBy="email", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private Data email_average;
 	
 	public Emails() {
 		
 	}
 
-	private String AVG(List<Donation> emaildonations2) {
+	/*private String AVG(List<Donation> emaildonations2) {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 	public long getId() {
 		return id;
@@ -143,7 +148,8 @@ public class Emails {
 	public void setEmail_uploader(User email_uploader) {
 		this.email_uploader = email_uploader;
 	}
-	public Double getEmailSum() {
+	
+	/*public Double getEmailSum() {
 		List<Donation> contributions = this.getEmaildonations();
 		Double sum = 0.0;
 		if (contributions.size() > 0) {
@@ -187,6 +193,14 @@ public class Emails {
 		double emailAverage1 = (double) getEmailAverage();
 		DecimalFormat df = new DecimalFormat("0.00");
 		return df.format(emailAverage1);
+	}*/
+
+	public Data getEmail_average() {
+		return email_average;
+	}
+
+	public void setEmail_average(Data email_average) {
+		this.email_average = email_average;
 	}
 
 	@PrePersist
