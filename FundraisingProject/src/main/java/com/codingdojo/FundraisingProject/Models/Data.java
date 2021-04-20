@@ -16,30 +16,42 @@ public class Data {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	private Double emailaverage;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="email_id")
-    private Emails email;
+    private Emails dataemail;
     
     
 	public Data() {
 
 	}
 	
-	public Data(Emails email) {
-		this.email = email;
+	public Data(Emails email, Double eaverage) {
+		this.dataemail = email;
+		this.emailaverage = eaverage;
 	}
 	
+	
+	
+	public Double getEmailAverage() {
+		return emailaverage;
+	}
+
+	public void setEmailAverage(Double emailaverage) {
+		this.emailaverage = emailaverage;
+	}
+
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Emails getEmail() {
-		return email;
+	public Emails getDataEmail() {
+		return dataemail;
 	}
-	public void setEmail(Emails email) {
-		this.email = email;
+	public void setDataEmail(Emails dataemail) {
+		this.dataemail = dataemail;
 	}
     
 }

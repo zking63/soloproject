@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.codingdojo.FundraisingProject.Models.Data;
 import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Donor;
 import com.codingdojo.FundraisingProject.Models.Emails;
@@ -157,6 +158,9 @@ public class FPController {
 			 model.addAttribute("dateFormat", dateFormat());
 			 return "newdonation.jsp";
 		 }
+		 Emails email = donation.getEmailDonation();
+		 Double eaverage = getEmailAverageC(email);
+		 //this.eservice.getEmailAverage(email, eaverage);
 		 donservice.createDonation(donation);
 		 return "redirect:/home";
 	 }
@@ -204,7 +208,7 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("email", this.eservice.EmailTest(startdateE, enddateE));
-		 //model.addAttribute("average", this.eservice.getAv());
+		 //model.addAttribute("average", this.eservice.getEmailAverage(email));
 		 return "emails.jsp";
 	 }
 	 @RequestMapping("/donors/{id}")
@@ -402,6 +406,20 @@ public class FPController {
 			 model.addAttribute("donations", donations);
 			 return "home.jsp";
 		 }
+		 //averages
+		public Double getEmailAverageC(Emails email) {
+			List<Donation> contributions = this.eservice.getEmailDonations(email);
+			Double sum = 0.0;
+			Double eaverage = null;
+			if (contributions.size() > 0) {
+				for (int i = 0; i < contributions.size(); i++) {
+					sum += contributions.get(i).getAmount();
+				}
+				eaverage = sum/contributions.size();
+			}
+			eservice.getEmailAverage(email, eaverage);
+			return eaverage;
+		}
 		 //sorting emails page
 		 /*@RequestMapping(value="/emails/sortdown")
 		 public String sortdownEmail(Model model, HttpSession session,

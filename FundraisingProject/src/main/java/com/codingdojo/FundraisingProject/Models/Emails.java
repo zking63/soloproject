@@ -53,8 +53,8 @@ public class Emails {
     @OneToMany(fetch=FetchType.LAZY, mappedBy="emailDonation")
 	private List<Donation> Emaildonations;
     
-	@OneToOne(mappedBy="email", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private Data email_average;
+	@OneToOne(mappedBy="dataemail", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private Data emaildata;
 	
 	public Emails() {
 		
@@ -149,7 +149,7 @@ public class Emails {
 		this.email_uploader = email_uploader;
 	}
 	
-	/*public Double getEmailSum() {
+	public Double getEmailSum() {
 		List<Donation> contributions = this.getEmaildonations();
 		Double sum = 0.0;
 		if (contributions.size() > 0) {
@@ -160,7 +160,7 @@ public class Emails {
 		return sum;
 	}
 	
-	public Double getEmailAverage() {
+	/*public Double getEmailAverage() {
 		List<Donation> contributions = this.getEmaildonations();
 		Double sum = 0.0;
 		Double email_average = 0.0;
@@ -195,12 +195,12 @@ public class Emails {
 		return df.format(emailAverage1);
 	}*/
 
-	public Data getEmail_average() {
-		return email_average;
+	public Data getEmailData() {
+		return emaildata;
 	}
 
-	public void setEmail_average(Data email_average) {
-		this.email_average = email_average;
+	public void setEmailData(Data emaildata) {
+		this.emaildata = emaildata;
 	}
 
 	@PrePersist

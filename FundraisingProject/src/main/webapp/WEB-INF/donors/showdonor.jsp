@@ -43,7 +43,7 @@
 			        </tr>
 			    </thead>
 				<tbody>
-				<c:forEach items="${ donor.getContributions() }" var="d">
+				<c:forEach items="${ donor.contributions }" var="d">
 					<tr>
 						<td>${ d.getDonationDateFormatted() }</td>
 						<td>${ d.getDonationTimeFormatted() }</td>

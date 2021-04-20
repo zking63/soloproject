@@ -56,9 +56,9 @@ public class EmailService {
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByOrderByAsc(startdateE, enddateE);
 	}
-	public Data getEmailAverage(Emails email) {
-		Data average = Data(email);
-		return datarepo.save(average);
+	public Data getEmailAverage(Emails email, Double eaverage) {
+		Data emailaverage = new Data(email, eaverage);
+		return datarepo.save(emailaverage);
 	}
 	/*public List<Emails> AvDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
@@ -71,9 +71,4 @@ public class EmailService {
 	public List<Emails[]> getAv() {
 		return erepo.averages();
 	}*/
-
-	private Data Data(Emails email) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
