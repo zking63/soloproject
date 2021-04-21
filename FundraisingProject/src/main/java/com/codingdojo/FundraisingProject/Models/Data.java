@@ -1,5 +1,7 @@
 package com.codingdojo.FundraisingProject.Models;
 
+import java.text.DecimalFormat;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,6 +41,15 @@ public class Data {
 
 	public void setEmailAverage(Double emailaverage) {
 		this.emailaverage = emailaverage;
+	}
+	
+	public String getEmailAverageFormatted() {
+		if (this.emailaverage == null) {
+			this.emailaverage = 0.0;
+		}
+		double emailAverage1 = (double) getEmailAverage();
+		DecimalFormat df = new DecimalFormat("0.00");
+		return df.format(emailAverage1);
 	}
 
 	public Long getId() {
