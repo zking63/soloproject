@@ -49,7 +49,7 @@
 						<td>${ emails.getEmailDateFormatted() }</td>
 						<td>${ emails.getEmailTimeFormatted() }</td>
 						<td>$${ emails.getEmailSum() }</td>
-						<td>$${ emails.getEmailData().getEmailAverage() }</td>
+						<td>$${ emails.emaildata.getEmailAverageFormatted() }</td>
 					</tr>
 				</tbody>
 			</table>
