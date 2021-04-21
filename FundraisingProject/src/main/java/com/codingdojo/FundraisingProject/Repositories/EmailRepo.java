@@ -29,6 +29,8 @@ public interface EmailRepo extends CrudRepository<Emails, Long>{
 			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
 	@Query(value = "SELECT AVG(donations.amount) FROM emails LEFT JOIN donations ON donations.email_id = :emailid", nativeQuery = true)
 	Double averages(@Param("emailid") Long id);
+	@Query(value = "SELECT SUM(DISTINCT donations.amount) FROM emails LEFT JOIN donations ON donations.email_id = emails.id", nativeQuery = true)
+	Double sums(@Param("emailid") Long id);
 	//@Query(value="SELECT AVG(donations.amount) FROM emails LEFT JOIN donations ON (donations.email_id = emails.id) GROUP BY emails.id", nativeQuery = true)
 	//List<Emails[]> averages();
 }
