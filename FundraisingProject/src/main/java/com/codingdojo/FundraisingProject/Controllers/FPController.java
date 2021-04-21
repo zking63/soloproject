@@ -186,6 +186,7 @@ public class FPController {
 		 }
 		 model.addAttribute("dateFormat", dateFormat());
 		 model.addAttribute("timeFormat", timeFormat());
+		 this.eservice.getEmailAverage(email);
 		 eservice.createEmail(email);
 		 return "redirect:/emails";
 	 }
@@ -311,12 +312,16 @@ public class FPController {
 			 model.addAttribute("timeFormat", timeFormat());
 			 model.addAttribute("user", user);
 			 eservice.createEmail(email);
+			 this.eservice.getEmailAverage(email);
 			 return "redirect:/emails";
 		 }
 		 //edit and delete donations homepage
 			@RequestMapping("/donations/delete/{id}")
 			public String DeleteDonation(@PathVariable("id") Long id, HttpSession session, Model model) {
+				Donation donation = this.donservice.findDonationbyId(id);
 				this.donservice.delete(id);
+				Emails email = donation.getEmailDonation();
+				this.eservice.getEmailAverage(email);
 				return "redirect:/home";
 			}
 			@RequestMapping(value="/donations/edit/{id}")
@@ -326,12 +331,15 @@ public class FPController {
 					return "redirect:/";
 				}
 				User user = uservice.findUserbyId(user_id);
-				model.addAttribute("donation", donservice.findDonationbyId(id));
+				Donation donation = this.donservice.findDonationbyId(id);
+				model.addAttribute("donation", donation);
 				model.addAttribute("user", user);
 				model.addAttribute("donor", this.dservice.allDonors());
 				model.addAttribute("email", this.eservice.allEmails());
 				model.addAttribute("dateFormat", dateFormat());
 				model.addAttribute("timeFormat", timeFormat());
+				Emails email = donation.getEmailDonation();
+				this.eservice.getEmailAverage(email);
 				return "/donations/editdonation.jsp";
 			}
 		 @RequestMapping(value="/donations/edit/{id}", method=RequestMethod.POST)
