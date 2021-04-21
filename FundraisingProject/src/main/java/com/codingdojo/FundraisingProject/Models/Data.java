@@ -19,6 +19,7 @@ public class Data {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private Double emailaverage;
+	private Double emailsum;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="email_id")
     private Emails dataemail;
@@ -28,9 +29,10 @@ public class Data {
 
 	}
 	
-	public Data(Emails email, Double eaverage) {
+	public Data(Emails email, Double eaverage, Double emailsum) {
 		this.dataemail = email;
 		this.emailaverage = eaverage;
+		this.emailsum = emailsum;
 	}
 	
 	
@@ -64,5 +66,14 @@ public class Data {
 	public void setDataEmail(Emails dataemail) {
 		this.dataemail = dataemail;
 	}
+
+	public Double getEmailsum() {
+		return emailsum;
+	}
+
+	public void setEmailsum(Double emailsum) {
+		this.emailsum = emailsum;
+	}
+
     
 }
