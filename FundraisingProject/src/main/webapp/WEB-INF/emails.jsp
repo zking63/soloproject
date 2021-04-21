@@ -81,7 +81,7 @@
 					<td>${e.getEmailTimeFormatted()}</td>
 					<td>${e.getEmailDateFormatted()}</td>
 					<td>${e.emailRefcode}</td>
-					<td>$${e.getEmailSum()}</td>
+					<td>$${e.emaildata.getEmailsum()}</td>
 					<td>$${e.emaildata.getEmailAverageFormatted()}</td>
 					<td>
 						<p><a href="/emails/edit/${e.id}">Edit</a></p>
