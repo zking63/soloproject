@@ -430,7 +430,7 @@ public class FPController {
 			return eaverage;
 		}*/
 		 //sorting emails page
-		 /*@RequestMapping(value="/emails/sortdown")
+		 @RequestMapping(value="/emails/sortdown")
 		 public String sortdownEmail(Model model, HttpSession session,
 				 @RequestParam("startdateE") @DateTimeFormat(iso = ISO.DATE) String startdateE, 
 				 @RequestParam("enddateE") @DateTimeFormat(iso = ISO.DATE) String enddateE, @RequestParam("field") String field) {
@@ -449,7 +449,7 @@ public class FPController {
 				 email = eservice.EmailTest(startdateE, enddateE);
 			 }
 			 if (field.equals("average")) {
-				 email = eservice.AvDesc(startdateE, enddateE);
+				 //email = eservice.AvDesc(startdateE, enddateE);
 			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
@@ -473,9 +473,9 @@ public class FPController {
 				 email = this.eservice.EmailTestAsc(startdateE, enddateE);
 			 }
 			 if (field.equals("average")) {
-				 email = this.eservice.AverageAsc(startdateE, enddateE);
+				 //email = this.eservice.AverageAsc(startdateE, enddateE);
 			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
-		 }*/
+		 }
 }
