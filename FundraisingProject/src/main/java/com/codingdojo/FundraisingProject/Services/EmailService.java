@@ -69,14 +69,14 @@ public class EmailService {
 			return datarepo.save(emaildata);
 		}
 	}
-	/*public List<Emails> AvDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
+	public List<Emails> AvDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByAverageOrderByDesc(startdateE, enddateE);
 	}
 	public List<Emails> AverageAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByAverageOrderByAsc(startdateE, enddateE);
-	}*/
+	}
 	/*public Double getAv(@Param("id") Long id) {
 		return erepo.averages(id);
 	}*/

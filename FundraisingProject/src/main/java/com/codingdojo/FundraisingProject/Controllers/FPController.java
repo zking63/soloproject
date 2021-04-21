@@ -449,7 +449,7 @@ public class FPController {
 				 email = eservice.EmailTest(startdateE, enddateE);
 			 }
 			 if (field.equals("average")) {
-				 //email = eservice.AvDesc(startdateE, enddateE);
+				 email = eservice.AvDesc(startdateE, enddateE);
 			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
@@ -473,7 +473,7 @@ public class FPController {
 				 email = this.eservice.EmailTestAsc(startdateE, enddateE);
 			 }
 			 if (field.equals("average")) {
-				 //email = this.eservice.AverageAsc(startdateE, enddateE);
+				 email = this.eservice.AverageAsc(startdateE, enddateE);
 			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
