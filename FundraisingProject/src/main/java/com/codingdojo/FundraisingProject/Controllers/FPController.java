@@ -338,8 +338,6 @@ public class FPController {
 				model.addAttribute("email", this.eservice.allEmails());
 				model.addAttribute("dateFormat", dateFormat());
 				model.addAttribute("timeFormat", timeFormat());
-				Emails email = donation.getEmailDonation();
-				this.eservice.getEmailAverage(email);
 				return "/donations/editdonation.jsp";
 			}
 		 @RequestMapping(value="/donations/edit/{id}", method=RequestMethod.POST)
@@ -354,6 +352,8 @@ public class FPController {
 			 model.addAttribute("email", this.eservice.allEmails());
 			 model.addAttribute("dateFormat", dateFormat());
 			 model.addAttribute("timeFormat", timeFormat());
+			 Emails email = donation.getEmailDonation();
+			 this.eservice.getEmailAverage(email);
 			 donservice.createDonation(donation);
 			 return "redirect:/home";
 		 }
