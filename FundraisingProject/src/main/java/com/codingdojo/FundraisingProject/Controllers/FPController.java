@@ -159,7 +159,7 @@ public class FPController {
 			 return "newdonation.jsp";
 		 }
 		 Emails email = donation.getEmailDonation();
-		 this.eservice.getEmailAverage(email);
+		 this.eservice.getEmailData(email);
 		 donservice.createDonation(donation);
 		 return "redirect:/home";
 	 }
@@ -185,7 +185,7 @@ public class FPController {
 		 }
 		 model.addAttribute("dateFormat", dateFormat());
 		 model.addAttribute("timeFormat", timeFormat());
-		 this.eservice.getEmailAverage(email);
+		 this.eservice.getEmailData(email);
 		 eservice.createEmail(email);
 		 return "redirect:/emails";
 	 }
@@ -311,7 +311,7 @@ public class FPController {
 			 model.addAttribute("timeFormat", timeFormat());
 			 model.addAttribute("user", user);
 			 eservice.createEmail(email);
-			 this.eservice.getEmailAverage(email);
+			 this.eservice.getEmailData(email);
 			 return "redirect:/emails";
 		 }
 		 //edit and delete donations homepage
@@ -320,7 +320,7 @@ public class FPController {
 				Donation donation = this.donservice.findDonationbyId(id);
 				this.donservice.delete(id);
 				Emails email = donation.getEmailDonation();
-				this.eservice.getEmailAverage(email);
+				this.eservice.getEmailData(email);
 				return "redirect:/home";
 			}
 			@RequestMapping(value="/donations/edit/{id}")
@@ -352,7 +352,7 @@ public class FPController {
 			 model.addAttribute("dateFormat", dateFormat());
 			 model.addAttribute("timeFormat", timeFormat());
 			 Emails email = donation.getEmailDonation();
-			 this.eservice.getEmailAverage(email);
+			 this.eservice.getEmailData(email);
 			 donservice.createDonation(donation);
 			 return "redirect:/home";
 		 }
