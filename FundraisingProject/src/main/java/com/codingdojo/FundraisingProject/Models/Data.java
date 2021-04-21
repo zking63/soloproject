@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class Data {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private Double emailaverage;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="email_id")
@@ -41,10 +41,10 @@ public class Data {
 		this.emailaverage = emailaverage;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public Emails getDataEmail() {

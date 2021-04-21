@@ -159,8 +159,8 @@ public class FPController {
 			 return "newdonation.jsp";
 		 }
 		 Emails email = donation.getEmailDonation();
-		 Double eaverage = getEmailAverageC(email);
-		 //this.eservice.getEmailAverage(email, eaverage);
+		 Data eaverage = getEmailAverageC(email);
+		 this.eservice.getEmailAverage(email);
 		 donservice.createDonation(donation);
 		 return "redirect:/home";
 	 }
@@ -208,7 +208,7 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 model.addAttribute("email", this.eservice.EmailTest(startdateE, enddateE));
-		 //model.addAttribute("average", this.eservice.getEmailAverage(email));
+		 //model.addAttribute("average", this.eservice.getAv(email.getId()));
 		 return "emails.jsp";
 	 }
 	 @RequestMapping("/donors/{id}")
@@ -407,8 +407,8 @@ public class FPController {
 			 return "home.jsp";
 		 }
 		 //averages
-		public Double getEmailAverageC(Emails email) {
-			List<Donation> contributions = this.eservice.getEmailDonations(email);
+		public Data getEmailAverageC(Emails email) {
+			/*List<Donation> contributions = this.eservice.getEmailDonations(email);
 			Double sum = 0.0;
 			Double eaverage = null;
 			if (contributions.size() > 0) {
@@ -416,8 +416,10 @@ public class FPController {
 					sum += contributions.get(i).getAmount();
 				}
 				eaverage = sum/contributions.size();
-			}
-			eservice.getEmailAverage(email, eaverage);
+			}*/
+			Long id = email.getId();
+			Data eaverage = eservice.getEmailAverage(email);
+			eservice.getEmailAverage(email);
 			return eaverage;
 		}
 		 //sorting emails page

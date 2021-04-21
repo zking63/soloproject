@@ -69,7 +69,7 @@
 					<td>${e.getEmailDateFormatted()}</td>
 					<td>${e.emailRefcode}</td>
 					<td>$${e.getEmailSum()}</td>
-					<td>$${e.emaildata}</td>
+					<td>$${e.emaildata.getEmailAverage()}</td>
 					<td>
 						<p><a href="/emails/edit/${e.id}">Edit</a></p>
 						<p><a href="/emails/delete/${e.id}">Delete</a></p>
