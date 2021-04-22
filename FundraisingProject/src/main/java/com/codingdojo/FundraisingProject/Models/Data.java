@@ -29,10 +29,10 @@ public class Data {
 
 	}
 	
-	public Data(Emails email, Double eaverage) {
+	public Data(Emails email, Double eaverage, Double emailsum) {
 		this.dataemail = email;
 		this.emailaverage = eaverage;
-		//this.emailsum = emailsum;
+		this.emailsum = emailsum;
 	}
 	
 	
