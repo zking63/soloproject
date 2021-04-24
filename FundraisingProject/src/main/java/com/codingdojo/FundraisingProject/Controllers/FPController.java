@@ -452,6 +452,9 @@ public class FPController {
 			 if (field.equals("donationscount")) {
 				 email = eservice.DonationsCountDesc(startdateE, enddateE);
 			 }
+			 if (field.equals("donorcount")) {
+				 email = eservice.DonorCountDesc(startdateE, enddateE);
+			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
 		 }
@@ -481,6 +484,9 @@ public class FPController {
 			 }
 			 if (field.equals("donationscount")) {
 				 email = eservice.DonationsCountAsc(startdateE, enddateE);
+			 }
+			 if (field.equals("donorcount")) {
+				 email = eservice.DonorCountAsc(startdateE, enddateE);
 			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
