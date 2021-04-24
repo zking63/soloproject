@@ -56,7 +56,20 @@
 					</form>
 				</th>
 	            <th>Refcode</th>
-	            <th>Total revenue</th>
+	            <th>Total revenue
+	            	 <form class="pointer" method="post" action="/emails/sortdown">
+						<input type="hidden" name="field" value="sum">
+						<input type="hidden" name="startdateE" value="${ startdateE}">
+						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<button>^</button>
+					</form>
+					<form class="pointer" method="post" action="/emails/sortup">
+						<input type="hidden" name="field" value="sum">
+						<input type="hidden" name="startdateE" value="${ startdateE}">
+						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<button>v</button>
+					</form>
+	            </th>
 	            <th>Average Donation
 	            	<form class="pointer" method="post" action="/emails/sortdown">
 						<input type="hidden" name="field" value="average">
