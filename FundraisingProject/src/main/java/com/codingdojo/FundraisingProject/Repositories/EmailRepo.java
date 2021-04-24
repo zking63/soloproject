@@ -33,6 +33,8 @@ public interface EmailRepo extends CrudRepository<Emails, Long>{
 	Double averages(@Param("emailid") Long id);
 	@Query(value = "SELECT SUM(donations.amount) FROM emails LEFT JOIN donations ON donations.email_id = emails.id WHERE emails.id = :emailid", nativeQuery = true)
 	Double sums(@Param("emailid") Long id);
+	@Query(value = "SELECT COUNT(DISTINCT donations.id) FROM emails LEFT JOIN donations ON donations.email_id = emails.id WHERE emails.id = :emailid", nativeQuery = true)
+	Double donationscount(@Param("emailid") Long id);
 	//@Query(value="SELECT AVG(donations.amount) FROM emails LEFT JOIN donations ON (donations.email_id = emails.id) GROUP BY emails.id", nativeQuery = true)
 	//List<Emails[]> averages();
 }
