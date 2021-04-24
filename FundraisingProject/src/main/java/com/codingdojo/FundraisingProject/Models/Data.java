@@ -20,6 +20,7 @@ public class Data {
 	private Long id;
 	private Double emailaverage;
 	private Double emailsum;
+	private Integer donationcount;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="email_id")
     private Emails dataemail;
@@ -73,6 +74,14 @@ public class Data {
 
 	public void setEmailsum(Double emailsum) {
 		this.emailsum = emailsum;
+	}
+
+	public Integer getDonationcount() {
+		return donationcount;
+	}
+
+	public void setDonationcount(Integer donationcount) {
+		this.donationcount = donationcount;
 	}
 
     
