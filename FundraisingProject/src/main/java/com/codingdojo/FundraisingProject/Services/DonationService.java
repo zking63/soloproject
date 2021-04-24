@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Donor;
+import com.codingdojo.FundraisingProject.Models.Emails;
 import com.codingdojo.FundraisingProject.Repositories.DonationRepo;
 
 @Service
@@ -20,7 +21,11 @@ public class DonationService {
 	@Autowired
 	private DonationRepo donrepo;
 	
-	public Donation createDonation(Donation d) {
+	@Autowired
+	private EmailService eservice;
+	
+	public Donation createDonation(Donation d, Emails email) {
+		//this.eservice.getEmailData(email);
 		return donrepo.save(d);
 	}
 	

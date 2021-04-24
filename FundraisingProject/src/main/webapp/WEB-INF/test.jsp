@@ -43,16 +43,10 @@
 	        </tr>
 	    </thead>
 		<tbody>
-			<c:forEach items="${ donations }" var="d">
+			<c:forEach items="${ data }" var="d">
 				<tr>
-					<td><a href="/donors/${d.donor.id}">${ d.donor.donorFirstName } ${d.donor.donorLastName}</a></td>
-					<td>$${d.amount}</td>
-					<td><a href="/emails/${d.emailDonation.id}">${d.emailDonation.emailName}</a></td>
-					<td>${d.getDonationDateFormatted()} | ${d.getDonationTimeFormatted()}</td>
-					<td>
-						<p><a href="/donations/edit/${d.id}">Edit</a></p>
-						<p><a href="/donations/delete/${d.id}">Delete</a></p>
-					</td>
+					<td>${ d.emails.id }</a></td>
+					<td>$${d.emails.id}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

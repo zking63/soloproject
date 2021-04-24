@@ -56,14 +56,25 @@ public class EmailService {
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByOrderByAsc(startdateE, enddateE);
 	}
+	public List<Data> getEmailDatatest() {
+		List <Data> averages = erepo.averagestest();
+		return averages;
+	}
 	public Data getEmailData(Emails email) {
 		Data emaildata = email.getEmaildata();
 		Long id = email.getId();
-		Double eaverage = erepo.averages(id);
 		Double esum = erepo.sums(id);
+		Double eaverage = erepo.averages(id);
 		if (emaildata == null){
 			Data emaildata1 = new Data(email, eaverage, esum);
 			return datarepo.save(emaildata1);
+		}
+		else {
+			emaildata.setEmailsum(esum);
+			emaildata.setEmailAverage(eaverage);
+			System.out.println(esum);
+			System.out.println(eaverage);
+			return datarepo.save(emaildata);
 		}
 		/*else if (emaildata.getEmailAverage() == null || emaildata.getEmailsum() == null) {
 			Data emaildata1 = new Data(email, eaverage, esum);
@@ -73,11 +84,6 @@ public class EmailService {
 			Data emaildata1 = new Data(email, eaverage, esum);
 			return datarepo.save(emaildata1);
 		}*/
-		else {
-			emaildata.setEmailsum(esum);
-			emaildata.setEmailAverage(eaverage);
-			return datarepo.save(emaildata);
-		}
 	}
 	/*public Data getEmailSum(Emails email) {
 		Data emaildata = email.getEmaildata();

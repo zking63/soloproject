@@ -53,7 +53,7 @@ public class Emails {
     @OneToMany(fetch=FetchType.LAZY, mappedBy="emailDonation")
 	private List<Donation> Emaildonations;
     
-	@OneToOne(mappedBy="dataemail", cascade=CascadeType.ALL, fetch=FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(mappedBy="dataemail", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Data emaildata;
 	
 	public Emails() {

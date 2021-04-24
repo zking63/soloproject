@@ -27,9 +27,11 @@ public interface EmailRepo extends CrudRepository<Emails, Long>{
 	@Query(value = "SELECT * FROM emails LEFT JOIN data_funds ON data_funds.email_id = emails.id where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by data_funds.emailaverage Asc", nativeQuery = true)
 	List<Emails> findByAverageOrderByAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
 			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
-	@Query(value = "SELECT AVG(donations.amount) FROM emails LEFT JOIN donations ON donations.email_id = :emailid", nativeQuery = true)
+	@Query(value = "SELECT *, AVG(donations.amount) FROM emails LEFT JOIN donations ON donations.email_id = emails.id GROUP BY emails.id", nativeQuery = true)
+	List<Data> averagestest();
+	@Query(value = "SELECT AVG(donations.amount) FROM emails LEFT JOIN donations ON donations.email_id = emails.id WHERE emails.id = :emailid", nativeQuery = true)
 	Double averages(@Param("emailid") Long id);
-	@Query(value = "SELECT SUM(donations.amount) FROM emails LEFT JOIN donations ON donations.email_id = :emailid", nativeQuery = true)
+	@Query(value = "SELECT SUM(donations.amount) FROM emails LEFT JOIN donations ON donations.email_id = emails.id WHERE emails.id = :emailid", nativeQuery = true)
 	Double sums(@Param("emailid") Long id);
 	//@Query(value="SELECT AVG(donations.amount) FROM emails LEFT JOIN donations ON (donations.email_id = emails.id) GROUP BY emails.id", nativeQuery = true)
 	//List<Emails[]> averages();

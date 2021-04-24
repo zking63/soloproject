@@ -159,9 +159,9 @@ public class FPController {
 			 return "newdonation.jsp";
 		 }
 		 Emails email = donation.getEmailDonation();
+		 donservice.createDonation(donation, email);
 		 this.eservice.getEmailData(email);
 		 //this.eservice.getEmailSum(email);
-		 donservice.createDonation(donation);
 		 return "redirect:/home";
 	 }
 	 @RequestMapping("/newemail")
@@ -358,7 +358,7 @@ public class FPController {
 			 Emails email = donation.getEmailDonation();
 			 this.eservice.getEmailData(email);
 			 //this.eservice.getEmailSum(email);
-			 donservice.createDonation(donation);
+			 donservice.createDonation(donation, email);
 			 return "redirect:/home";
 		 }
 		 //edit and delete donations donor page
@@ -435,6 +435,12 @@ public class FPController {
 			return eaverage;
 		}*/
 		 //sorting emails page
+		 @RequestMapping(value="/test")
+		 public String test(Model model) {
+			 List <Data> data = this.eservice.getEmailDatatest();
+			 model.addAttribute("data", data);
+			 return "test.jsp";
+		 }
 		 @RequestMapping(value="/emails/sortdown")
 		 public String sortdownEmail(Model model, HttpSession session,
 				 @RequestParam("startdateE") @DateTimeFormat(iso = ISO.DATE) String startdateE, 
