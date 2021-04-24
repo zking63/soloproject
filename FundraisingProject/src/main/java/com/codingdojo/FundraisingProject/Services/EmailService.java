@@ -78,30 +78,7 @@ public class EmailService {
 			emaildata.setEmailAverage(eaverage);
 			return datarepo.save(emaildata);
 		}
-		/*else if (emaildata.getEmailAverage() == null || emaildata.getEmailsum() == null) {
-			Data emaildata1 = new Data(email, eaverage, esum);
-			return datarepo.save(emaildata1);
-		}
-		/*else if (emaildata.getEmailsum() == null) {
-			Data emaildata1 = new Data(email, eaverage, esum);
-			return datarepo.save(emaildata1);
-		}*/
 	}
-	/*public Data getEmailSum(Emails email) {
-		Data emaildata = email.getEmaildata();
-		Long id = email.getId();
-		Double eaverage = erepo.averages(id);
-		Double esum = erepo.sums(id);
-		if (emaildata == null){
-			Data emaildata1 = new Data(email, eaverage, esum);
-			return datarepo.save(emaildata1);
-		}
-		else {
-			emaildata.setEmailsum(esum);
-			emaildata.setEmailAverage(eaverage);
-			return datarepo.save(emaildata);
-		}
-	}*/
 	public List<Emails> AvDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByAverageOrderByDesc(startdateE, enddateE);
@@ -110,7 +87,4 @@ public class EmailService {
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByAverageOrderByAsc(startdateE, enddateE);
 	}
-	/*public Double getAv(@Param("id") Long id) {
-		return erepo.averages(id);
-	}*/
 }
