@@ -31,10 +31,12 @@ public class Data {
 
 	}
 	
-	public Data(Emails email, Double eaverage, Double emailsum) {
+	public Data(Emails email, Double eaverage, Double emailsum, Integer donationcount, Integer donorcount) {
 		this.dataemail = email;
 		this.emailaverage = eaverage;
 		this.emailsum = emailsum;
+		this.donationcount = donationcount;
+		this.donorcount = donorcount;
 	}
 	
 	

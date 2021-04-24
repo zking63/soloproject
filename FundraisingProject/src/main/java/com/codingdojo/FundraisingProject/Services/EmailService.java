@@ -68,7 +68,7 @@ public class EmailService {
 		Integer donationscount = erepo.donationscount(id);
 		Integer donorscount = erepo.donorscount(id);
 		if (emaildata == null){
-			Data emaildata1 = new Data(email, eaverage, esum);
+			Data emaildata1 = new Data(email, eaverage, esum, donationscount, donorscount);
 			return datarepo.save(emaildata1);
 		}
 		else {

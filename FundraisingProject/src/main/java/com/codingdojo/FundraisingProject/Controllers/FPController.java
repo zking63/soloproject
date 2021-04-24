@@ -449,6 +449,9 @@ public class FPController {
 			 if (field.equals("sum")) {
 				 email = eservice.SumDesc(startdateE, enddateE);
 			 }
+			 if (field.equals("donationscount")) {
+				 email = eservice.DonationsCountDesc(startdateE, enddateE);
+			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
 		 }
@@ -475,6 +478,9 @@ public class FPController {
 			 }
 			 if (field.equals("sum")) {
 				 email = eservice.SumAsc(startdateE, enddateE);
+			 }
+			 if (field.equals("donationscount")) {
+				 email = eservice.DonationsCountAsc(startdateE, enddateE);
 			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
