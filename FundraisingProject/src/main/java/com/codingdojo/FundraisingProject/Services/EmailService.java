@@ -65,12 +65,14 @@ public class EmailService {
 		Long id = email.getId();
 		Double esum = erepo.sums(id);
 		Double eaverage = erepo.averages(id);
+		Integer donationscount = erepo.donationscount(id);
 		if (emaildata == null){
 			Data emaildata1 = new Data(email, eaverage, esum);
 			return datarepo.save(emaildata1);
 		}
 		else {
 			emaildata.setEmailsum(esum);
+			emaildata.setDonationcount(donationscount);
 			emaildata.setEmailAverage(eaverage);
 			System.out.println(esum);
 			System.out.println(eaverage);

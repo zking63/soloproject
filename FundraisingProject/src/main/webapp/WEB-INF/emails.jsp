@@ -71,6 +71,7 @@
 						<button>v</button>
 					</form>
 	            </th>
+	            <th>Number of donations</th>
 	            <th>Action</th>
 	        </tr>
 	    </thead>
@@ -83,6 +84,7 @@
 					<td>${e.emailRefcode}</td>
 					<td>$${e.emaildata.getEmailsum()}</td>
 					<td>$${e.emaildata.getEmailAverageFormatted()}</td>
+					<td>${e.emaildata.getDonationcount()}</td>
 					<td>
 						<p><a href="/emails/edit/${e.id}">Edit</a></p>
 						<p><a href="/emails/delete/${e.id}">Delete</a></p>
