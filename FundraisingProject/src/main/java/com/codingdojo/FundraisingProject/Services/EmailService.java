@@ -66,6 +66,7 @@ public class EmailService {
 		Double esum = erepo.sums(id);
 		Double eaverage = erepo.averages(id);
 		Integer donationscount = erepo.donationscount(id);
+		Integer donorscount = erepo.donorscount(id);
 		if (emaildata == null){
 			Data emaildata1 = new Data(email, eaverage, esum);
 			return datarepo.save(emaildata1);
@@ -73,9 +74,8 @@ public class EmailService {
 		else {
 			emaildata.setEmailsum(esum);
 			emaildata.setDonationcount(donationscount);
+			emaildata.setDonorcount(donorscount);
 			emaildata.setEmailAverage(eaverage);
-			System.out.println(esum);
-			System.out.println(eaverage);
 			return datarepo.save(emaildata);
 		}
 		/*else if (emaildata.getEmailAverage() == null || emaildata.getEmailsum() == null) {
