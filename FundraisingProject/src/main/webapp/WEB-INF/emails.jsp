@@ -84,7 +84,20 @@
 						<button>v</button>
 					</form>
 	            </th>
-	            <th>Number of donations</th>
+	            <th>Number of donations
+	                <form class="pointer" method="post" action="/emails/sortdown">
+						<input type="hidden" name="field" value="donationscount">
+						<input type="hidden" name="startdateE" value="${ startdateE}">
+						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<button>^</button>
+					</form>
+					<form class="pointer" method="post" action="/emails/sortup">
+						<input type="hidden" name="field" value="donationscount">
+						<input type="hidden" name="startdateE" value="${ startdateE}">
+						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<button>v</button>
+					</form>
+	            </th>
 	            <th>Number of donors</th>
 	            <th>Action</th>
 	        </tr>
