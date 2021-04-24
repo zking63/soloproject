@@ -52,4 +52,10 @@ public interface EmailRepo extends CrudRepository<Emails, Long>{
 	//donor count
 	@Query(value = "SELECT COUNT(DISTINCT donations.donor_id) FROM emails LEFT JOIN donations ON donations.email_id = emails.id WHERE emails.id = :emailid", nativeQuery = true)
 	Integer donorscount(@Param("emailid") Long id);
+	@Query(value = "SELECT * FROM emails LEFT JOIN data_funds ON data_funds.email_id = emails.id where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by data_funds.donorcount Asc", nativeQuery = true)
+	List<Emails> findByDonorCountOrderByAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
+			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
+	@Query(value = "SELECT * FROM emails LEFT JOIN data_funds ON data_funds.email_id = emails.id where emails.Emaildate >= :startdateE and emails.Emaildate <= :enddateE order by data_funds.donorcount Desc", nativeQuery = true)
+	List<Emails> findByDonorCountOrderByDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, 
+			@Param("enddateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE);
 }

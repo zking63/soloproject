@@ -186,7 +186,7 @@ public class FPController {
 		 }
 		 model.addAttribute("dateFormat", dateFormat());
 		 model.addAttribute("timeFormat", timeFormat());
-		 this.eservice.getEmailData(email);
+		 //this.eservice.getEmailData(email);
 		 //this.eservice.getEmailSum(email);
 		 eservice.createEmail(email);
 		 return "redirect:/emails";

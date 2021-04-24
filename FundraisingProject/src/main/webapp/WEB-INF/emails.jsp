@@ -41,7 +41,7 @@
 	        <tr>
 	            <th>Name</th>
 	            <th>Send time</th>
-	            <th>Send date 		
+	            <th>Send date</br> 		
 		            <form class="pointer" method="post" action="/emails/sortdown">
 						<input type="hidden" name="field" value="datetime">
 						<input type="hidden" name="startdateE" value="${ startdateE}">
@@ -56,7 +56,7 @@
 					</form>
 				</th>
 	            <th>Refcode</th>
-	            <th>Total revenue
+	            <th>Total revenue</br> 
 	            	 <form class="pointer" method="post" action="/emails/sortdown">
 						<input type="hidden" name="field" value="sum">
 						<input type="hidden" name="startdateE" value="${ startdateE}">
@@ -70,7 +70,7 @@
 						<button>v</button>
 					</form>
 	            </th>
-	            <th>Average Donation
+	            <th>Average Donation</br> 
 	            	<form class="pointer" method="post" action="/emails/sortdown">
 						<input type="hidden" name="field" value="average">
 						<input type="hidden" name="startdateE" value="${ startdateE}">
@@ -84,7 +84,7 @@
 						<button>v</button>
 					</form>
 	            </th>
-	            <th>Number of donations
+	            <th>Number of donations</br> 
 	                <form class="pointer" method="post" action="/emails/sortdown">
 						<input type="hidden" name="field" value="donationscount">
 						<input type="hidden" name="startdateE" value="${ startdateE}">
