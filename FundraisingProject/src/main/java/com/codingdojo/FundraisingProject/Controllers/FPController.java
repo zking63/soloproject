@@ -473,6 +473,9 @@ public class FPController {
 			 if (field.equals("average")) {
 				 email = this.eservice.AverageAsc(startdateE, enddateE);
 			 }
+			 if (field.equals("sum")) {
+				 email = eservice.SumAsc(startdateE, enddateE);
+			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
 		 }
