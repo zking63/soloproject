@@ -418,22 +418,6 @@ public class FPController {
 			 model.addAttribute("donations", donations);
 			 return "home.jsp";
 		 }
-		 //averages
-		/*public Data getEmailAverageC(Emails email) {
-			/*List<Donation> contributions = this.eservice.getEmailDonations(email);
-			Double sum = 0.0;
-			Double eaverage = null;
-			if (contributions.size() > 0) {
-				for (int i = 0; i < contributions.size(); i++) {
-					sum += contributions.get(i).getAmount();
-				}
-				eaverage = sum/contributions.size();
-			}*/
-			/*Long id = email.getId();
-			Data eaverage = eservice.getEmailAverage(email);
-			eservice.getEmailAverage(email);
-			return eaverage;
-		}*/
 		 //sorting emails page
 		 @RequestMapping(value="/test")
 		 public String test(Model model) {
@@ -461,6 +445,9 @@ public class FPController {
 			 }
 			 if (field.equals("average")) {
 				 email = eservice.AvDesc(startdateE, enddateE);
+			 }
+			 if (field.equals("sum")) {
+				 email = eservice.SumDesc(startdateE, enddateE);
 			 }
 			 model.addAttribute("email", email);
 			 return "emails.jsp";
