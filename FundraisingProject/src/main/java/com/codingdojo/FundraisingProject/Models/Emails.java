@@ -60,11 +60,6 @@ public class Emails {
 		
 	}
 
-	/*private String AVG(List<Donation> emaildonations2) {
-		// TODO Auto-generated method stub
-		return null;
-	}*/
-
 	public long getId() {
 		return id;
 	}
