@@ -164,41 +164,6 @@ public class Emails {
 		}
 		return sum;
 	}
-	
-	/*public Double getEmailAverage() {
-		List<Donation> contributions = this.getEmaildonations();
-		Double sum = 0.0;
-		Double email_average = 0.0;
-		if (Emaildonations.size() > 0) {
-			for (int i = 0; i < Emaildonations.size(); i++) {
-				sum += Emaildonations.get(i).getAmount();
-			}
-			email_average = sum/Emaildonations.size();
-		}
-		return email_average;
-	}
-
-	public Double setEmailAverage() {
-		List<Donation> contributions = this.getEmaildonations();
-		Double sum = 0.0;
-		Double email_average = 0.0;
-		if (Emaildonations.size() > 0) {
-			for (int i = 0; i < Emaildonations.size(); i++) {
-				sum += Emaildonations.get(i).getAmount();
-			}
-			email_average = sum/Emaildonations.size();
-		}
-		return email_average;
-	}
-
-	public String getEmailAverageFormatted() {
-		if (this.email_average == null) {
-			this.email_average = 0.0;
-		}
-		double emailAverage1 = (double) getEmailAverage();
-		DecimalFormat df = new DecimalFormat("0.00");
-		return df.format(emailAverage1);
-	}*/
 
 	public Data getEmailData() {
 		return emaildata;
