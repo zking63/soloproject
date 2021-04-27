@@ -312,7 +312,7 @@ public class FPController {
 			 model.addAttribute("dateFormat", dateFormat());
 			 model.addAttribute("timeFormat", timeFormat());
 			 model.addAttribute("user", user);
-			 eservice.createEmail(email);
+			 eservice.updateEmail(email);
 			 this.eservice.getEmailData(email);
 			 //this.eservice.getEmailSum(email);
 			 return "redirect:/emails";

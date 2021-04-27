@@ -71,6 +71,7 @@ public class EmailService {
 			Data emaildata1 = new Data(email, eaverage, esum, donationscount, donorscount);
 			return datarepo.save(emaildata1);
 		}
+		//if (emaildata.getDataEmail().getId() == exists) where we will calculate if there is existing data for this email
 		else {
 			emaildata.setEmailsum(esum);
 			emaildata.setDonationcount(donationscount);
