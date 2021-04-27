@@ -48,14 +48,6 @@ public class EmailService {
 		Long id = email.getId();
 		return drepo.findByemailDonation(id);
 	}
-	public List<Emails> EmailTest(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
-	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
-		return erepo.findByOrderByDesc(startdateE, enddateE);
-	}
-	public List<Emails> EmailTestAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
-	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
-		return erepo.findByOrderByAsc(startdateE, enddateE);
-	}
 	public List<Data> getEmailDatatest() {
 		List <Data> averages = erepo.averagestest();
 		return averages;
@@ -79,6 +71,17 @@ public class EmailService {
 			return datarepo.save(emaildata);
 		}
 	}
+	//sorting
+	//date/time
+	public List<Emails> EmailTest(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
+	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
+		return erepo.findByOrderByDesc(startdateE, enddateE);
+	}
+	public List<Emails> EmailTestAsc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
+	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
+		return erepo.findByOrderByAsc(startdateE, enddateE);
+	}
+	//averages
 	public List<Emails> AvDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByAverageOrderByDesc(startdateE, enddateE);
@@ -87,6 +90,7 @@ public class EmailService {
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByAverageOrderByAsc(startdateE, enddateE);
 	}
+	//sums
 	public List<Emails> SumDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findBySumOrderByDesc(startdateE, enddateE);
@@ -95,6 +99,7 @@ public class EmailService {
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findBySumOrderByAsc(startdateE, enddateE);
 	}
+	//donation count
 	public List<Emails> DonationsCountDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByDonationsCountOrderByDesc(startdateE, enddateE);
@@ -103,6 +108,7 @@ public class EmailService {
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByDonationsCountOrderByAsc(startdateE, enddateE);
 	}
+	//donor count 
 	public List<Emails> DonorCountDesc(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE){
 		return erepo.findByDonorCountOrderByDesc(startdateE, enddateE);
