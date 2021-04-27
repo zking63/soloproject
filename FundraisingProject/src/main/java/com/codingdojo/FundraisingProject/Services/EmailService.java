@@ -30,6 +30,14 @@ public class EmailService {
 		return erepo.save(email);
 	}
 	
+	public Emails updateEmail(Emails email) {
+		Long id = email.getId();
+		if (id == null) {
+			return erepo.save(email);
+		}
+		return erepo.save(email);
+	}
+	
 	public List<Emails> allEmails(){
 		return erepo.findAll();
 	}
