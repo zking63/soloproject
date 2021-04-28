@@ -50,7 +50,7 @@ public class DonorService {
 	}
 	Date mostRecent = Collections.max(dates);
 	return mostRecent;
-}
+    }
 	public List<Donation> getDonationsbydonor(Long id){
 		Donor donor = drepo.findById(id).orElse(null);
 		List<Donation> contributions = donor.getContributions();
@@ -62,10 +62,13 @@ public class DonorService {
 		Long id = donor.getId();
 		Double daverage = drepo.donoraverages(id);
 		List<DonorData> allDonordata = dondrepo.findAll();
-		/*if (allDonordata.size() > 0) {
+		if (donordata == null) {
+			donordata = new DonorData(daverage);
+			return dondrepo.save(donordata);
+		}
+		else if (allDonordata.size() > 0) {
 			for (int i = 0; i < allDonordata.size(); i++) {
-				Long donorid = donor.getId();
-				if (donorid == allDonordata.get(i).getDatadonor().getId()) {
+				if (id == allDonordata.get(i).getDatadonor().getId()) {
 					Long edid = donordata.getId();
 					edid = allDonordata.get(i).getId();
 					donordata = dondrepo.findById(edid).orElse(null);
@@ -75,10 +78,11 @@ public class DonorService {
 					donordata = new DonorData(daverage);
 				}
 			}
-		}*/
-		//else {
+			return dondrepo.save(donordata);
+		}
+		else {
 			donordata = new DonorData(daverage);
-		//}
-		return dondrepo.save(donordata);
+			return dondrepo.save(donordata);
+		}
 	}
 }

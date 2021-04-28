@@ -160,7 +160,7 @@ public class FPController {
 			 return "newdonation.jsp";
 		 }
 		 Emails email = donation.getEmailDonation();
-		 Donor donor = donation.getDonor();
+		 Donor donor = dservice.findDonorbyEmail(donation.getDonor().getDonorEmail());
 		 donservice.createDonation(donation);
 		 this.eservice.getEmailData(email);
 		 this.dservice.getDonorData(donor);

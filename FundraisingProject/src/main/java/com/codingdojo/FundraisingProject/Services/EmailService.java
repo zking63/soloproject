@@ -70,8 +70,7 @@ public class EmailService {
 		Long edid = emaildata.getId();
 		List<Data> alldata = datarepo.findAll();
 		for (int i = 0; i < alldata.size(); i++) {
-			Long emailid = email.getId();
-			if (emailid == alldata.get(i).getDataEmail().getId()) {
+			if (id == alldata.get(i).getDataEmail().getId()) {
 				edid = alldata.get(i).getId();
 				emaildata = datarepo.findById(edid).orElse(null);
 				emaildata.setEmailsum(esum);
