@@ -148,4 +148,13 @@ public class Donor {
 	protected void onUpdate(){
 	    this.updatedAt = new Date();
 	}
+
+	public DonorData getDonordata() {
+		return donordata;
+	}
+
+	public void setDonordata(DonorData donordata) {
+		this.donordata = donordata;
+	}
+	
 }

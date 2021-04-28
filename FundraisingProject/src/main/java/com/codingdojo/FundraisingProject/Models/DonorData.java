@@ -18,4 +18,25 @@ public class DonorData {
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="datadonor_id")
     private Donor datadonor;
+    
+    public DonorData() {
+    	
+    }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Donor getDatadonor() {
+		return datadonor;
+	}
+
+	public void setDatadonor(Donor datadonor) {
+		this.datadonor = datadonor;
+	}
+    
 }
