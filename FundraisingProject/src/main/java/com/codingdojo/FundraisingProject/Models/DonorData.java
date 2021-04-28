@@ -39,6 +39,14 @@ public class DonorData {
 	public void setDatadonor(Donor datadonor) {
 		this.datadonor = datadonor;
 	}
+
+	public Double getDonoraverage() {
+		return donoraverage;
+	}
+
+	public void setDonoraverage(Double donoraverage) {
+		this.donoraverage = donoraverage;
+	}
 	
     
 }
