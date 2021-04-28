@@ -161,10 +161,9 @@ public class FPController {
 		 }
 		 Emails email = donation.getEmailDonation();
 		 Donor donor = donation.getDonor();
-		 donservice.createDonation(donation, email);
+		 donservice.createDonation(donation);
 		 this.eservice.getEmailData(email);
 		 this.dservice.getDonorData(donor);
-		 //this.eservice.getEmailSum(email);
 		 return "redirect:/home";
 	 }
 	 @RequestMapping("/newemail")
@@ -362,7 +361,7 @@ public class FPController {
 			 Emails email = donation.getEmailDonation();
 			 Donor donor = donation.getDonor();
 			 //this.eservice.getEmailSum(email);
-			 donservice.createDonation(donation, email);
+			 donservice.createDonation(donation);
 			 this.eservice.getEmailData(email);
 			 this.dservice.getDonorData(donor);
 			 return "redirect:/home";

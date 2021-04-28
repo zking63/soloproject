@@ -17,7 +17,7 @@ public class DonorData {
 	private Long id;
 	private Double donoraverage;
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="datadonor_id")
+    @JoinColumn(name="donor_id")
     private Donor datadonor;
     
     public DonorData() {

@@ -60,26 +60,25 @@ public class DonorService {
 	public DonorData getDonorData(Donor donor) {
 		DonorData donordata = donor.getDonordata();
 		Long id = donor.getId();
-		//Double esum = erepo.sums(id);
 		Double daverage = drepo.donoraverages(id);
-		/*Integer donationscount = erepo.donationscount(id);
-		Integer donorscount = erepo.donorscount(id);*/
 		List<DonorData> allDonordata = dondrepo.findAll();
-		for (int i = 0; i < allDonordata.size(); i++) {
-			Long donorid = donor.getId();
-			if (donorid == allDonordata.get(i).getDatadonor().getId()) {
-				Long edid = donordata.getId();
-				edid = allDonordata.get(i).getId();
-				donordata = dondrepo.findById(edid).orElse(null);
-				/*emaildata.setEmailsum(esum);
-				emaildata.setDonationcount(donationscount);
-				emaildata.setDonorcount(donorscount);
-				emaildata.setEmailAverage(eaverage);*/
+		/*if (allDonordata.size() > 0) {
+			for (int i = 0; i < allDonordata.size(); i++) {
+				Long donorid = donor.getId();
+				if (donorid == allDonordata.get(i).getDatadonor().getId()) {
+					Long edid = donordata.getId();
+					edid = allDonordata.get(i).getId();
+					donordata = dondrepo.findById(edid).orElse(null);
+					donordata.setDonoraverage(daverage);
+				}
+				else {
+					donordata = new DonorData(daverage);
+				}
 			}
-			else {
-				donordata = new DonorData();
-			}
-		}
+		}*/
+		//else {
+			donordata = new DonorData(daverage);
+		//}
 		return dondrepo.save(donordata);
 	}
 }
