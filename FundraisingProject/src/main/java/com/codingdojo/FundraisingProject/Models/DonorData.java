@@ -23,6 +23,12 @@ public class DonorData {
     public DonorData() {
     	
     }
+    
+
+	public DonorData(Double donoraverage) {
+		this.donoraverage = donoraverage;
+	}
+
 
 	public Long getId() {
 		return id;
