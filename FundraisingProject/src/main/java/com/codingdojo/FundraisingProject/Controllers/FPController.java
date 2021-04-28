@@ -112,6 +112,7 @@ public class FPController {
 			 return "createDonor.jsp";
 		 }
 		 dservice.createDonor(donor);
+		 this.dservice.getDonorData(donor);
 		 return "redirect:/donors";
 	 }
 	 @RequestMapping("/donors")
@@ -159,8 +160,10 @@ public class FPController {
 			 return "newdonation.jsp";
 		 }
 		 Emails email = donation.getEmailDonation();
+		 Donor donor = donation.getDonor();
 		 donservice.createDonation(donation, email);
 		 this.eservice.getEmailData(email);
+		 this.dservice.getDonorData(donor);
 		 //this.eservice.getEmailSum(email);
 		 return "redirect:/home";
 	 }
@@ -177,7 +180,7 @@ public class FPController {
 		 return "newemail.jsp";
 	 }
 	 @PostMapping(value="/newemail")
-	 public String CreateDonation(@Valid @ModelAttribute("email") Emails email, BindingResult result, Model model, HttpSession session) {
+	 public String CreateEmail(@Valid @ModelAttribute("email") Emails email, BindingResult result, Model model, HttpSession session) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (result.hasErrors()) {
 			 User user = uservice.findUserbyId(user_id);
@@ -249,6 +252,7 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 dservice.createDonor(donor);
+		 this.dservice.getDonorData(donor);
 		 return "redirect:/donors";
 	 }
 	 @RequestMapping("/emails/{id}")
@@ -356,9 +360,11 @@ public class FPController {
 			 model.addAttribute("dateFormat", dateFormat());
 			 model.addAttribute("timeFormat", timeFormat());
 			 Emails email = donation.getEmailDonation();
-			 this.eservice.getEmailData(email);
+			 Donor donor = donation.getDonor();
 			 //this.eservice.getEmailSum(email);
 			 donservice.createDonation(donation, email);
+			 this.eservice.getEmailData(email);
+			 this.dservice.getDonorData(donor);
 			 return "redirect:/home";
 		 }
 		 //edit and delete donations donor page
