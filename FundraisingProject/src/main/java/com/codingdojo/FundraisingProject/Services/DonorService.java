@@ -60,9 +60,9 @@ public class DonorService {
 	public DonorData getDonorData(Donor donor) {
 		DonorData donordata = donor.getDonordata();
 		Long id = donor.getId();
-		/*Double esum = erepo.sums(id);
-		Double eaverage = erepo.averages(id);
-		Integer donationscount = erepo.donationscount(id);
+		//Double esum = erepo.sums(id);
+		Double daverage = drepo.donoraverages(id);
+		/*Integer donationscount = erepo.donationscount(id);
 		Integer donorscount = erepo.donorscount(id);*/
 		List<DonorData> allDonordata = dondrepo.findAll();
 		for (int i = 0; i < allDonordata.size(); i++) {
