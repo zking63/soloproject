@@ -60,12 +60,6 @@ public class EmailService {
 		List <Data> averages = erepo.averagestest();
 		return averages;
 	}
-	/*public Boolean EmailDataExist(Emails email) {
-		Boolean emaildataexists = false;
-		if (email.getEmailData() != null) {
-			
-		}
-	}*/
 	public Data getEmailData(Emails email) {
 		Data emaildata = email.getEmaildata();
 		Long id = email.getId();
