@@ -60,6 +60,12 @@ public class EmailService {
 		List <Data> averages = erepo.averagestest();
 		return averages;
 	}
+	/*public Boolean EmailDataExist(Emails email) {
+		Boolean emaildataexists = false;
+		if (email.getEmailData() != null) {
+			
+		}
+	}*/
 	public Data getEmailData(Emails email) {
 		Data emaildata = email.getEmaildata();
 		Long id = email.getId();
@@ -67,18 +73,23 @@ public class EmailService {
 		Double eaverage = erepo.averages(id);
 		Integer donationscount = erepo.donationscount(id);
 		Integer donorscount = erepo.donorscount(id);
-		if (emaildata == null){
-			Data emaildata1 = new Data(email, eaverage, esum, donationscount, donorscount);
-			return datarepo.save(emaildata1);
+		List<Data> alldata = datarepo.findAll();
+		for (int i = 0; i < alldata.size(); i++) {
+			Long emailid = email.getId();
+			if (emailid == alldata.get(i).getDataEmail().getId()) {
+				Long edid = emaildata.getId();
+				edid = alldata.get(i).getId();
+				emaildata = datarepo.findById(edid).orElse(null);
+				emaildata.setEmailsum(esum);
+				emaildata.setDonationcount(donationscount);
+				emaildata.setDonorcount(donorscount);
+				emaildata.setEmailAverage(eaverage);
+			}
+			else {
+				emaildata = new Data(email, eaverage, esum, donationscount, donorscount);
+			}
 		}
-		//if (emaildata.getDataEmail().getId() == exists) where we will calculate if there is existing data for this email
-		else {
-			emaildata.setEmailsum(esum);
-			emaildata.setDonationcount(donationscount);
-			emaildata.setDonorcount(donorscount);
-			emaildata.setEmailAverage(eaverage);
-			return datarepo.save(emaildata);
-		}
+		return datarepo.save(emaildata);
 	}
 	//sorting
 	//date/time
