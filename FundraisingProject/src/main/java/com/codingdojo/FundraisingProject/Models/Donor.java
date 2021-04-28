@@ -39,6 +39,9 @@ public class Donor {
     @JoinColumn(name="user_id")
     private User uploader;
     
+	@OneToOne(mappedBy="datadonor", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private DonorData donordata;
+    
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -110,17 +113,6 @@ public class Donor {
 	public void setDonorEmail(String email) {
 		this.donorEmail = email;
 	}
-
-	/*public Double getMostRecentdonation() {
-		contributions.get(0).getAmount();
-		Donation mostRecent = contributions.get(0);
-		for (int i = 0; i < contributions.size(); i++) {
-		if (contributions.get(i).getDate() > mostRecent.getDate()) {
-				mostRecent = contributions.get(i);
-			}
-		}
-		return mostRecent.getAmount();
-	}*/
 	
 	public Double getMostRecentdonation() {
 	Donation mostRecent = new Donation();
@@ -147,34 +139,6 @@ public class Donor {
 	}
 	return mostRecentDate;
    }
-	
-	/*public Donation getMostRecentdonation() {
-		Donation mostRecent = new Donation();
-		if (contributions.size() > 0) {
-			for (int i = 0; i < contributions.size(); i++) {
-				if (contributions.get(i).getId() < mostRecent.getId()) {
-						mostRecent = contributions.get(i);
-					}
-				}
-		}
-		return mostRecent;
-	}
-	
-	/*public String getMostRecentdonationDATE() {
-		String MostRecentdonationDATE = contributions.get(0).getDonationDateFormatted();
-		Donation mostRecent = contributions.get(0);
-		for (int i = 0; i < contributions.size(); i++) {
-		if (contributions.get(i).getId() > mostRecent.getId()) {
-				mostRecent = contributions.get(i);
-			}
-		}
-		MostRecentdonationDATE = mostRecent.getDonationDateFormatted();
-		return MostRecentdonationDATE;
-	}
-
-	/*public void setMostRecentdonation(Double mostRecentdonation) {
-		this.mostRecentdonation = mostRecentdonation;
-	}*/
 
 	@PrePersist
 	protected void onCreate(){
@@ -184,8 +148,4 @@ public class Donor {
 	protected void onUpdate(){
 	    this.updatedAt = new Date();
 	}
-
-	/*public void setMostRecentdonationDATE(String mostRecentdonationDATE) {
-		MostRecentdonationDATE = mostRecentdonationDATE;
-	}*/
 }

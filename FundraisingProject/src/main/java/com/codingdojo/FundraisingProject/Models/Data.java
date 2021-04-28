@@ -26,7 +26,6 @@ public class Data {
     @JoinColumn(name="email_id")
     private Emails dataemail;
     
-    
 	public Data() {
 
 	}
