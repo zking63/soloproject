@@ -15,6 +15,7 @@ public class DonorData {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	private Double donoraverage;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="datadonor_id")
     private Donor datadonor;
@@ -38,5 +39,6 @@ public class DonorData {
 	public void setDatadonor(Donor datadonor) {
 		this.datadonor = datadonor;
 	}
+	
     
 }
