@@ -7,12 +7,12 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Donor;
+import com.codingdojo.FundraisingProject.Models.DonorData;
+import com.codingdojo.FundraisingProject.Repositories.DonorDataRepo;
 import com.codingdojo.FundraisingProject.Repositories.DonorRepo;
 
 
@@ -20,6 +20,9 @@ import com.codingdojo.FundraisingProject.Repositories.DonorRepo;
 public class DonorService {
 	@Autowired
 	private DonorRepo drepo;
+	
+	@Autowired
+	private DonorDataRepo dondrepo;
 	
 	public Donor createDonor(Donor donor) {
 		return drepo.save(donor);
@@ -52,5 +55,31 @@ public class DonorService {
 		Donor donor = drepo.findById(id).orElse(null);
 		List<Donation> contributions = donor.getContributions();
 		return contributions;
+	}
+	
+	public DonorData getDonorData(Donor donor) {
+		DonorData donordata = donor.getDonordata();
+		Long id = donor.getId();
+		/*Double esum = erepo.sums(id);
+		Double eaverage = erepo.averages(id);
+		Integer donationscount = erepo.donationscount(id);
+		Integer donorscount = erepo.donorscount(id);*/
+		List<DonorData> allDonordata = dondrepo.findAll();
+		for (int i = 0; i < allDonordata.size(); i++) {
+			Long donorid = donor.getId();
+			if (donorid == allDonordata.get(i).getDatadonor().getId()) {
+				Long edid = donordata.getId();
+				edid = allDonordata.get(i).getId();
+				donordata = dondrepo.findById(edid).orElse(null);
+				/*emaildata.setEmailsum(esum);
+				emaildata.setDonationcount(donationscount);
+				emaildata.setDonorcount(donorscount);
+				emaildata.setEmailAverage(eaverage);*/
+			}
+			else {
+				donordata = new DonorData();
+			}
+		}
+		return dondrepo.save(donordata);
 	}
 }
