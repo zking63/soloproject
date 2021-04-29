@@ -79,6 +79,10 @@ public class EmailService {
 				emaildata.setEmailAverage(eaverage);
 			}
 			else {
+				esum = erepo.sums(id);
+				eaverage = erepo.averages(id);
+				donationscount = erepo.donationscount(id);
+				donorscount = erepo.donorscount(id);
 				emaildata = new Data(email, eaverage, esum, donationscount, donorscount);
 			}
 		}
