@@ -249,8 +249,8 @@ public class FPController {
 		 }
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
-		 dservice.createDonor(donor);
-		 this.dservice.getDonorData(donor);
+		 this.dservice.updateDonor(donor);
+		 //this.dservice.getDonorData(donor);
 		 return "redirect:/donors";
 	 }
 	 @RequestMapping("/emails/{id}")
@@ -316,8 +316,8 @@ public class FPController {
 			 model.addAttribute("user", user);
 			 List<Donation> donations = email.getEmaildonations();
 			 eservice.updateEmail(email);
-			 /*this.eservice.getEmailData(email);
-			 for (int i = 0; i < donations.size(); i++) {
+			 //this.eservice.getEmailData(email);
+			 /*for (int i = 0; i < donations.size(); i++) {
 				 Donor donor = donations.get(i).getDonor();
 				 this.dservice.getDonorData(donor);
 			 }*/
