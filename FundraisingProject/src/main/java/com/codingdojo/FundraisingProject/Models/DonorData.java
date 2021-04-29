@@ -25,7 +25,8 @@ public class DonorData {
     }
     
 
-	public DonorData(Double donoraverage) {
+	public DonorData(Donor donor, Double donoraverage) {
+		this.datadonor = donor;
 		this.donoraverage = donoraverage;
 	}
 

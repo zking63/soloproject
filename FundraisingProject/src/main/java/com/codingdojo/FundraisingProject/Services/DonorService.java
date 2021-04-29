@@ -60,29 +60,33 @@ public class DonorService {
 	public DonorData getDonorData(Donor donor) {
 		DonorData donordata = donor.getDonordata();
 		Long id = donor.getId();
-		Double daverage = drepo.donoraverages(id);
+		Double daverage = 0.0;
 		List<DonorData> allDonordata = dondrepo.findAll();
 		if (donordata == null) {
-			donordata = new DonorData(daverage);
+			daverage = drepo.donoraverages(id);
+			donordata = new DonorData(donor, daverage);
 			return dondrepo.save(donordata);
 		}
-		else /*if (allDonordata.size() > 0)*/ {
-			/*for (int i = 0; i < allDonordata.size(); i++) {
-				if (id == allDonordata.get(i).getDatadonor().getId()) {*/
-					/*Long edid = donordata.getId();
-					edid = allDonordata.get(i).getId();*/
-					//donordata = dondrepo.findById(edid).orElse(null);
+		else if (allDonordata.size() > 0) {
+			 for (int i = 0; i < allDonordata.size(); i++) {
+				if (id == allDonordata.get(i).getDatadonor().getId()) {
+					Long edid = donordata.getId();
+					edid = allDonordata.get(i).getId();
+					donordata = dondrepo.findById(edid).orElse(null);
+					daverage = drepo.donoraverages(id);
 					donordata.setDonoraverage(daverage);
+					return dondrepo.save(donordata);
 				}
-				/*else {
-					donordata = new DonorData(daverage);
+				else {
+					donordata = new DonorData(donor, daverage);
+					return dondrepo.save(donordata);
 				}
-			}*/
-			return dondrepo.save(donordata);
-		//}
+			}
+		}
 		/*else {
 			donordata = new DonorData(daverage);
 			return dondrepo.save(donordata);
 		}*/
+		return dondrepo.save(donordata);
 	}
 }

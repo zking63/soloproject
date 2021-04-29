@@ -66,13 +66,13 @@ public class EmailService {
 		List<Data> alldata = datarepo.findAll();
 		for (int i = 0; i < alldata.size(); i++) {
 			if (id == alldata.get(i).getDataEmail().getId()) {
+				Long edid = emaildata.getId();
+				edid = alldata.get(i).getId();
+				emaildata = datarepo.findById(edid).orElse(null);
 				esum = erepo.sums(id);
 				eaverage = erepo.averages(id);
 				donationscount = erepo.donationscount(id);
 				donorscount = erepo.donorscount(id);
-				Long edid = emaildata.getId();
-				edid = alldata.get(i).getId();
-				emaildata = datarepo.findById(edid).orElse(null);
 				emaildata.setEmailsum(esum);
 				emaildata.setDonationcount(donationscount);
 				emaildata.setDonorcount(donorscount);
