@@ -31,10 +31,6 @@ public class EmailService {
 	}
 	
 	public Emails updateEmail(Emails email) {
-		Long id = email.getId();
-		if (id == null) {
-			return erepo.save(email);
-		}
 		return erepo.save(email);
 	}
 	
@@ -63,14 +59,18 @@ public class EmailService {
 	public Data getEmailData(Emails email) {
 		Data emaildata = email.getEmaildata();
 		Long id = email.getId();
-		Double esum = erepo.sums(id);
-		Double eaverage = erepo.averages(id);
-		Integer donationscount = erepo.donationscount(id);
-		Integer donorscount = erepo.donorscount(id);
-		Long edid = emaildata.getId();
+		Double esum = 0.00;
+		Double eaverage = 0.00;
+		Integer donationscount = 0;
+		Integer donorscount = 0;
 		List<Data> alldata = datarepo.findAll();
 		for (int i = 0; i < alldata.size(); i++) {
 			if (id == alldata.get(i).getDataEmail().getId()) {
+				esum = erepo.sums(id);
+				eaverage = erepo.averages(id);
+				donationscount = erepo.donationscount(id);
+				donorscount = erepo.donorscount(id);
+				Long edid = emaildata.getId();
 				edid = alldata.get(i).getId();
 				emaildata = datarepo.findById(edid).orElse(null);
 				emaildata.setEmailsum(esum);
