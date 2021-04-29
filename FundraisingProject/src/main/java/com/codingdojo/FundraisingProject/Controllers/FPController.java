@@ -315,9 +315,13 @@ public class FPController {
 			 model.addAttribute("dateFormat", dateFormat());
 			 model.addAttribute("timeFormat", timeFormat());
 			 model.addAttribute("user", user);
+			 List<Donation> donations = email.getEmaildonations();
 			 eservice.updateEmail(email);
-			 this.eservice.getEmailData(email);
-			 //this.eservice.getEmailSum(email);
+			 /*this.eservice.getEmailData(email);
+			 for (int i = 0; i < donations.size(); i++) {
+				 Donor donor = donations.get(i).getDonor();
+				 this.dservice.getDonorData(donor);
+			 }*/
 			 return "redirect:/emails";
 		 }
 		 //edit and delete donations homepage
@@ -360,7 +364,6 @@ public class FPController {
 			 model.addAttribute("timeFormat", timeFormat());
 			 Emails email = donation.getEmailDonation();
 			 Donor donor = donation.getDonor();
-			 //this.eservice.getEmailSum(email);
 			 donservice.createDonation(donation);
 			 this.eservice.getEmailData(email);
 			 this.dservice.getDonorData(donor);
