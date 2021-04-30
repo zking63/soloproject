@@ -67,18 +67,14 @@ public class EmailService {
 		List<Data> alldata = datarepo.findAll();
 		if (emaildata == null) {
 			emaildata = new Data(email, eaverage, esum, donationscount, donorscount);
-			System.out.println(emaildata.getId());
 			return datarepo.save(emaildata);
 		}
 		else {
 			for (int i = 0; i < alldata.size(); i++) {
 				System.out.println(alldata.get(i).getDataEmail().getEmailName());
 				if (id == alldata.get(i).getDataEmail().getId()) {
-					System.out.println("make ");
 					Long edid = emaildata.getId();
-					System.out.println("edid " + edid);
 					edid = alldata.get(i).getId();
-					System.out.println("edid " + edid);
 					emaildata = datarepo.findById(edid).orElse(null);
 					esum = erepo.sums(id);
 					eaverage = erepo.averages(id);
@@ -88,15 +84,9 @@ public class EmailService {
 					emaildata.setDonationcount(donationscount);
 					emaildata.setDonorcount(donorscount);
 					emaildata.setEmailAverage(eaverage);
-					System.out.println("edid " + edid);
 					return datarepo.save(emaildata);
 				}
-				/*else {
-					i++;
-					System.out.println(alldata.get(i).getDataEmail().getEmailName());
-				}*/
 			}
-			System.out.println("emaildata");
 			return datarepo.save(emaildata);
 		}
 	}
