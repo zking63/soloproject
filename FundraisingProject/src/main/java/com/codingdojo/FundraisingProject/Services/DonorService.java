@@ -75,6 +75,7 @@ public class DonorService {
 						donordata = dondrepo.findById(ddid).orElse(null);
 						daverage = drepo.donoraverages(id);
 						donordata.setDonoraverage(daverage);
+						System.out.println("average " + daverage);
 						return dondrepo.save(donordata);
 					}
 				}

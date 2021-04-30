@@ -71,7 +71,6 @@ public class EmailService {
 		}
 		else {
 			for (int i = 0; i < alldata.size(); i++) {
-				System.out.println(alldata.get(i).getDataEmail().getEmailName());
 				if (id == alldata.get(i).getDataEmail().getId()) {
 					Long edid = emaildata.getId();
 					edid = alldata.get(i).getId();
