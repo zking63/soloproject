@@ -17,6 +17,7 @@ public class DonorData {
 	private Long id;
 	private Double donoraverage;
 	private Double donorsum;
+	private Integer donor_contributioncount;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="donor_id")
     private Donor datadonor;
@@ -26,10 +27,11 @@ public class DonorData {
     }
     
 
-	public DonorData(Donor donor, Double donoraverage, Double donorsum) {
+	public DonorData(Donor donor, Double donoraverage, Double donorsum, Integer donor_contributioncount) {
 		this.datadonor = donor;
 		this.donoraverage = donoraverage;
 		this.donorsum = donorsum;
+		this.donor_contributioncount = donor_contributioncount;
 	}
 
 
@@ -65,6 +67,16 @@ public class DonorData {
 
 	public void setDonorsum(Double donorsum) {
 		this.donorsum = donorsum;
+	}
+
+
+	public Integer getDonor_contributioncount() {
+		return donor_contributioncount;
+	}
+
+
+	public void setDonor_contributioncount(Integer donor_contributioncount) {
+		this.donor_contributioncount = donor_contributioncount;
 	}
 	
     
