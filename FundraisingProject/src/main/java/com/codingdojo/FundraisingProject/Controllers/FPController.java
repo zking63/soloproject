@@ -328,8 +328,9 @@ public class FPController {
 				Donation donation = this.donservice.findDonationbyId(id);
 				this.donservice.delete(id);
 				Emails email = donation.getEmailDonation();
+				Donor donor = donation.getDonor();
 				this.eservice.getEmailData(email);
-				//this.eservice.getEmailSum(email);
+				this.dservice.getDonorData(donor);
 				return "redirect:/home";
 			}
 			@RequestMapping(value="/donations/edit/{id}")

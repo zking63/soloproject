@@ -67,19 +67,25 @@ public class DonorService {
 		List<DonorData> allDonordata = dondrepo.findAll();
 		if (donordata != null) {
 			 for (int i = 0; i < allDonordata.size(); i++) {
+				 System.out.println(allDonordata.get(i).getDatadonor().getDonorFirstName());
 					if (id == allDonordata.get(i).getDatadonor().getId()) {
 						Long ddid = donordata.getId();
+						System.out.println("donordata id " + ddid);
 						ddid = allDonordata.get(i).getId();
 						donordata = dondrepo.findById(ddid).orElse(null);
 						daverage = drepo.donoraverages(id);
 						donordata.setDonoraverage(daverage);
+						return dondrepo.save(donordata);
 					}
 				}
+			    System.out.println("make");
 				return dondrepo.save(donordata);
 		}
 		else {
-			daverage = drepo.donoraverages(id);
+			System.out.println("new");
+			//daverage = drepo.donoraverages(id);
 			donordata = new DonorData(donor, daverage);
+			System.out.println(donordata.getId());
 			return dondrepo.save(donordata);
 		}
 	}
