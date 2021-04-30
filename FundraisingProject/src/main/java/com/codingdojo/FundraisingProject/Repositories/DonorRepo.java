@@ -21,4 +21,8 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	//sum functions
 	@Query(value = "SELECT SUM(donations.amount) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)
 	Double donorsums(@Param("donorid") Long id);
+	
+	//donation count functions
+	@Query(value = "SELECT COUNT(DISTINCT donations.id) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)
+	Double donordoncount(@Param("donorid") Long id);
 }
