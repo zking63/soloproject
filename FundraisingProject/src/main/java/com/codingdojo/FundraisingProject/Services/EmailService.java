@@ -90,6 +90,40 @@ public class EmailService {
 			return datarepo.save(emaildata);
 		}
 	}
+	public Data getEmailDatafromDonation(Donation donation) {
+		Emails email = donation.getEmailDonation();
+		Data emaildata = email.getEmaildata();
+		Long id = email.getId();
+		Double esum = 0.00;
+		Double eaverage = 0.00;
+		Integer donationscount = 0;
+		Integer donorscount = 0;
+		List<Data> alldata = datarepo.findAll();
+		if (emaildata == null) {
+			emaildata = new Data(email, eaverage, esum, donationscount, donorscount);
+			return datarepo.save(emaildata);
+		}
+		else {
+			for (int i = 0; i < alldata.size(); i++) {
+				System.out.println(alldata.get(i).getDataEmail().getEmailName());
+				if (id == alldata.get(i).getDataEmail().getId()) {
+					Long edid = emaildata.getId();
+					edid = alldata.get(i).getId();
+					emaildata = datarepo.findById(edid).orElse(null);
+					esum = erepo.sums(id);
+					eaverage = erepo.averages(id);
+					donationscount = erepo.donationscount(id);
+					donorscount = erepo.donorscount(id);
+					emaildata.setEmailsum(esum);
+					emaildata.setDonationcount(donationscount);
+					emaildata.setDonorcount(donorscount);
+					emaildata.setEmailAverage(eaverage);
+					return datarepo.save(emaildata);
+				}
+			}
+			return datarepo.save(emaildata);
+		}
+	}
 	//sorting
 	//date/time
 	public List<Emails> EmailTest(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 

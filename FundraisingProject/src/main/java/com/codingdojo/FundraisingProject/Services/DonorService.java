@@ -74,9 +74,6 @@ public class DonorService {
 						daverage = drepo.donoraverages(id);
 						donordata.setDonoraverage(daverage);
 					}
-					else {
-						i++;
-					}
 				}
 				return dondrepo.save(donordata);
 		}

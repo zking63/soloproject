@@ -250,7 +250,6 @@ public class FPController {
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
 		 this.dservice.updateDonor(donor);
-		 //this.dservice.getDonorData(donor);
 		 return "redirect:/donors";
 	 }
 	 @RequestMapping("/emails/{id}")
@@ -364,7 +363,7 @@ public class FPController {
 			 Emails email = donation.getEmailDonation();
 			 Donor donor = donation.getDonor();
 			 donservice.createDonation(donation);
-			 this.eservice.getEmailData(email);
+			 this.eservice.getEmailDatafromDonation(donation);
 			 this.dservice.getDonorData(donor);
 			 return "redirect:/home";
 		 }
