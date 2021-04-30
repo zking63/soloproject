@@ -39,6 +39,7 @@
 	            <th>Most recent donation amount</th>
 	            <th>Most recent donation date</th>
 	            <th>Times given</th>
+	            <th>Total given</th>
 	            <th>Average donation amount</th>
 	            <th>Action</th>
 	        </tr>
@@ -51,6 +52,7 @@
 					<td>$${d.getMostRecentdonation()}</td>
 					<td>${d.getMostRecentdonationDate()}</td>
 					<td>${d.contributions.size()}</td>
+					<td>$${d.getDonordata().getDonorsum() }</td>
 					<td>$${d.getDonordata().getDonoraverage() }</td>
 					<td>
 					<p><a href="/donors/edit/${d.id}">Edit</a></p>
