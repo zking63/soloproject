@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -44,6 +45,10 @@ public class Donation {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="email_id")
     private Emails emailDonation;
+    
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="donor_id")
+    private Donor mostrecentDonationbyDonor;
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -142,6 +147,14 @@ public class Donation {
 	@PreUpdate
 	protected void onUpdate(){
 	    this.updatedAt = new Date();
+	}
+
+	public Donor getMostrecentDonationbyDonor() {
+		return mostrecentDonationbyDonor;
+	}
+
+	public void setMostrecentDonationbyDonor(Donor mostrecentDonationbyDonor) {
+		this.mostrecentDonationbyDonor = mostrecentDonationbyDonor;
 	}
     
 }

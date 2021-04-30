@@ -7,11 +7,13 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Donor;
 import com.codingdojo.FundraisingProject.Models.DonorData;
+import com.codingdojo.FundraisingProject.Repositories.DonationRepo;
 import com.codingdojo.FundraisingProject.Repositories.DonorDataRepo;
 import com.codingdojo.FundraisingProject.Repositories.DonorRepo;
 
@@ -23,6 +25,9 @@ public class DonorService {
 	
 	@Autowired
 	private DonorDataRepo dondrepo;
+	
+	@Autowired
+	private DonationRepo donationrepo;
 	
 	public Donor createDonor(Donor donor) {
 		return drepo.save(donor);
@@ -66,6 +71,7 @@ public class DonorService {
 		Double daverage = 0.0;
 		Double donorsum = 0.0;
 		Integer donationcount = 0;
+		Long mostrecent_donation_id = null;
 		List<DonorData> allDonordata = dondrepo.findAll();
 		if (donordata != null) {
 			 for (int i = 0; i < allDonordata.size(); i++) {
@@ -79,10 +85,14 @@ public class DonorService {
 						donorsum = drepo.donorsums(id);
 						donationcount = drepo.donordoncount(id);
 						donordata.setDonoraverage(daverage);
-						donordata.setDonor_contributioncount(donationcount);
 						System.out.println("average " + daverage);
+						donordata.setDonor_contributioncount(donationcount);
+						System.out.println("contribution " + donationcount);
 						donordata.setDonorsum(donorsum);
 						System.out.println("sum " + donorsum);
+						mostrecent_donation_id = drepo.mostRecentDonationDate(id);
+						donordata.setMostrecent_donation(mostrecent_donation_id);
+						System.out.println("date " + mostrecent_donation_id);
 						return dondrepo.save(donordata);
 					}
 				}
@@ -94,7 +104,8 @@ public class DonorService {
 			daverage = drepo.donoraverages(id);
 			donorsum = drepo.donorsums(id);
 			donationcount = drepo.donordoncount(id);
-			donordata = new DonorData(donor, daverage, donorsum, donationcount);
+			mostrecent_donation_id = drepo.mostRecentDonationDate(id);
+			donordata = new DonorData(donor, daverage, donorsum, donationcount, mostrecent_donation_id);
 			System.out.println(donordata.getId());
 			return dondrepo.save(donordata);
 		}
