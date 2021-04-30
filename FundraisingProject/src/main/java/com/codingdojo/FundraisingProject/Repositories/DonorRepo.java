@@ -25,4 +25,8 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	//donation count functions
 	@Query(value = "SELECT COUNT(DISTINCT donations.id) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)
 	Integer donordoncount(@Param("donorid") Long id);
+	
+	//most recent donation functions
+	@Query(value = "SELECT donations.id FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid ORDER BY donations.Dondate DESC, donations.Dontime DESC LIMIT 1", nativeQuery = true)
+	Long mostRecentDonationDate(@Param("donorid") Long id);
 }
