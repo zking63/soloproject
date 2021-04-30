@@ -16,6 +16,7 @@ public class DonorData {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private Double donoraverage;
+	private Double donorsum;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="donor_id")
     private Donor datadonor;
@@ -53,6 +54,16 @@ public class DonorData {
 
 	public void setDonoraverage(Double donoraverage) {
 		this.donoraverage = donoraverage;
+	}
+
+
+	public Double getDonorsum() {
+		return donorsum;
+	}
+
+
+	public void setDonorsum(Double donorsum) {
+		this.donorsum = donorsum;
 	}
 	
     
