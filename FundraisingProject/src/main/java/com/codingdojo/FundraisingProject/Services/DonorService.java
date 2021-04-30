@@ -65,6 +65,7 @@ public class DonorService {
 		Long id = donor.getId();
 		Double daverage = 0.0;
 		Double donorsum = 0.0;
+		Integer donationcount = 0;
 		List<DonorData> allDonordata = dondrepo.findAll();
 		if (donordata != null) {
 			 for (int i = 0; i < allDonordata.size(); i++) {
@@ -76,7 +77,9 @@ public class DonorService {
 						donordata = dondrepo.findById(ddid).orElse(null);
 						daverage = drepo.donoraverages(id);
 						donorsum = drepo.donorsums(id);
+						donationcount = drepo.donordoncount(id);
 						donordata.setDonoraverage(daverage);
+						donordata.setDonor_contributioncount(donationcount);
 						System.out.println("average " + daverage);
 						donordata.setDonorsum(donorsum);
 						System.out.println("sum " + donorsum);
@@ -90,7 +93,8 @@ public class DonorService {
 			System.out.println("new");
 			daverage = drepo.donoraverages(id);
 			donorsum = drepo.donorsums(id);
-			donordata = new DonorData(donor, daverage, donorsum);
+			donationcount = drepo.donordoncount(id);
+			donordata = new DonorData(donor, daverage, donorsum, donationcount);
 			System.out.println(donordata.getId());
 			return dondrepo.save(donordata);
 		}
