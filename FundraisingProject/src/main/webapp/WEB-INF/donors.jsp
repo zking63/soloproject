@@ -51,7 +51,7 @@
 					<td>${d.donorEmail}</td>
 					<td>$${d.getMostRecentdonation()}</td>
 					<td>${d.getMostRecentdonationDate()}</td>
-					<td>${d.getDonor_contributioncount()}</td>
+					<td>${d.getDonordata().getDonor_contributioncount()}</td>
 					<td>$${d.getDonordata().getDonorsum() }</td>
 					<td>$${d.getDonordata().getDonoraverage() }</td>
 					<td>
