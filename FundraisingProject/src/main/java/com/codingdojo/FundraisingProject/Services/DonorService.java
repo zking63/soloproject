@@ -64,6 +64,7 @@ public class DonorService {
 		DonorData donordata = donor.getDonordata();
 		Long id = donor.getId();
 		Double daverage = 0.0;
+		Double donorsum = 0.0;
 		List<DonorData> allDonordata = dondrepo.findAll();
 		if (donordata != null) {
 			 for (int i = 0; i < allDonordata.size(); i++) {
@@ -74,8 +75,11 @@ public class DonorService {
 						ddid = allDonordata.get(i).getId();
 						donordata = dondrepo.findById(ddid).orElse(null);
 						daverage = drepo.donoraverages(id);
+						donorsum = drepo.donorsums(id);
 						donordata.setDonoraverage(daverage);
 						System.out.println("average " + daverage);
+						donordata.setDonorsum(donorsum);
+						System.out.println("sum " + donorsum);
 						return dondrepo.save(donordata);
 					}
 				}
@@ -84,8 +88,9 @@ public class DonorService {
 		}
 		else {
 			System.out.println("new");
-			//daverage = drepo.donoraverages(id);
-			donordata = new DonorData(donor, daverage);
+			daverage = drepo.donoraverages(id);
+			donorsum = drepo.donorsums(id);
+			donordata = new DonorData(donor, daverage, donorsum);
 			System.out.println(donordata.getId());
 			return dondrepo.save(donordata);
 		}
