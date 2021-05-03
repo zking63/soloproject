@@ -169,6 +169,6 @@ public class DonorService {
 	}
 	public List<Donor> orderMostrecentAmountAsc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
-		return drepo.MostrecentamountSortDesc(startdate, enddate);
+		return drepo.MostrecentamountSortAsc(startdate, enddate);
 	}
 }
