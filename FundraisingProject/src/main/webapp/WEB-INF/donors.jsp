@@ -49,8 +49,8 @@
 				<tr>
 					<td><a href="/donors/${d.id}">${ d.donorFirstName } ${d.donorLastName}</a></td>
 					<td>${d.donorEmail}</td>
-					<td>$${d.getMostRecentdonation()}</td>
-					<td>${d.getMostRecentdonationDate()}</td>
+					<td>$${d.getMostrecentDonationbyDonor().getAmount()}</td>
+					<td>${d.getMostrecentDonationbyDonor().getDonationDateFormatted()} </br> ${d.getMostrecentDonationbyDonor().getDonationTimeFormatted()}</td>
 					<td>${d.getDonordata().getDonor_contributioncount()}</td>
 					<td>$${d.getDonordata().getDonorsum() }</td>
 					<td>$${d.getDonordata().getDonoraverage() }</td>

@@ -94,6 +94,7 @@ public class DonorService {
 						mostrecent_donation_id = drepo.mostRecentDonationDate(id);
 						mostrecent = donationrepo.findById(mostrecent_donation_id).orElse(null);
 						donordata.setMostrecent_donation(mostrecent_donation_id);
+						donor.setMostrecentDonationbyDonor(mostrecent);
 						System.out.println("date " + mostrecent_donation_id);
 						return dondrepo.save(donordata);
 					}
