@@ -41,7 +41,20 @@
 	        <tr>
 	            <th>Name</th>
 	            <th>Email address</th>
-	            <th>Most recent donation amount</th>
+	            <th>Most recent donation amount</br>
+	            	<form class="pointer" method="post" action="/donors/sortdown">
+						<input type="hidden" name="field" value="mostrecentamount">
+						<input type="hidden" name="startdateD" value="${startdateD}">
+						<input type="hidden" name="enddateD" value="${enddateD}">
+						<button>^</button>
+					</form>
+					<form class="pointer" method="post" action="/donors/sortup">
+						<input type="hidden" name="field" value="mostrecentamount">
+						<input type="hidden" name="startdateD" value="${startdateD}">
+						<input type="hidden" name="enddateD" value="${enddateD}">
+						<button>v</button>
+					</form>
+	            </th>
 	            <th>Most recent donation date</br>
 	            	<form class="pointer" method="post" action="/donors/sortdown">
 						<input type="hidden" name="field" value="latestdonation">
