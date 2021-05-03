@@ -133,6 +133,7 @@ public class FPController {
 		 }
 		 model.addAttribute("startdateD", startdateD);
 		 model.addAttribute("enddateD", enddateD);
+		 model.addAttribute("dateFormat", dateFormat());
 		 model.addAttribute("donor", this.dservice.orderMostRecentbyDonorDesc(startdateD, enddateD));
 		 return "donors.jsp";
 	 }
@@ -564,6 +565,10 @@ public class FPController {
 			 }
 			 if (field.equals("donorsum")) {
 				 donors = this.dservice.orderDonorsumAsc(startdateD, enddateD);
+			 }
+			 if (enddateD == null) {
+				 enddateD = dateFormat();
+				 donors = this.dservice.orderMostRecentbyDonorAsc(startdateD, enddateD);
 			 }
 			 model.addAttribute("donor", donors);
 			 return "donors.jsp";

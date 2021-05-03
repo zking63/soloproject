@@ -18,11 +18,11 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	Donor findBydonorEmail(String email);
 	
 	//date functions
-	@Query(value = "SELECT * FROM donors where mostrecent_date >= :startdate and mostrecent_date <= :enddate order by mostrecent_date Desc", nativeQuery = true)
+	@Query(value = "SELECT * FROM donors where mostrecent_date >= :startdate and mostrecent_date <= :enddate order by mostrecent_date Desc, mostrecenttime Desc", nativeQuery = true)
 	List <Donor> findAllWithMostRecent(@Param("startdate") @DateTimeFormat(pattern="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern="yyyy-MM-dd") String enddate);
 	
-	@Query(value = "SELECT * FROM donors where mostrecent_date >= :startdate and mostrecent_date <= :enddate order by mostrecent_date Asc", nativeQuery = true)
+	@Query(value = "SELECT * FROM donors where mostrecent_date >= :startdate and mostrecent_date <= :enddate order by mostrecent_date Asc, mostrecenttime Asc", nativeQuery = true)
 	List <Donor> findAllWithMostRecentDondateAfterAsc(@Param("startdate") @DateTimeFormat(pattern="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern="yyyy-MM-dd") String enddate);
 	
@@ -65,4 +65,12 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	//most recent donation function
 	@Query(value = "SELECT donations.id FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid ORDER BY donations.Dondate DESC, donations.Dontime DESC LIMIT 1", nativeQuery = true)
 	Long mostRecentDonationDate(@Param("donorid") Long id);
+	
+	@Query(value = "SELECT * FROM donors where mostrecent_date >= :startdate and mostrecent_date <= :enddate order by mostrecentamount Desc", nativeQuery = true)
+	List <Donor> MostrecentamountSortDesc(@Param("startdate") @DateTimeFormat(pattern="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern="yyyy-MM-dd") String enddate);
+	
+	@Query(value = "SELECT * FROM donors where mostrecent_date >= :startdate and mostrecent_date <= :enddate order by mostrecentamount Asc", nativeQuery = true)
+	List <Donor> MostrecentamountSortAsc(@Param("startdate") @DateTimeFormat(pattern="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern="yyyy-MM-dd") String enddate);
 }
