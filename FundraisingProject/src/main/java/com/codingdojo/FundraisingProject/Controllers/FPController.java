@@ -116,14 +116,22 @@ public class FPController {
 		 return "redirect:/donors";
 	 }
 	 @RequestMapping("/donors")
-	 public String donorsPage(@ModelAttribute("donor") Donor donor, Model model, HttpSession session) {
+	 public String donorsPage(@ModelAttribute("donor") Donor donor, Model model, HttpSession session,
+			 @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
+			 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (user_id == null) {
 			 return "redirect:/";
 		 }
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
-		 model.addAttribute("donor", this.dservice.allDonors());
+		 if (startdate == null) {
+			 startdate = dateFormat();
+		 }
+		 if (enddate == null) {
+			 enddate = dateFormat();
+		 }
+		 model.addAttribute("donor", this.dservice.orderMostRecentbyDonorDesc(startdate, enddate));
 		 return "donors.jsp";
 	 }
 	private String dateFormat() {
