@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 
@@ -109,9 +110,14 @@ public class DonorService {
 			donationcount = drepo.donordoncount(id);
 			mostrecent_donation_id = drepo.mostRecentDonationDate(id);
 			mostrecent = donationrepo.findById(mostrecent_donation_id).orElse(null);
+			donor.setMostrecentDonationbyDonor(mostrecent);
 			donordata = new DonorData(donor, daverage, donorsum, donationcount, mostrecent_donation_id);
 			System.out.println(donordata.getId());
 			return dondrepo.save(donordata);
 		}
+	}
+	public List<Donation> orderMostRecentbyDonorDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		return drepo.findAllWithMostRecentDondateAfter(startdate, enddate);
 	}
 }
