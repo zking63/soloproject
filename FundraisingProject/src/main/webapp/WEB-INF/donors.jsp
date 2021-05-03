@@ -70,7 +70,20 @@
 						<button>v</button>
 					</form>
 	            </th>
-	            <th>Total given</th>
+	            <th>Total given</br>
+	            <form class="pointer" method="post" action="/donors/sortdown">
+						<input type="hidden" name="field" value="donorsum">
+						<input type="hidden" name="startdateD" value="${startdateD}">
+						<input type="hidden" name="enddateD" value="${enddateD}">
+						<button>^</button>
+					</form>
+					<form class="pointer" method="post" action="/donors/sortup">
+						<input type="hidden" name="field" value="donorsum">
+						<input type="hidden" name="startdateD" value="${startdateD}">
+						<input type="hidden" name="enddateD" value="${enddateD}">
+						<button>v</button>
+					</form>
+	            </th>
 	            <th>Average donation amount</br>
 	            	<form class="pointer" method="post" action="/donors/sortdown">
 						<input type="hidden" name="field" value="donoraverage">
