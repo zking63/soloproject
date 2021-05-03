@@ -147,4 +147,12 @@ public class DonorService {
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return drepo.findByContributionCountByAsc(startdate, enddate);
 	}
+	public List<Donor> orderAverageAsc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		return drepo.findByDonorAverageByAsc(startdate, enddate);
+	}
+	public List<Donor> orderAverageDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		return drepo.findByDonorAverageByDesc(startdate, enddate);
+	}
 }
