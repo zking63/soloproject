@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.codingdojo.FundraisingProject.Models.Donation;
 import com.codingdojo.FundraisingProject.Models.Donor;
+import com.codingdojo.FundraisingProject.Models.Emails;
 
 @Repository
 public interface DonorRepo extends CrudRepository<Donor, Long>{
@@ -36,6 +37,10 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	//donation count functions
 	@Query(value = "SELECT COUNT(DISTINCT donations.id) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)
 	Integer donordoncount(@Param("donorid") Long id);
+	
+	@Query(value = "SELECT * FROM donors LEFT JOIN donations ON donors.donation_id = donations.id LEFT JOIN data_donors ON donors.id = data_donors.donor_id where donations.dondate >= :startdate and donations.dondate <= :enddate ORDER BY data_donors.donor_contributioncount DESC", nativeQuery = true)
+	List<Donor> findByContributionCountByDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
 	
 	//most recent donation function
 	@Query(value = "SELECT donations.id FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid ORDER BY donations.Dondate DESC, donations.Dontime DESC LIMIT 1", nativeQuery = true)

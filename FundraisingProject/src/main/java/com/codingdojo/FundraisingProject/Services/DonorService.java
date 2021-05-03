@@ -124,4 +124,8 @@ public class DonorService {
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return drepo.findAllWithMostRecentDondateAfterAsc(startdate, enddate);
 	}
+	public List<Donor> orderDonorCountDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		return drepo.findByContributionCountByDesc(startdate, enddate);
+	}
 }
