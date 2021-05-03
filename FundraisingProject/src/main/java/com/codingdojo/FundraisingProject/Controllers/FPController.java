@@ -529,6 +529,9 @@ public class FPController {
 			 if (field.equals("donationcount")) {
 				 donors = this.dservice.orderDonorCountDesc(startdateD, enddateD);
 			 }
+			 if (field.equals("donoraverage")) {
+				 donors = this.dservice.orderAverageDesc(startdateD, enddateD);
+			 }
 			 model.addAttribute("donor", donors);
 			 return "donors.jsp";
 		 }
@@ -552,6 +555,9 @@ public class FPController {
 			 }
 			 if (field.equals("donationcount")) {
 				 donors = this.dservice.orderDonorCountAsc(startdateD, enddateD);
+			 }
+			 if (field.equals("donoraverage")) {
+				 donors = this.dservice.orderAverageAsc(startdateD, enddateD);
 			 }
 			 model.addAttribute("donor", donors);
 			 return "donors.jsp";
