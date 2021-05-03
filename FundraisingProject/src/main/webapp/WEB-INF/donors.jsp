@@ -45,14 +45,14 @@
 	            <th>Most recent donation date</br>
 	            	<form class="pointer" method="post" action="/donors/sortdown">
 						<input type="hidden" name="field" value="latestDonation">
-						<input type="hidden" name="startdateE" value="${ startdateE}">
-						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<input type="hidden" name="startdateD" value="${ startdateD}">
+						<input type="hidden" name="enddateD" value="${ enddateD}">
 						<button>^</button>
 					</form>
 					<form class="pointer" method="post" action="/donors/sortup">
 						<input type="hidden" name="field" value="latestDonation">
-						<input type="hidden" name="startdateE" value="${ startdateE}">
-						<input type="hidden" name="enddateE" value="${ enddateE}">
+						<input type="hidden" name="startdateD" value="${ startdateD}">
+						<input type="hidden" name="enddateD" value="${ enddateD}">
 						<button>v</button>
 					</form>
 	            </th>
