@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,9 +47,8 @@ public class Donation {
     @JoinColumn(name="email_id")
     private Emails emailDonation;
     
-    @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="donor_id")
-    private Donor mostrecentDonationbyDonor;
+	@OneToOne(mappedBy="mostrecentDonationbyDonor", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private Donor donorRecent;
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -149,12 +149,12 @@ public class Donation {
 	    this.updatedAt = new Date();
 	}
 
-	public Donor getMostrecentDonationbyDonor() {
-		return mostrecentDonationbyDonor;
+	public Donor getdonorRecent() {
+		return donorRecent;
 	}
 
-	public void setMostrecentDonationbyDonor(Donor mostrecentDonationbyDonor) {
-		this.mostrecentDonationbyDonor = mostrecentDonationbyDonor;
+	public void setdonorRecent(Donor donorRecent) {
+		this.donorRecent = donorRecent;
 	}
     
 }

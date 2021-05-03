@@ -42,8 +42,9 @@ public class Donor {
 	@OneToOne(mappedBy="datadonor", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private DonorData donordata;
 	
-	@OneToOne(mappedBy="mostrecentDonationbyDonor", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private Donation donorRecent;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="donation_id")
+    private Donation mostrecentDonationbyDonor;
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -160,12 +161,12 @@ public class Donor {
 		this.donordata = donordata;
 	}
 
-	public Donation getDonorRecent() {
-		return donorRecent;
+	public Donation getMostrecentDonationbyDonor() {
+		return mostrecentDonationbyDonor;
 	}
 
-	public void setDonorRecent(Donation donorRecent) {
-		this.donorRecent = donorRecent;
+	public void setMostrecentDonationbyDonor(Donation mostrecentDonationbyDonor) {
+		this.mostrecentDonationbyDonor = mostrecentDonationbyDonor;
 	}
 	
 }
