@@ -116,7 +116,7 @@ public class DonorService {
 			return dondrepo.save(donordata);
 		}
 	}
-	public List<Donation> orderMostRecentbyDonorDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+	public List<Donor> orderMostRecentbyDonorDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return drepo.findAllWithMostRecentDondateAfter(startdate, enddate);
 	}
