@@ -550,6 +550,9 @@ public class FPController {
 			 if (field.equals("latestdonation")) {
 				 donors = this.dservice.orderMostRecentbyDonorAsc(startdateD, enddateD);
 			 }
+			 if (field.equals("donationcount")) {
+				 donors = this.dservice.orderDonorCountAsc(startdateD, enddateD);
+			 }
 			 model.addAttribute("donor", donors);
 			 return "donors.jsp";
 		 }

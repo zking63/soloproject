@@ -47,8 +47,8 @@ public class Donation {
     @JoinColumn(name="email_id")
     private Emails emailDonation;
     
-	@OneToOne(mappedBy="mostrecentDonationbyDonor", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private Donor donorRecent;
+	/*@OneToOne(mappedBy="mostrecentDonationbyDonor", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private Donor donorRecent;*/
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -149,12 +149,12 @@ public class Donation {
 	    this.updatedAt = new Date();
 	}
 
-	public Donor getdonorRecent() {
+	/*public Donor getdonorRecent() {
 		return donorRecent;
 	}
 
 	public void setdonorRecent(Donor donorRecent) {
 		this.donorRecent = donorRecent;
-	}
+	}*/
     
 }

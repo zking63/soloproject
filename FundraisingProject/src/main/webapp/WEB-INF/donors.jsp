@@ -56,7 +56,7 @@
 						<button>v</button>
 					</form>
 	            </th>
-	            <th>Times given
+	            <th>Times given</br>
 	            	<form class="pointer" method="post" action="/donors/sortdown">
 						<input type="hidden" name="field" value="donationcount">
 						<input type="hidden" name="startdateD" value="${startdateD}">
@@ -80,8 +80,8 @@
 				<tr>
 					<td><a href="/donors/${d.id}">${ d.donorFirstName } ${d.donorLastName}</a></td>
 					<td>${d.donorEmail}</td>
-					<td>$${d.getMostrecentDonationbyDonor().getAmount()}</td>
-					<td>${d.getMostrecentDonationbyDonor().getDonationDateFormatted()} </br> ${d.getMostrecentDonationbyDonor().getDonationTimeFormatted()}</td>
+					<td>$</td>
+					<td>${d.mostrecentDate} </br> </td>
 					<td>${d.getDonordata().getDonor_contributioncount()}</td>
 					<td>$${d.getDonordata().getDonorsum() }</td>
 					<td>$${d.getDonordata().getDonoraverage() }</td>

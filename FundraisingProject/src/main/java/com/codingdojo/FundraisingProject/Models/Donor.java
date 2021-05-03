@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table (name="donors")
 public class Donor {
@@ -42,9 +44,16 @@ public class Donor {
 	@OneToOne(mappedBy="datadonor", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private DonorData donordata;
 	
-    @OneToOne(fetch=FetchType.LAZY)
+    /*@OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="donation_id")
-    private Donation mostrecentDonationbyDonor;
+    private Donation mostrecentDonationbyDonor;*/
+    
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private Date mostrecentDate;
+	@DateTimeFormat(pattern ="kk:mm")
+	private Date mostrecenttime;
+	
+	private Double mostrecentamount;
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -161,12 +170,37 @@ public class Donor {
 		this.donordata = donordata;
 	}
 
-	public Donation getMostrecentDonationbyDonor() {
+	/*public Donation getMostrecentDonationbyDonor() {
 		return mostrecentDonationbyDonor;
 	}
 
 	public void setMostrecentDonationbyDonor(Donation mostrecentDonationbyDonor) {
 		this.mostrecentDonationbyDonor = mostrecentDonationbyDonor;
+	}*/
+
+	public Date getMostrecentDate() {
+		return mostrecentDate;
 	}
+
+	public void setMostrecentDate(Date mostrecentDate) {
+		this.mostrecentDate = mostrecentDate;
+	}
+
+	public Date getMostrecenttime() {
+		return mostrecenttime;
+	}
+
+	public void setMostrecenttime(Date mostrecenttime) {
+		this.mostrecenttime = mostrecenttime;
+	}
+
+	public Double getMostrecentamount() {
+		return mostrecentamount;
+	}
+
+	public void setMostrecentamount(Double mostrecentamount) {
+		this.mostrecentamount = mostrecentamount;
+	}
+	
 	
 }

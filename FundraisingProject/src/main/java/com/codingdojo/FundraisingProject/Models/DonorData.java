@@ -18,7 +18,7 @@ public class DonorData {
 	private Double donoraverage;
 	private Double donorsum;
 	private Integer donor_contributioncount;
-	private Long mostrecent_donation_id;
+	//private Long mostrecent_donation_id;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="donor_id")
     private Donor datadonor;
@@ -28,12 +28,12 @@ public class DonorData {
     }
     
 
-	public DonorData(Donor donor, Double donoraverage, Double donorsum, Integer donor_contributioncount, Long mostrecent_donation_id) {
+	public DonorData(Donor donor, Double donoraverage, Double donorsum, Integer donor_contributioncount) {
 		this.datadonor = donor;
 		this.donoraverage = donoraverage;
 		this.donorsum = donorsum;
 		this.donor_contributioncount = donor_contributioncount;
-		this.mostrecent_donation_id = mostrecent_donation_id;
+		//this.mostrecent_donation_id = mostrecent_donation_id;
 	}
 
 
@@ -82,14 +82,14 @@ public class DonorData {
 	}
 
 
-	public Long getMostrecent_donation_id() {
+	/*public Long getMostrecent_donation_id() {
 		return mostrecent_donation_id;
 	}
 
 
 	public void setMostrecent_donation(Long mostrecent_donation_id) {
 		this.mostrecent_donation_id = mostrecent_donation_id;
-	}
+	}*/
 	
     
 }
