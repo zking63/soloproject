@@ -72,6 +72,7 @@ public class DonorService {
 		Double donorsum = 0.0;
 		Integer donationcount = 0;
 		Long mostrecent_donation_id = null;
+		Donation mostrecent = donor.getMostrecentDonationbyDonor();
 		List<DonorData> allDonordata = dondrepo.findAll();
 		if (donordata != null) {
 			 for (int i = 0; i < allDonordata.size(); i++) {
@@ -91,6 +92,7 @@ public class DonorService {
 						donordata.setDonorsum(donorsum);
 						System.out.println("sum " + donorsum);
 						mostrecent_donation_id = drepo.mostRecentDonationDate(id);
+						mostrecent = donationrepo.findById(mostrecent_donation_id).orElse(null);
 						donordata.setMostrecent_donation(mostrecent_donation_id);
 						System.out.println("date " + mostrecent_donation_id);
 						return dondrepo.save(donordata);
@@ -105,6 +107,7 @@ public class DonorService {
 			donorsum = drepo.donorsums(id);
 			donationcount = drepo.donordoncount(id);
 			mostrecent_donation_id = drepo.mostRecentDonationDate(id);
+			mostrecent = donationrepo.findById(mostrecent_donation_id).orElse(null);
 			donordata = new DonorData(donor, daverage, donorsum, donationcount, mostrecent_donation_id);
 			System.out.println(donordata.getId());
 			return dondrepo.save(donordata);
