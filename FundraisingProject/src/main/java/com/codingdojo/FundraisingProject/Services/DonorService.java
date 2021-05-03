@@ -120,4 +120,8 @@ public class DonorService {
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return drepo.findAllWithMostRecentDondateAfter(startdate, enddate);
 	}
+	public List<Donor> orderMostRecentbyDonorAsc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		return drepo.findAllWithMostRecentDondateAfterAsc(startdate, enddate);
+	}
 }
