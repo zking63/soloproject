@@ -80,8 +80,8 @@
 				<tr>
 					<td><a href="/donors/${d.id}">${ d.donorFirstName } ${d.donorLastName}</a></td>
 					<td>${d.donorEmail}</td>
-					<td>$</td>
-					<td>${d.mostrecentDate} </br> </td>
+					<td>$${d.mostrecentamount}</td>
+					<td>${d.getRecentDateFormatted()} </br> ${d.getRecentTimeFormatted()}</td>
 					<td>${d.getDonordata().getDonor_contributioncount()}</td>
 					<td>$${d.getDonordata().getDonorsum() }</td>
 					<td>$${d.getDonordata().getDonoraverage() }</td>

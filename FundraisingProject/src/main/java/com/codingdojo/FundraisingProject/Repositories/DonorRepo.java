@@ -26,13 +26,17 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	List <Donor> findAllWithMostRecentDondateAfterAsc(@Param("startdate") @DateTimeFormat(pattern="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern="yyyy-MM-dd") String enddate);
 	
-	/*@Query(value = "SELECT * FROM donors LEFT JOIN donations ON donors.donation_id = donations.id where donations.dondate >= :startdate and donations.dondate <= :enddate order by donations.dondate Asc, donations.dontime Asc", nativeQuery = true)
-	List <Donor> findAllWithMostRecentDondateAfterAsc(@Param("startdate") @DateTimeFormat(pattern="yyyy-MM-dd") String startdate, 
-			@Param("enddate") @DateTimeFormat(pattern="yyyy-MM-dd") String enddate);*/
-	
 	//average functions
 	@Query(value = "SELECT AVG(donations.amount) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)
 	Double donoraverages(@Param("donorid") Long id);
+
+	@Query(value = "SELECT * FROM donors LEFT JOIN data_donors ON donors.id = data_donors.donor_id where donors.mostrecent_date >= :startdate and donors.mostrecent_date <= :enddate ORDER BY data_donors.donoraverage DESC", nativeQuery = true)
+	List<Donor> findByDonorAverageByDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
+	
+	@Query(value = "SELECT * FROM donors LEFT JOIN data_donors ON donors.id = data_donors.donor_id where donors.mostrecent_date >= :startdate and donors.mostrecent_date <= :enddate ORDER BY data_donors.donoraverage ASC", nativeQuery = true)
+	List<Donor> findByDonorAverageByAsc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
 	
 	//sum functions
 	@Query(value = "SELECT SUM(donations.amount) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)

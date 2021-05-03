@@ -1,5 +1,6 @@
 package com.codingdojo.FundraisingProject.Models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class Donor {
     
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private Date mostrecentDate;
+    
 	@DateTimeFormat(pattern ="kk:mm")
 	private Date mostrecenttime;
 	
@@ -202,5 +204,12 @@ public class Donor {
 		this.mostrecentamount = mostrecentamount;
 	}
 	
-	
+    public String getRecentDateFormatted() {
+    	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+    	return df.format(this.mostrecentDate);
+    }
+    public String getRecentTimeFormatted() {
+    	SimpleDateFormat df = new SimpleDateFormat("kk:mm");
+    	return df.format(this.mostrecenttime);
+    }
 }
