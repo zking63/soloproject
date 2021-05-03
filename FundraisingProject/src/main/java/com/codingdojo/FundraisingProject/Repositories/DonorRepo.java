@@ -17,7 +17,7 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	Donor findBydonorEmail(String email);
 	
 	//date functions
-	@Query(value = "SELECT * FROM donors where mostrecentDonationbyDonor.Dondate >= :startdate and mostrecentDonationbyDonor.Dondate <= :enddate order by mostrecentDonationbyDonor.Dondate DESC, mostrecentDonationbyDonor.Dontime DESC", nativeQuery = true)
+	@Query(value = "SELECT * FROM donors LEFT JOIN donations ON donors.donation_id = donations.id where donations.dondate >= :startdate and donations.dondate <= :enddate order by donations.dondate Desc, donations.dontime Desc", nativeQuery = true)
 	List <Donor> findAllWithMostRecentDondateAfter(@Param("startdate") @DateTimeFormat(pattern="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern="yyyy-MM-dd") String enddate);
 	

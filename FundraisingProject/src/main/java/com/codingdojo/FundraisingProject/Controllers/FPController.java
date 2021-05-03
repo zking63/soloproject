@@ -117,21 +117,23 @@ public class FPController {
 	 }
 	 @RequestMapping("/donors")
 	 public String donorsPage(@ModelAttribute("donor") Donor donor, Model model, HttpSession session,
-			 @Param("startdate") @DateTimeFormat(iso = ISO.DATE) String startdate, 
-			 @Param("enddate") @DateTimeFormat(iso = ISO.DATE) String enddate) {
+			 @Param("startdateD") @DateTimeFormat(iso = ISO.DATE) String startdateD, 
+			 @Param("enddateD") @DateTimeFormat(iso = ISO.DATE) String enddateD) {
 		 Long user_id = (Long)session.getAttribute("user_id");
 		 if (user_id == null) {
 			 return "redirect:/";
 		 }
 		 User user = uservice.findUserbyId(user_id);
 		 model.addAttribute("user", user);
-		 if (startdate == null) {
-			 startdate = dateFormat();
+		 if (startdateD == null) {
+			 startdateD = dateFormat();
 		 }
-		 if (enddate == null) {
-			 enddate = dateFormat();
+		 if (enddateD == null) {
+			 enddateD = dateFormat();
 		 }
-		 model.addAttribute("donor", this.dservice.orderMostRecentbyDonorDesc(startdate, enddate));
+		 model.addAttribute("startdateD", startdateD);
+		 model.addAttribute("enddateD", enddateD);
+		 model.addAttribute("donor", this.dservice.orderMostRecentbyDonorDesc(startdateD, enddateD));
 		 return "donors.jsp";
 	 }
 	private String dateFormat() {
@@ -508,8 +510,8 @@ public class FPController {
 		 }
 		 @RequestMapping(value="/donors/sortdown")
 		 public String sortdownDonors(Model model, HttpSession session,
-				 @RequestParam("startdateE") @DateTimeFormat(iso = ISO.DATE) String startdateE, 
-				 @RequestParam("enddateE") @DateTimeFormat(iso = ISO.DATE) String enddateE, @RequestParam("field") String field) {
+				 @RequestParam("startdateD") @DateTimeFormat(iso = ISO.DATE) String startdateD, 
+				 @RequestParam("enddateD") @DateTimeFormat(iso = ISO.DATE) String enddateD, @RequestParam("field") String field) {
 			 Long user_id = (Long)session.getAttribute("user_id");
 			 if (user_id == null) {
 				 return "redirect:/";
@@ -517,12 +519,12 @@ public class FPController {
 			 User user = uservice.findUserbyId(user_id);
 			 model.addAttribute("user", user);
 			 model.addAttribute("dateFormat", dateFormat());
-			 model.addAttribute("startdateE", startdateE);
-			 model.addAttribute("enddateE", enddateE);
+			 model.addAttribute("startdateD", startdateD);
+			 model.addAttribute("enddateD", enddateD);
 			 model.addAttribute("field",field);
 			 List<Donor> donors = null;
 			 if (field.equals("latestDonation")) {
-				 donors = dservice.orderMostRecentbyDonorDesc(startdateE, enddateE);
+				 donors = dservice.orderMostRecentbyDonorDesc(startdateD, enddateD);
 			 }
 			 model.addAttribute("donors", donors);
 			 return "donors.jsp";

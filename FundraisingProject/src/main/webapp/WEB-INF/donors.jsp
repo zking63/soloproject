@@ -30,8 +30,13 @@
 	<button><a href="/newemail">Upload a new email</a></button>
 	</div>
 	<div class="wrapper">
-	<table class="table table-hover">
 	<h2>Donors</h2>
+	<form method="post" class="date-form" action="/donors">
+		<input type="date" value="${startdateD}" name="startdateD"/>
+		<input type="date" value="${enddateD}" name="enddateD"/>
+		<button>Set</button>
+	</form>
+	<table class="table table-hover">
 	    <thead>
 	        <tr>
 	            <th>Name</th>
