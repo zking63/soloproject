@@ -563,7 +563,7 @@ public class FPController {
 				 donors = this.dservice.orderAverageAsc(startdateD, enddateD);
 			 }
 			 if (field.equals("donorsum")) {
-				 donors = this.dservice.orderDonorsumDesc(startdateD, enddateD);
+				 donors = this.dservice.orderDonorsumAsc(startdateD, enddateD);
 			 }
 			 model.addAttribute("donor", donors);
 			 return "donors.jsp";
