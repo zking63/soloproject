@@ -529,4 +529,25 @@ public class FPController {
 			 model.addAttribute("donors", donors);
 			 return "donors.jsp";
 		 }
+		 @RequestMapping(value="/donors/sortup")
+		 public String sortUpDonors(Model model, HttpSession session,
+				 @RequestParam("startdateD") @DateTimeFormat(iso = ISO.DATE) String startdateD, 
+				 @RequestParam("enddateD") @DateTimeFormat(iso = ISO.DATE) String enddateD, @RequestParam("field") String field) {
+			 Long user_id = (Long)session.getAttribute("user_id");
+			 if (user_id == null) {
+				 return "redirect:/";
+			 }
+			 User user = uservice.findUserbyId(user_id);
+			 model.addAttribute("user", user);
+			 model.addAttribute("dateFormat", dateFormat());
+			 model.addAttribute("startdateD", startdateD);
+			 model.addAttribute("enddateD", enddateD);
+			 model.addAttribute("field",field);
+			 List<Donor> donors = null;
+			 if (field.equals("latestDonation")) {
+				 donors = dservice.orderMostRecentbyDonorAsc(startdateD, enddateD);
+			 }
+			 model.addAttribute("donors", donors);
+			 return "donors.jsp";
+		 }
 }
