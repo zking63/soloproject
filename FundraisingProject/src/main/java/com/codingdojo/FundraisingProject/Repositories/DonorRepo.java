@@ -42,6 +42,14 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	@Query(value = "SELECT SUM(donations.amount) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)
 	Double donorsums(@Param("donorid") Long id);
 	
+	@Query(value = "SELECT * FROM donors LEFT JOIN data_donors ON donors.id = data_donors.donor_id where donors.mostrecent_date >= :startdate and donors.mostrecent_date <= :enddate ORDER BY data_donors.donorsum ASC", nativeQuery = true)
+	List<Donor> findByDonorsumByAsc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
+	
+	@Query(value = "SELECT * FROM donors LEFT JOIN data_donors ON donors.id = data_donors.donor_id where donors.mostrecent_date >= :startdate and donors.mostrecent_date <= :enddate ORDER BY data_donors.donorsum DESC", nativeQuery = true)
+	List<Donor> findByDonorsumByDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
+	
 	//donation count functions
 	@Query(value = "SELECT COUNT(DISTINCT donations.id) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)
 	Integer donordoncount(@Param("donorid") Long id);
