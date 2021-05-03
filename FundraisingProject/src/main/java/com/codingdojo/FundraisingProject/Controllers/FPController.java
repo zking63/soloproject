@@ -521,12 +521,12 @@ public class FPController {
 			 model.addAttribute("dateFormat", dateFormat());
 			 model.addAttribute("startdateD", startdateD);
 			 model.addAttribute("enddateD", enddateD);
-			 model.addAttribute("field",field);
+			 model.addAttribute("field", field);
 			 List<Donor> donors = null;
-			 if (field.equals("latestDonation")) {
-				 donors = dservice.orderMostRecentbyDonorDesc(startdateD, enddateD);
+			 if (field.equals("latestdonation")) {
+				 donors = this.dservice.orderMostRecentbyDonorDesc(startdateD, enddateD);
 			 }
-			 model.addAttribute("donors", donors);
+			 model.addAttribute("donor", donors);
 			 return "donors.jsp";
 		 }
 		 @RequestMapping(value="/donors/sortup")
@@ -542,12 +542,12 @@ public class FPController {
 			 model.addAttribute("dateFormat", dateFormat());
 			 model.addAttribute("startdateD", startdateD);
 			 model.addAttribute("enddateD", enddateD);
-			 model.addAttribute("field",field);
+			 model.addAttribute("field", field);
 			 List<Donor> donors = null;
-			 if (field.equals("latestDonation")) {
-				 donors = dservice.orderMostRecentbyDonorAsc(startdateD, enddateD);
+			 if (field.equals("latestdonation")) {
+				 donors = this.dservice.orderMostRecentbyDonorAsc(startdateD, enddateD);
 			 }
-			 model.addAttribute("donors", donors);
+			 model.addAttribute("donor", donors);
 			 return "donors.jsp";
 		 }
 }
