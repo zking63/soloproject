@@ -550,6 +550,7 @@ public class FPController {
 			 if (field.equals("mostrecentamount")) {
 				 donors = this.dservice.orderMostrecentAmountDesc(startdateD, enddateD);
 			 }
+			 dservice.DonorsWithinRange(startdateD, enddateD);
 			 model.addAttribute("donor", donors);
 			 return "donors.jsp";
 		 }
@@ -583,6 +584,7 @@ public class FPController {
 			 if (field.equals("mostrecentamount")) {
 				 donors = this.dservice.orderMostrecentAmountAsc(startdateD, enddateD);
 			 }
+			 dservice.DonorsWithinRange(startdateD, enddateD);
 			 model.addAttribute("donor", donors);
 			 return "donors.jsp";
 		 }
