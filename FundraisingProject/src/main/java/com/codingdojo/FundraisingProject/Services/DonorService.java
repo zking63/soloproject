@@ -171,4 +171,8 @@ public class DonorService {
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return drepo.MostrecentamountSortAsc(startdate, enddate);
 	}
+	/*public Donor setCountinRange(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		return drepo.MostrecentamountSortAsc(startdate, enddate);
+	}*/
 }
