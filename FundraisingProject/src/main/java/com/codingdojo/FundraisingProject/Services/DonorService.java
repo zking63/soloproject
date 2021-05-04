@@ -174,7 +174,6 @@ public class DonorService {
 	public void DonorsWithinRange(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		List<Donor> donors = drepo.findAll();
-		//List <Donor> donors2 = null;
 		for (int i= 0; i < donors.size(); i++) {
 			Long id = donors.get(i).getId();
 			Integer countinrange = drepo.donordoncountRange(id, startdate, enddate);
@@ -182,17 +181,18 @@ public class DonorService {
 			Double avginrange = drepo.donoravgRange(id, startdate, enddate);
 			Donor donor = drepo.findById(id).orElse(null);
 			donor.setCountwithinrange(countinrange);
-			donor.setSumwithinrange(avginrange);
+			donor.setSumwithinrange(suminrange);
 			donor.setAveragewithinrange(avginrange);
 			String name = donor.getDonorFirstName();
 			Integer count = donor.getCountwithinrange();
+			Double sum = donor.getSumwithinrange();
+			Double average = donor.getAveragewithinrange();
 			System.out.println("Donor " + name);
 			System.out.println(" Count " + count);
 			System.out.println(" Sum " + suminrange);
-			System.out.println(" Average " + avginrange);
-			//donors2.add(donor);
+			System.out.println(" Sum from donor " + sum);
+			System.out.println(" Average from donor " + average);
 		}
-		//return donors2;
 	}
 	/*public Donor setCountinRange(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){

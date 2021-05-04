@@ -41,6 +41,8 @@
 			<tr>
 				<th>Name</th>
 	            <th>Times given within range</th>
+	            <th>Sum within range</th>
+	            <th>Average within range</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -48,6 +50,8 @@
 				<tr>
 					<td><a href="/donors/${don.id}">${ don.donorFirstName } ${don.donorLastName}</a></td>
 					<td>${don.countwithinrange}</td>
+					<td>${don.sumwithinrange}</td>
+					<td>${don.averagewithinrange}</td>
 		       </tr>
 			</c:forEach>
 		</tbody>
