@@ -37,26 +37,6 @@
 		<button>Set</button>
 	</form>
 	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th>Name</th>
-	            <th>Times given within range</th>
-	            <th>Sum within range</th>
-	            <th>Average within range</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${ donor}" var="don">
-				<tr>
-					<td><a href="/donors/${don.id}">${ don.donorFirstName } ${don.donorLastName}</a></td>
-					<td>${don.countwithinrange}</td>
-					<td>${don.sumwithinrange}</td>
-					<td>${don.averagewithinrange}</td>
-		       </tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<table class="table table-hover">
 	    <thead>
 	        <tr>
 	            <th>Name</th>
@@ -103,6 +83,7 @@
 						<button>v</button>
 					</form>
 	            </th>
+	            <th>Times given within range</th>
 	            <th>Total given</br>
 	            <form class="pointer" method="post" action="/donors/sortdown">
 						<input type="hidden" name="field" value="donorsum">
@@ -117,6 +98,7 @@
 						<button>v</button>
 					</form>
 	            </th>
+	            <th>Total within range</th>
 	            <th>Average donation amount</br>
 	            	<form class="pointer" method="post" action="/donors/sortdown">
 						<input type="hidden" name="field" value="donoraverage">
@@ -131,6 +113,7 @@
 						<button>v</button>
 					</form>
 	            </th>
+	            <th>Average within range</th>
 	            <th>Action</th>
 	        </tr>
 	    </thead>
@@ -142,8 +125,11 @@
 					<td>$${d.getDonorRecentAmountFormatted()}</td>
 					<td>${d.getRecentDateFormatted()} </br> ${d.getRecentTimeFormatted()}</td>
 					<td>${d.getDonordata().getDonor_contributioncount()}</td>
+					<td>${d.countwithinrange}</td>
 					<td>$${d.getDonordata().getDonorSumFormatted() }</td>
+					<td>$${d.sumwithinrange}</td>
 					<td>$${d.getDonordata().getDonorAverageFormatted() }</td>
+					<td>$${d.averagewithinrange}</td>
 					<td>
 					<p><a href="/donors/edit/${d.id}">Edit</a></p>
 					<p><a href="/donors/delete/${d.id}">Delete</a></p>
