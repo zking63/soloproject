@@ -101,4 +101,12 @@ public class DonorData {
 		DecimalFormat df = new DecimalFormat("0.00");
 		return df.format(donoraverage1);
 	}
+	public String getDonorSumFormatted() {
+		if (this.donorsum == null) {
+			this.donorsum = 0.0;
+		}
+		double donorsum1 = (double) getDonorsum();
+		DecimalFormat df = new DecimalFormat("0.00");
+		return df.format(donorsum1);
+	}
 }
