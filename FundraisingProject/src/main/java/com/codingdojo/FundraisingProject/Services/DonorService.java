@@ -192,6 +192,7 @@ public class DonorService {
 			System.out.println(" Sum " + suminrange);
 			System.out.println(" Sum from donor " + sum);
 			System.out.println(" Average from donor " + average);
+			System.out.println(" Average " + avginrange);
 		}
 	}
 	/*public Donor setCountinRange(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
