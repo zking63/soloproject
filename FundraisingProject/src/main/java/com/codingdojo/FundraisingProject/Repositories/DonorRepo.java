@@ -38,6 +38,11 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	List<Donor> findByDonorAverageByAsc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
 	
+	//average within range functions
+	@Query(value = "SELECT AVG(donations.amount) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid AND donations.dondate >= :startdate and donations.dondate <= :enddate AND donors.mostrecent_date >= :startdate and donors.mostrecent_date <= :enddate", nativeQuery = true)
+	Double donoravgRange(@Param("donorid") Long id, @Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
+	
 	//sum functions
 	@Query(value = "SELECT SUM(donations.amount) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)
 	Double donorsums(@Param("donorid") Long id);
@@ -52,7 +57,7 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	
 	//sum within rage functions
 	@Query(value = "SELECT SUM(donations.amount) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid AND donations.dondate >= :startdate and donations.dondate <= :enddate AND donors.mostrecent_date >= :startdate and donors.mostrecent_date <= :enddate", nativeQuery = true)
-	Integer donorsumRange(@Param("donorid") Long id, @Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+	Double donorsumRange(@Param("donorid") Long id, @Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
 	
 	//donation count functions

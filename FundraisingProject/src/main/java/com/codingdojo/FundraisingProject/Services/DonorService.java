@@ -178,12 +178,18 @@ public class DonorService {
 		for (int i= 0; i < donors.size(); i++) {
 			Long id = donors.get(i).getId();
 			Integer countinrange = drepo.donordoncountRange(id, startdate, enddate);
+			Double suminrange = drepo.donorsumRange(id, startdate, enddate);
+			Double avginrange = drepo.donoravgRange(id, startdate, enddate);
 			Donor donor = drepo.findById(id).orElse(null);
 			donor.setCountwithinrange(countinrange);
+			donor.setSumwithinrange(avginrange);
+			donor.setAveragewithinrange(avginrange);
 			String name = donor.getDonorFirstName();
 			Integer count = donor.getCountwithinrange();
 			System.out.println("Donor " + name);
-			System.out.println("Count " + count);
+			System.out.println(" Count " + count);
+			System.out.println(" Sum " + suminrange);
+			System.out.println(" Average " + avginrange);
 			//donors2.add(donor);
 		}
 		//return donors2;
