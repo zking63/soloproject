@@ -58,7 +58,10 @@ public class Donor {
 	
 	private Double mostrecentamount;
 	
+	//within range functions
 	private Integer countwithinrange;
+	private Double sumwithinrange;
+	private Double averagewithinrange;
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -231,5 +234,22 @@ public class Donor {
 	public void setCountwithinrange(Integer countwithinrange) {
 		this.countwithinrange = countwithinrange;
 	}
+
+	public Double getSumwithinrange() {
+		return sumwithinrange;
+	}
+
+	public void setSumwithinrange(Double sumwithinrange) {
+		this.sumwithinrange = sumwithinrange;
+	}
+
+	public Double getAveragewithinrange() {
+		return averagewithinrange;
+	}
+
+	public void setAveragewithinrange(Double averagewithinrange) {
+		this.averagewithinrange = averagewithinrange;
+	}
+	
 	
 }
