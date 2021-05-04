@@ -1,7 +1,9 @@
 package com.codingdojo.FundraisingProject.Controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -141,6 +143,13 @@ public class FPController {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		return df.format(new Date());
 	}
+	private String dateFormat7daysAgo() {
+		Calendar cal = new GregorianCalendar();
+		cal.add(Calendar.DAY_OF_MONTH, -7);
+		Date sevenDaysAgo = cal.getTime();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return df.format(sevenDaysAgo);
+	}
 	private String timeFormat() {
 		SimpleDateFormat df = new SimpleDateFormat("kk:mm");
 		return df.format(new Date());
@@ -212,7 +221,7 @@ public class FPController {
 			 return "redirect:/";
 		 }
 		 if (startdateE == null) {
-			 startdateE = dateFormat();
+			 startdateE = dateFormat7daysAgo();
 		 }
 		 if (enddateE == null) {
 			 enddateE = dateFormat();

@@ -1,5 +1,7 @@
 package com.codingdojo.FundraisingProject.Models;
 
+import java.text.DecimalFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -91,5 +93,12 @@ public class DonorData {
 		this.mostrecent_donation_id = mostrecent_donation_id;
 	}*/
 	
-    
+	public String getDonorAverageFormatted() {
+		if (this.donoraverage == null) {
+			this.donoraverage = 0.0;
+		}
+		double donoraverage1 = (double) getDonoraverage();
+		DecimalFormat df = new DecimalFormat("0.00");
+		return df.format(donoraverage1);
+	}
 }

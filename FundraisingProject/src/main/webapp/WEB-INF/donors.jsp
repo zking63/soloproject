@@ -123,7 +123,7 @@
 					<td>${d.getRecentDateFormatted()} </br> ${d.getRecentTimeFormatted()}</td>
 					<td>${d.getDonordata().getDonor_contributioncount()}</td>
 					<td>$${d.getDonordata().getDonorsum() }</td>
-					<td>$${d.getDonordata().getDonoraverage() }</td>
+					<td>$${d.getDonordata().getDonorAverageFormatted() }</td>
 					<td>
 					<p><a href="/donors/edit/${d.id}">Edit</a></p>
 					<p><a href="/donors/delete/${d.id}">Delete</a></p>
