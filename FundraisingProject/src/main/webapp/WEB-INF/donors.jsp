@@ -119,7 +119,7 @@
 				<tr>
 					<td><a href="/donors/${d.id}">${ d.donorFirstName } ${d.donorLastName}</a></td>
 					<td>${d.donorEmail}</td>
-					<td>$${d.mostrecentamount}</td>
+					<td>$${d.getDonorRecentAmountFormatted()}</td>
 					<td>${d.getRecentDateFormatted()} </br> ${d.getRecentTimeFormatted()}</td>
 					<td>${d.getDonordata().getDonor_contributioncount()}</td>
 					<td>$${d.getDonordata().getDonorSumFormatted() }</td>

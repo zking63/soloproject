@@ -1,5 +1,6 @@
 package com.codingdojo.FundraisingProject.Models;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -212,4 +213,12 @@ public class Donor {
     	SimpleDateFormat df = new SimpleDateFormat("kk:mm");
     	return df.format(this.mostrecenttime);
     }
+	public String getDonorRecentAmountFormatted() {
+		if (this.mostrecentamount == null) {
+			this.mostrecentamount = 0.0;
+		}
+		double mostrecentamount1 = (double) getMostrecentamount();
+		DecimalFormat df = new DecimalFormat("0.00");
+		return df.format(mostrecentamount1);
+	}
 }

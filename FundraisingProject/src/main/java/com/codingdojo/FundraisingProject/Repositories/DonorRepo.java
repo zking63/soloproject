@@ -54,6 +54,10 @@ public interface DonorRepo extends CrudRepository<Donor, Long>{
 	@Query(value = "SELECT COUNT(DISTINCT donations.id) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid", nativeQuery = true)
 	Integer donordoncount(@Param("donorid") Long id);
 	
+	@Query(value = "SELECT COUNT(DISTINCT donations.id) FROM donors LEFT JOIN donations ON donations.donor_id = donors.id WHERE donors.id = :donorid AND donations.dondate >= :startdate and donations.dondate <= :enddate", nativeQuery = true)
+	Integer donordoncountRange(@Param("donorid") Long id, @Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
+	
 	@Query(value = "SELECT * FROM donors LEFT JOIN data_donors ON donors.id = data_donors.donor_id where donors.mostrecent_date >= :startdate and donors.mostrecent_date <= :enddate ORDER BY data_donors.donor_contributioncount DESC", nativeQuery = true)
 	List<Donor> findByContributionCountByDesc(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate);
