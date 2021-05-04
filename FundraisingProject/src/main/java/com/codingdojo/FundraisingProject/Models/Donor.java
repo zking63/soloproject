@@ -57,6 +57,8 @@ public class Donor {
 	private Date mostrecenttime;
 	
 	private Double mostrecentamount;
+	
+	private Integer countwithinrange;
     
 	@Column(updatable=false)
 	private Date createdAt;
@@ -221,4 +223,13 @@ public class Donor {
 		DecimalFormat df = new DecimalFormat("0.00");
 		return df.format(mostrecentamount1);
 	}
+
+	public Integer getCountwithinrange() {
+		return countwithinrange;
+	}
+
+	public void setCountwithinrange(Integer countwithinrange) {
+		this.countwithinrange = countwithinrange;
+	}
+	
 }

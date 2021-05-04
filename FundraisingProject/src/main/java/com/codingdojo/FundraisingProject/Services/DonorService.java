@@ -171,6 +171,23 @@ public class DonorService {
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return drepo.MostrecentamountSortAsc(startdate, enddate);
 	}
+	public void DonorsWithinRange(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
+			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
+		List<Donor> donors = drepo.findAll();
+		//List <Donor> donors2 = null;
+		for (int i= 0; i < donors.size(); i++) {
+			Long id = donors.get(i).getId();
+			Integer countinrange = drepo.donordoncountRange(id, startdate, enddate);
+			Donor donor = drepo.findById(id).orElse(null);
+			donor.setCountwithinrange(countinrange);
+			String name = donor.getDonorFirstName();
+			Integer count = donor.getCountwithinrange();
+			System.out.println("Donor " + name);
+			System.out.println("Count " + count);
+			//donors2.add(donor);
+		}
+		//return donors2;
+	}
 	/*public Donor setCountinRange(@Param("startdate") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdate, 
 			@Param("enddate") @DateTimeFormat(pattern ="yyyy-MM-dd") String enddate){
 		return drepo.MostrecentamountSortAsc(startdate, enddate);

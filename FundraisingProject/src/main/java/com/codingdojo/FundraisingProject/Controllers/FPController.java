@@ -136,6 +136,8 @@ public class FPController {
 		 model.addAttribute("startdateD", startdateD);
 		 model.addAttribute("enddateD", enddateD);
 		 model.addAttribute("dateFormat", dateFormat());
+		 //model.addAttribute("donorswithin", this.dservice.DonorsWithinRange(startdateD, enddateD));
+		 dservice.DonorsWithinRange(startdateD, enddateD);
 		 model.addAttribute("donor", this.dservice.orderMostRecentbyDonorDesc(startdateD, enddateD));
 		 return "donors.jsp";
 	 }

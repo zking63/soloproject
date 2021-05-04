@@ -37,6 +37,22 @@
 		<button>Set</button>
 	</form>
 	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+	            <th>Times given within range</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${ donor}" var="don">
+				<tr>
+					<td><a href="/donors/${don.id}">${ don.donorFirstName } ${don.donorLastName}</a></td>
+					<td>${don.countwithinrange}</td>
+		       </tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	<table class="table table-hover">
 	    <thead>
 	        <tr>
 	            <th>Name</th>
