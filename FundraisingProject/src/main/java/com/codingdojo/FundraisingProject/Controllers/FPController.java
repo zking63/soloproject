@@ -1,6 +1,10 @@
 package com.codingdojo.FundraisingProject.Controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -9,6 +13,11 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +31,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingdojo.FundraisingProject.Models.Data;
@@ -588,4 +598,50 @@ public class FPController {
 			 model.addAttribute("donor", donors);
 			 return "donors.jsp";
 		 }
+		 @RequestMapping(value="/import")
+		 public String exceltest() {
+			 return "import.jsp";
+		 }
+		 @RequestMapping(value="/import", headers = "content-type=multipart/*", method=RequestMethod.POST)
+		 public String mapReapExcelDatatoDB(@RequestParam("file") MultipartFile reapExcelDataFile) throws IOException {
+		     
+		     //List<Test> tempStudentList = new ArrayList<Test>();
+			 //File newfile = new File (reapExcelDataFile);
+			 FileInputStream file = new FileInputStream((reapExcelDataFile).getInputStream());
+			 Workbook workbook = new XSSFWorkbook(file);
+		     //XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
+		     XSSFSheet worksheet = (XSSFSheet) workbook.getSheetAt(0);
+		     
+		     for(int i=1;i<2;i++) {
+		    	 //worksheet.getPhysicalNumberOfRows() 
+		         //Test tempStudent = new Test();
+		             
+		         XSSFRow row = worksheet.getRow(i);
+		             
+		         Double temp = row.getCell(0).getNumericCellValue();
+		         String temper = row.getCell(1).getStringCellValue();
+		         System.out.println(temp);  
+		         System.out.println(temper);  
+		     }
+		     return "home.jsp";
+		 }
+		 /*@RequestMapping(value="/import",method=RequestMethod.POST)
+		 public String mapReapExcelDatatoDB(@RequestParam("file") MultipartFile reapExcelDataFile) throws IOException {
+		     
+		     //List<Test> tempStudentList = new ArrayList<Test>();
+		     XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
+		     XSSFSheet worksheet = workbook.getSheetAt(0);
+		     
+		     for(int i=1;i<worksheet.getPhysicalNumberOfRows() ;i++) {
+		         //Test tempStudent = new Test();
+		             
+		         XSSFRow row = worksheet.getRow(i);
+		             
+		         Double temp = row.getCell(0).getNumericCellValue();
+		         String temper = row.getCell(1).getStringCellValue();
+		         System.out.println(temp);  
+		         System.out.println(temper);  
+		     }
+		     return "home.jsp";
+		 }*/
 }
