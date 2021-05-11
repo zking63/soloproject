@@ -24,9 +24,9 @@
             <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
-	<form th:action="@{/import}" method="post" enctype="multipart/form-data">
-	    <input type="file" name="file" />
-	    <input type="submit" value="Import" />
+	<form th:action="@{/import}" method="post"
+		enctype="multipart/form-data">
+		<input type="file" name="file" /> <input type="submit" value="Import" />
 	</form>
 </body>
 </html>
