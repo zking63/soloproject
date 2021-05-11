@@ -3,6 +3,9 @@ package com.codingdojo.FundraisingProject.Controllers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,7 +19,10 @@ import javax.validation.Valid;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -43,6 +49,7 @@ import com.codingdojo.FundraisingProject.Services.DonationService;
 import com.codingdojo.FundraisingProject.Services.DonorService;
 import com.codingdojo.FundraisingProject.Services.EmailService;
 import com.codingdojo.FundraisingProject.Services.UserService;
+import com.codingdojo.FundraisingProject.Util.UploadUtil;
 import com.codingdojo.FundraisingProject.Validation.DonorValidation;
 import com.codingdojo.FundraisingProject.Validation.UserValidation;
 
@@ -66,6 +73,9 @@ public class FPController {
 	
 	@Autowired
 	private EmailService eservice;
+	
+	@Autowired
+	private UploadUtil uploadu;
 	
 	@RequestMapping("/")
 	public String index(@ModelAttribute("user")User user) {
@@ -603,16 +613,17 @@ public class FPController {
 			 return "import.jsp";
 		 }
 		 @RequestMapping(value="/import", headers = "content-type=multipart/*", method=RequestMethod.POST)
-		 public String mapReapExcelDatatoDB(@RequestParam("file") MultipartFile reapExcelDataFile) throws IOException {
+		 public String mapReapExcelDatatoDB(@RequestParam("file") MultipartFile reapExcelDataFile) throws IOException, EncryptedDocumentException, InvalidFormatException {
 		     
 		     //List<Test> tempStudentList = new ArrayList<Test>();
-			 //File newfile = new File (reapExcelDataFile);
-			 FileInputStream file = new FileInputStream((reapExcelDataFile).getInputStream());
-			 Workbook workbook = new XSSFWorkbook(file);
-		     //XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
-		     XSSFSheet worksheet = (XSSFSheet) workbook.getSheetAt(0);
+			//File newfile = new File (reapExcelDataFile);
+			// FileInputStream file = new FileInputStream((reapExcelDataFile).getInputStream());
+			 InputStream file = reapExcelDataFile.getInputStream();
+			 try (Workbook workbook = new XSSFWorkbook(file)) {
+				 System.out.println("works"); 
+			}
 		     
-		     for(int i=1;i<2;i++) {
+		     /*for(int i=1;i<2;i++) {
 		    	 //worksheet.getPhysicalNumberOfRows() 
 		         //Test tempStudent = new Test();
 		             
@@ -622,7 +633,21 @@ public class FPController {
 		         String temper = row.getCell(1).getStringCellValue();
 		         System.out.println(temp);  
 		         System.out.println(temper);  
-		     }
+		     }*/
+			 //getSheetDetails
+
+						String filepath = reapExcelDataFile.getOriginalFilename();
+						
+						System.out.println(filepath); 
+
+						/*byte[] bytes = reapExcelDataFile.getBytes();
+						java.nio.file.Path path = Paths.get(reapExcelDataFile.getOriginalFilename());
+						Files.write(path, bytes);
+
+
+						uploadu.getSheetDetails(filepath);
+						uploadu.readExcelSheet(filepath);*/
+
 		     return "home.jsp";
 		 }
 		 /*@RequestMapping(value="/import",method=RequestMethod.POST)
