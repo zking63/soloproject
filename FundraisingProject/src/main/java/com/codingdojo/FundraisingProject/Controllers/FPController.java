@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -48,8 +49,8 @@ import com.codingdojo.FundraisingProject.Models.User;
 import com.codingdojo.FundraisingProject.Services.DonationService;
 import com.codingdojo.FundraisingProject.Services.DonorService;
 import com.codingdojo.FundraisingProject.Services.EmailService;
+import com.codingdojo.FundraisingProject.Services.ExcelService;
 import com.codingdojo.FundraisingProject.Services.UserService;
-import com.codingdojo.FundraisingProject.Util.UploadUtil;
 import com.codingdojo.FundraisingProject.Validation.DonorValidation;
 import com.codingdojo.FundraisingProject.Validation.UserValidation;
 
@@ -75,7 +76,7 @@ public class FPController {
 	private EmailService eservice;
 	
 	@Autowired
-	private UploadUtil uploadu;
+	ExcelService excelService;
 	
 	@RequestMapping("/")
 	public String index(@ModelAttribute("user")User user) {
@@ -612,61 +613,10 @@ public class FPController {
 		 public String exceltest() {
 			 return "import.jsp";
 		 }
-		 @RequestMapping(value="/import", headers = "content-type=multipart/*", method=RequestMethod.POST)
-		 public String mapReapExcelDatatoDB(@RequestParam("file") MultipartFile reapExcelDataFile) throws IOException, EncryptedDocumentException, InvalidFormatException {
-		     
-		     //List<Test> tempStudentList = new ArrayList<Test>();
-			//File newfile = new File (reapExcelDataFile);
-			// FileInputStream file = new FileInputStream((reapExcelDataFile).getInputStream());
-			 InputStream file = reapExcelDataFile.getInputStream();
-			 try (Workbook workbook = new XSSFWorkbook(file)) {
-				 System.out.println("works"); 
-			}
-		     
-		     /*for(int i=1;i<2;i++) {
-		    	 //worksheet.getPhysicalNumberOfRows() 
-		         //Test tempStudent = new Test();
-		             
-		         XSSFRow row = worksheet.getRow(i);
-		             
-		         Double temp = row.getCell(0).getNumericCellValue();
-		         String temper = row.getCell(1).getStringCellValue();
-		         System.out.println(temp);  
-		         System.out.println(temper);  
-		     }*/
-			 //getSheetDetails
-
-						String filepath = reapExcelDataFile.getOriginalFilename();
-						
-						System.out.println(filepath); 
-
-						/*byte[] bytes = reapExcelDataFile.getBytes();
-						java.nio.file.Path path = Paths.get(reapExcelDataFile.getOriginalFilename());
-						Files.write(path, bytes);
-
-
-						uploadu.getSheetDetails(filepath);
-						uploadu.readExcelSheet(filepath);*/
-
-		     return "home.jsp";
-		 }
-		 /*@RequestMapping(value="/import",method=RequestMethod.POST)
-		 public String mapReapExcelDatatoDB(@RequestParam("file") MultipartFile reapExcelDataFile) throws IOException {
-		     
-		     //List<Test> tempStudentList = new ArrayList<Test>();
-		     XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
-		     XSSFSheet worksheet = workbook.getSheetAt(0);
-		     
-		     for(int i=1;i<worksheet.getPhysicalNumberOfRows() ;i++) {
-		         //Test tempStudent = new Test();
-		             
-		         XSSFRow row = worksheet.getRow(i);
-		             
-		         Double temp = row.getCell(0).getNumericCellValue();
-		         String temper = row.getCell(1).getStringCellValue();
-		         System.out.println(temp);  
-		         System.out.println(temper);  
-		     }
-		     return "home.jsp";
-		 }*/
+		@PostMapping("/import")
+		public String readExcel(MultipartFile file) throws EncryptedDocumentException, InvalidFormatException, IOException, ParseException {
+			excelService.readData(file);
+			return "home.jsp";
+			
+		}
 }
